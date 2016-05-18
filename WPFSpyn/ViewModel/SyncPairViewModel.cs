@@ -355,7 +355,11 @@ namespace WPFSpyn.ViewModel
         public void Delete(object syncpair)
         {
             if (!_syncPair.IsValid)
-                throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
+            {
+                //throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
+                MessageBox.Show("Not Saved");
+                return;
+            }
 
             if (!this.IsNewSyncPair)
             {

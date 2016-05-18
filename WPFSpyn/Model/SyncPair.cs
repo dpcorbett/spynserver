@@ -62,10 +62,7 @@ namespace WPFSpyn.Model
             {
                 Description = p_strDescription,
                 IsFullSync = p_booIsFullSync,
-                
-               //     SyncType = "Full",
-               
-                    SyncType = p_strSyncType,
+                SyncType = p_strSyncType,
                 SrcRoot = p_strSrcRoot,
                 DstRoot = p_strDstRoot,
             };

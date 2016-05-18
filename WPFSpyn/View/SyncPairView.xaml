@@ -119,6 +119,7 @@
             Command="{Binding GetSrcRootCommand}"
             Grid.Row="5"
             Grid.Column="4"
+            Style="{StaticResource MainBTNStyle}"
             >
             Set Path
         </Button>
@@ -149,6 +150,7 @@
             Command="{Binding GetDstRootCommand}"
             Grid.Row="7"
             Grid.Column="4"
+            Style="{StaticResource MainBTNStyle}"
             >
             Set Path
         </Button>
@@ -158,10 +160,11 @@
             Grid.Row="9" 
             Grid.Column="2"
             Command="{Binding Path=SaveCommand}"
-            Content="_Save"
+            Content="Save"
             HorizontalAlignment="Right"
             Margin="4,2" 
             MinWidth="60" 
+            Style="{StaticResource MainBTNStyle}"
             />
 
         <!-- SYNC BUTTON -->
@@ -169,22 +172,25 @@
             Grid.Row="9" 
             Grid.Column="2"
             Command="{Binding Path=SyncCommand}"
-            Content="S_ync"
+            Content="Sync"
             HorizontalAlignment="Left"
             Margin="4,2" 
             MinWidth="60" 
+            Style="{StaticResource MainBTNStyle}"
             />
 
         <!-- DELETE BUTTON -->
         <Button
-            Command="{Binding  Path=DataContext.DeleteSyncPairCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
-            Content="De_lete"
+            Command="{Binding Path=DataContext.DeleteSyncPairCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+            Content="Delete"
             Grid.Row="11"
             Grid.Column="2"
             HorizontalAlignment="Center"
             Margin="4,2" 
+            MinHeight="25"
             MinWidth="50" 
-            >
+            Style="{StaticResource MainBTNStyle}"
+>
         </Button>
 
     </Grid>

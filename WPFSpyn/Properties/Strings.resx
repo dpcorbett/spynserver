@@ -122,11 +122,11 @@
     <comment>The display name of an AllSyncPairsViewModel object</comment>
   </data>
   <data name="MainWindowViewModel_Command_CreateNewSyncPair" xml:space="preserve">
-    <value>Create SyncPair</value>
+    <value>Create</value>
     <comment>Display name for the command that allows the user to create a new SyncPair.</comment>
   </data>
   <data name="MainWindowViewModel_Command_ViewAllSyncPairs" xml:space="preserve">
-    <value>View SyncPairs</value>
+    <value>View</value>
     <comment>Display name for the command that shows all SyncPairs.</comment>
   </data>
   <data name="MainWindowViewModel_DisplayName" xml:space="preserve">

@@ -5,9 +5,6 @@
     xmlns:vw="clr-namespace:WPFSpyn.View"
     >
 
-    
- 
-
 
     <!-- 
   This template applies an AllSyncPairsView to an instance 
@@ -46,11 +43,6 @@
                             Text="{TemplateBinding Content}" 
                             Style="{StaticResource HeaderTextStyle}"
                             >
-                            <TextBlock.Effect>
-                                <DropShadowEffect 
-                                    Direction="90"
-                                    />
-                            </TextBlock.Effect>
                         </TextBlock>
                     </Border>
                 </DataTemplate>
@@ -59,158 +51,25 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                
                 <!-- 
-        This template ensures that content of a HeaderedContentControl 
-        fills the available vertical space. 
-        -->
+                This template ensures that content of a HeaderedContentControl 
+                fills the available vertical space. 
+                -->
                 <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
                     <DockPanel>
                         <ContentPresenter 
-              DockPanel.Dock="Top"
-              ContentSource="Header" 
-              ContentTemplate="{TemplateBinding HeaderTemplate}" 
-              />
+                            DockPanel.Dock="Top"
+                            ContentSource="Header" 
+                            ContentTemplate="{TemplateBinding HeaderTemplate}" 
+                            />
                         <ContentPresenter 
-              ContentSource="Content" 
-              ContentTemplate="{TemplateBinding ContentTemplate}" 
-              />
+                            ContentSource="Content" 
+                            ContentTemplate="{TemplateBinding ContentTemplate}" 
+                            />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-
-    <!-- 
-  This style configures buttons at top of the main.
-  -->
-    <Style x:Key="MainHBTNStyle" TargetType="{x:Type  Button}">
-        <Setter Property="Background" Value="{StaticResource Brush_HeaderBackground}"/>
-        <Setter Property="Foreground" Value="WhiteSmoke"/>
-        <Setter Property="Padding" Value="3"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF00FFFF" Offset="0"/>
-                    <GradientStop Color="#FF008B8B" Offset="0.375"/>
-                    <GradientStop Color="#FF718597" Offset="0.375"/>
-                    <GradientStop Color="#FF617584" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter> 
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal">
-                                    <Storyboard>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="{x:Null}"/>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" To="PaleTurquoise"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" To="Teal"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" To="DarkCyan"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" To="PaleTurquoise"/>
-                                    </Storyboard>
-
-                                </VisualState>
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimation Duration="0" To="MidnightBlue" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter"/>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" To="Teal"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" To="PaleTurquoise"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" To="PaleTurquoise"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" To="DarkCyan"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <ColorAnimation Duration="0" To="MidnightBlue" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="MediumAquamarine"/>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" To="Teal"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" To="Aquamarine"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" To="Aquamarine"/>
-                                        <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" To="DarkCyan"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetName="DisabledVisualElement" Storyboard.TargetProperty="Opacity" To=".55"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Focused">
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0" Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="Opacity" To="1"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Unfocused" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Background" CornerRadius="3" Background="Azure" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
-                            <Grid Background="{TemplateBinding Background}"  Margin="3">
-                               <Border Opacity="0"  x:Name="BackgroundAnimation" Background="Black" /> 
-                                <Rectangle x:Name="BackgroundGradient" >
-                                    <Rectangle.Fill>
-                                        <LinearGradientBrush StartPoint=".7,0" EndPoint=".7,1">
-                                            <GradientStop Color="#FFFFFFFF" Offset="0" />
-                                            <GradientStop Color="#F9FFFFFF" Offset="0.375" />
-                                            <GradientStop Color="#E5FFFFFF" Offset="0.625" />
-                                            <GradientStop Color="#C6FFFFFF" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                            </Grid>
-                        </Border>
-                        <ContentPresenter
-                            x:Name="contentPresenter"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            Margin="{TemplateBinding Padding}"
-                            />
-                        <Rectangle 
-                            x:Name="DisabledVisualElement" 
-                            Fill="#FFFFFFFF" 
-                            IsHitTestVisible="false" 
-                            Opacity="0" 
-                            RadiusX="3" 
-                            RadiusY="3" 
-                            />
-                        <Rectangle 
-                            x:Name="FocusVisualElement" 
-                            IsHitTestVisible="false" 
-                            Margin="1" 
-                            Opacity="0" 
-                            RadiusX="2" 
-                            RadiusY="2" 
-                            Stroke="#FF6DBDD1" 
-                            StrokeThickness="1" 
-                            />
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Background" Property="BorderBrush" Value="Pink" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Style.Resources>
-            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
-        </Style.Resources>
-
     </Style>
 
 
@@ -228,13 +87,6 @@
     This style ensures that static text on main status bar is consistent.
     -->
     <Style x:Key="StatusBarTextBlockStyle" BasedOn="{StaticResource HeaderTextStyle}" TargetType="{x:Type TextBlock}">
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect 
-                    Direction="275"
-                    />
-            </Setter.Value>
-        </Setter>
         <Setter Property="FontSize" Value="14" />
     </Style>
     
@@ -251,16 +103,7 @@
     This style is intended to keep the status bar consistent.
     -->
     <Style x:Key="MainGridStyle" TargetType="{x:Type Grid}" >
-
-        <Setter Property="Background">
-            <Setter.Value>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Silver" Offset="0"/>
-                <GradientStop Color="MediumAquamarine" Offset="1"/>
-            </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-
+        <Setter Property="Background" Value="Snow" />
     </Style>
 
     <!--
@@ -280,39 +123,32 @@
         <Setter Property="Foreground" Value="Red" />
     </Style>
 
-    
-    <Style x:Key="CommandsButton" TargetType="{x:Type Button}">
+
+    <!--
+    This style is intended to keep the commands button settings.
+    -->
+    <Style x:Key="MainHBTNStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MainBTNStyle}">
+        <Setter Property="FontSize" Value="10"/>
         <Setter Property="Height" Value="100" />
         <Setter Property="Width" Value="100" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Ellipse Stroke="Transparent"
-                         StrokeThickness="2">
-                            <Ellipse.Fill>
-                                <RadialGradientBrush>
-                                    <GradientStop Offset="0"
-                                          Color="Aqua" />
-                                    <GradientStop Offset="0.5"
-                                                  Color="MidnightBlue" />
-                                    <GradientStop Offset="1"
-                                          Color="MediumAquamarine" />
-                                    <RadialGradientBrush.Transform>
-                                        <TransformGroup>
-                                            <ScaleTransform ScaleX="1.36" />
-                                        </TransformGroup>
-                                    </RadialGradientBrush.Transform>
-                                </RadialGradientBrush>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
+
+
+    <!--
+    This style is intended to keep the commands button settings.
+    -->
+    <Style x:Key="CommandsButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MainBTNStyle}">
+        <Setter Property="Height" Value="100" />
+        <Setter Property="Width" Value="100" />
+    </Style>
+
+    <!--
+    This style is intended to keep the commands button settings.
+    -->
+    <Style x:Key="MainSBBTNStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MainBTNStyle}">
+        <Setter Property="FontSize" Value="10"/>
+    </Style>
+
 
     <!--
   This template explains how to render the list of commands on the left
@@ -331,7 +167,6 @@
                             >
                             <TextBlock 
                                 Text="{Binding Path=DisplayName}" 
-                                Style="{StaticResource HeaderTextStyle}"
                                 />
                         </Button>
                     </TextBlock>

@@ -70,7 +70,7 @@ namespace WPFSpyn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create SyncPair.
+        ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string MainWindowViewModel_Command_CreateNewSyncPair {
             get {
@@ -79,7 +79,7 @@ namespace WPFSpyn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View SyncPairs.
+        ///   Looks up a localized string similar to View.
         /// </summary>
         public static string MainWindowViewModel_Command_ViewAllSyncPairs {
             get {

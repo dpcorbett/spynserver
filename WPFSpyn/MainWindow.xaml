@@ -95,7 +95,6 @@
             >
             <TextBlock 
                 x:Name="txbLocalHost"   
-                FontStyle="Italic"
                 Style="{StaticResource StatusBarTextBlockStyle}"
                 >
                 LocalHost: 
@@ -109,12 +108,11 @@
                 Background="{DynamicResource Brush_HeaderBackground}"
                 Click="btnPoll_Click"
                 Content="Poll" 
-                Style="{StaticResource MainHBTNStyle}"
+                Style="{StaticResource MainSBBTNStyle}"
                 Width="36" 
                 />
             <TextBlock 
                 x:Name="txbSyncHost"
-                FontStyle="Italic"
                 Style="{StaticResource StatusBarTextBlockStyle}"
                 >
                 SyncHost:
