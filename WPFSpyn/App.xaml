@@ -1,0 +1,47 @@
+﻿<Application x:Class="WPFSpyn.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:properties="clr-namespace:WPFSpyn.Properties"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <properties:Settings x:Key="Settings" />
+        <LinearGradientBrush x:Key="Brush_HeaderBackground" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#66C0C0C8" Offset="0" />
+            <GradientStop Color="#BBC0C0C8" Offset="1" />
+        </LinearGradientBrush>
+
+        <Style  x:Key="HeaderTextStyle" TargetType="TextBlock" >
+            <Setter Property="FontWeight" Value="ExtraBold" />
+            <Setter Property="Foreground" Value="Aqua" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="FrameworkElement.Effect">
+                <Setter.Value>
+                    <DropShadowEffect  
+                    BlurRadius="6" 
+                    Color="#FF030672" 
+                    RenderingBias="Quality"
+                    ShadowDepth="3"
+                    >
+                    </DropShadowEffect>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="HeaderLabelTextStyle" TargetType="Label">
+            <Setter Property="FontWeight" Value="ExtraBold" />
+            <Setter Property="Foreground" Value="Aqua" />
+            <Setter Property="FrameworkElement.Effect">
+                <Setter.Value>
+                    <DropShadowEffect  
+                    BlurRadius="6" 
+                    Color="#FF030672" 
+                    RenderingBias="Quality"
+                    ShadowDepth="3"
+                    >
+                    </DropShadowEffect>
+                </Setter.Value>
+            </Setter>
+
+        </Style> 
+    </Application.Resources>
+</Application>

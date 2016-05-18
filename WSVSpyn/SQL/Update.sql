@@ -1,0 +1,34 @@
+USE SPYN
+
+
+-- Stored Procedures
+--IF OBJECT_ID ( 'Storage', 'P' ) IS NOT NULL 
+--    DROP PROCEDURE Storages;
+--EXEC
+--(
+--'CREATE PROCEDURE Storages
+--AS
+--SELECT * FROM STORAGE'
+--)
+
+-- Remove necessary constraints
+--ALTER TABLE FILE_EXTENSIONS DROP CONSTRAINT fk_FileTypeID
+
+
+-- Check if table exists and if so update it.
+--IF EXISTS
+--(
+--SELECT *
+--FROM INFORMATION_SCHEMA.TABLES
+--WHERE TABLE_NAME = 'STORAGE_COLOUR'
+--)
+--UPDATE TABLE STORAGE_COLOUR
+--ELSE
+-- Create the table.
+CREATE TABLE MASTER_DIRS
+(
+ID int IDENTITY NOT NULL PRIMARY KEY,
+NAME varchar(16) NOT NULL,
+PATH varchar(255) NOT NULL,
+COMMENTS varchar(1024) DEFAULT NULL
+)

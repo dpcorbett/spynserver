@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<syncpairs>
+  <syncpair Description="First Pair"    IsFullSync="true"  SyncType="Full"    SrcHost="localhost" SrcRoot="c:\"    DstHost="dpccs"      DstRoot="f:\"  />
+  <syncpair Description="Second Pair"   IsFullSync="true"  SyncType="Full"    SrcHost="dpccs"     SrcRoot="c:\"    DstHost="localhost"  DstRoot="f:\"  />
+  <syncpair Description="Third Pair"    IsFullSync="true"  SyncType="Full"    SrcHost="localhost" SrcRoot="c:\"    DstHost="dpccs"      DstRoot="f:\"  />
+  <syncpair Description="Fourth Pair"   IsFullSync="true"  SyncType="Full"    SrcHost="dpccs"     SrcRoot="c:\"    DstHost="dpccs"      DstRoot="f:\"  />
+  <syncpair Description="Fifth Pair"    IsFullSync="true"  SyncType="Full"    SrcHost="localhost" SrcRoot="c:\"    DstHost="dpccs"      DstRoot="f:\"  />
+  <syncpair Description="Sixth Pair"    IsFullSync="true"  SyncType="Full"    SrcHost="dpccs"     SrcRoot="c:\"    DstHost="localhost"  DstRoot="f:\"  />
+</syncpairs>

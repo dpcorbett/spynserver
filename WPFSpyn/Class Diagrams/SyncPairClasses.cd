@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WPFSpyn.Model.SyncPair">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>FAQBEAAgAAAACQAEAAkAAAAAAKAgABAAAAAAAAAgAAA=</HashCode>
+      <FileName>Model\SyncPair.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WPFSpyn.ViewModel.SyncPairViewModel">
+    <Position X="3.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>FAAAEIIIACAAEQBEAAEAAACCAAEgAAAAAEAACABEAAA=</HashCode>
+      <FileName>ViewModel\SyncPairViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_syncPair" />
+      <Field Name="_syncPairRepository" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WPFSpyn.ViewModel.AllSyncPairsViewModel">
+    <Position X="7.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAAAABAAAAAAAAAAAAIABAAAACAACAAAAA=</HashCode>
+      <FileName>ViewModel\AllSyncPairsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_syncPairRepository" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AllSyncPairs" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="WPFSpyn.DataAccess.SyncPairRepository">
+    <Position X="11.25" Y="2.5" Width="2" />
+    <Members>
+      <Method Name="GetResourceStream" Hidden="true" />
+      <Method Name="LoadSyncPairs" Hidden="true" />
+    </Members>
+    <AssociationLine Name="_syncPairs" Type="WPFSpyn.Model.SyncPair" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="4.632" />
+        <Point X="12.25" Y="6.155" />
+        <Point X="1.5" Y="6.155" />
+        <Point X="1.5" Y="5.391" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAEAAEAAAAAAAEAAAAAABAAABAAAAIA=</HashCode>
+      <FileName>DataAccess\SyncPairRepository.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_syncPairs" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

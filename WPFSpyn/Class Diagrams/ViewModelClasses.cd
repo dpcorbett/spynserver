@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WPFSpyn.ViewModel.ViewModelBase">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACAAAAAAIAAAAQAQgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WPFSpyn.ViewModel.CommandViewModel">
+    <Position X="4.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\CommandViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFSpyn.ViewModel.WorkspaceViewModel">
+    <Position X="7" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\WorkspaceViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFSpyn.ViewModel.SyncPairViewModel">
+    <Position X="4.25" Y="6.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>FAAAEIIIACAAEQBEAAEAAACCAAEgAAAAAEAACABEAAA=</HashCode>
+      <FileName>ViewModel\SyncPairViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WPFSpyn.ViewModel.AllSyncPairsViewModel">
+    <Position X="4.25" Y="11.25" Width="2" />
+    <InheritanceLine Type="WPFSpyn.ViewModel.WorkspaceViewModel" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="7.438" Y="6.78" />
+        <Point X="7.438" Y="10.542" />
+        <Point X="5.25" Y="10.542" />
+        <Point X="5.25" Y="11.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAAAABAAAAAAAAAAAAIABAAAACAACAAAAA=</HashCode>
+      <FileName>ViewModel\AllSyncPairsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFSpyn.ViewModel.MainWindowViewModel">
+    <Position X="8.75" Y="7.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="WPFSpyn.ViewModel.WorkspaceViewModel" FixedFromPoint="true">
+      <Path>
+        <Point X="8.125" Y="6.78" />
+        <Point X="8.125" Y="7.125" />
+        <Point X="9.5" Y="7.125" />
+        <Point X="9.5" Y="7.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>QCAAAsAAEDCwAABMEAFgCQAiAJkAAAAQAGgAADAyCAA=</HashCode>
+      <FileName>ViewModel\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
