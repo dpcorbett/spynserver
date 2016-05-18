@@ -4,11 +4,17 @@
              xmlns:properties="clr-namespace:WPFSpyn.Properties"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
         <properties:Settings x:Key="Settings" />
+        
         <LinearGradientBrush x:Key="Brush_HeaderBackground" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientStop Color="#66C0C0C8" Offset="0" />
             <GradientStop Color="#BBC0C0C8" Offset="1" />
         </LinearGradientBrush>
+
+        <Style TargetType="{x:Type Window}" x:Key="MainWindowStyle">
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+        </Style>
 
         <Style  x:Key="HeaderTextStyle" TargetType="TextBlock" >
             <Setter Property="FontWeight" Value="ExtraBold" />
@@ -41,7 +47,7 @@
                     </DropShadowEffect>
                 </Setter.Value>
             </Setter>
-
         </Style> 
+        
     </Application.Resources>
 </Application>
