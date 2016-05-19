@@ -252,7 +252,7 @@
                                         <Setter Property="Panel.ZIndex" Value="100" />
                                         <Setter TargetName="Border" Property="Background" Value="{StaticResource Brush_HeaderBackground}" />
                                         <Setter TargetName="Border" Property="BorderThickness" Value="3,1,1,1" />
-                                        <Setter TargetName="Border" Property="BorderBrush" Value="Aqua" />
+                                        <Setter TargetName="Border" Property="BorderBrush" Value="#7F00FFFF" />
                                     </Trigger>
                                     <Trigger Property="IsEnabled" Value="False">
                                         <Setter TargetName="Border" Property="Background" Value="DarkRed" />

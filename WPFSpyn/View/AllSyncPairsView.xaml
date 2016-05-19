@@ -46,31 +46,25 @@
                         DisplayMemberBinding="{Binding Path=Description}" 
                         Header="Description" 
                         HeaderContainerStyle="{StaticResource MainListViewHeaderStyle}"
-                        />
-                    <GridViewColumn 
-                        DisplayMemberBinding="{Binding Path=SrcHost}" 
-                        Header="Source Host" 
-                        HeaderContainerStyle="{StaticResource MainListViewHeaderStyle}"
+                        Width="127"
                         />
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=SrcRoot}" 
                         Header="Source Root" 
                         HeaderContainerStyle="{StaticResource MainListViewHeaderStyle}"
-                        />
-                    <GridViewColumn 
-                        DisplayMemberBinding="{Binding Path=DstHost}" 
-                        Header="Destination Host" 
-                        HeaderContainerStyle="{StaticResource MainListViewHeaderStyle}"
+                        Width="255"
                         />
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=DstRoot}" 
                         Header="Destination Root" 
                         HeaderContainerStyle="{StaticResource MainListViewHeaderStyle}"
+                        Width="255"
                         />
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=IsFullSync}" 
                         Header="Is Full Sync"
                         HeaderContainerStyle="{StaticResource MainListViewHeaderStyle}"
+                        Width="127"
                         />
                 </GridView>
             </ListView.View>

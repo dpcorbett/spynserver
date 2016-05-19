@@ -7,27 +7,36 @@
         
         <properties:Settings x:Key="Settings" />
         
+        <!--
+        Defines brush for header background.
+        -->
         <LinearGradientBrush x:Key="Brush_HeaderBackground" StartPoint="0.5,0" EndPoint="0.5,1">
             <GradientStop Color="#66C0C0C8" Offset="0" />
             <GradientStop Color="#BBC0C0C8" Offset="1" />
         </LinearGradientBrush>
 
+        <!--
+        Defines style for Window.
+        -->
         <Style TargetType="{x:Type Window}" x:Key="MainWindowStyle">
             <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="Foreground" Value="#06181F" />
         </Style>
 
+        <!--
+        Defines header textblock text style.
+        -->
         <Style  x:Key="HeaderTextStyle" TargetType="TextBlock" >
             <Setter Property="FontWeight" Value="ExtraBold" />
-            <Setter Property="Foreground" Value="#06181F" />
             <Setter Property="TextAlignment" Value="Center" />
         </Style>
         
+        <!--
+        Defines header label text style.
+        -->
         <Style x:Key="HeaderLabelTextStyle" TargetType="Label">
             <Setter Property="FontWeight" Value="ExtraBold" />
-            <Setter Property="Foreground" Value="Aqua" />
         </Style>
-
-
 
 
         <!-- 
@@ -37,16 +46,16 @@
             <Setter Property="Background" Value="{StaticResource Brush_HeaderBackground}"/>
             <Setter Property="Foreground" Value="MidnightBlue"/>
             <Setter Property="Padding" Value="3"/>
-            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontWeight" Value="Bold"/>
 
             <Setter Property="BorderBrush">
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF617584" Offset="0"/>
-                        <GradientStop Color="#FFFF9B4A" Offset="0.375"/>
-                        <GradientStop Color="#FF718597" Offset="0.375"/>
-                        <GradientStop Color="#FFFFFAFA" Offset="1"/>
+                        <GradientStop Color="#77617584" Offset="0"/>
+                        <GradientStop Color="#77FF9B4A" Offset="0.375"/>
+                        <GradientStop Color="#77718597" Offset="0.375"/>
+                        <GradientStop Color="#77718597" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -81,6 +90,7 @@
                                         <Storyboard>
                                             <ColorAnimation Duration="0" To="MidnightBlue" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter"/>
                                             <ColorAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Aqua"/>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"  To="0.5"/>
                                             <DoubleAnimation Duration="0" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
                                             <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" To="Snow"/>
                                             <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" To="Snow"/>
@@ -147,7 +157,17 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Background" Property="BorderBrush" Value="Pink" />
+                                <Setter Property="BorderBrush">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF617584" Offset="0"/>
+                                            <GradientStop Color="#FFFF9B4A" Offset="0.375"/>
+                                            <GradientStop Color="#FF718597" Offset="0.375"/>
+                                            <GradientStop Color="#FF718597" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -159,9 +179,6 @@
             </Style.Resources>
 
         </Style>
-
-
-
 
 
     </Application.Resources>
