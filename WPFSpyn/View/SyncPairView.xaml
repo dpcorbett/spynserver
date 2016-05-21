@@ -4,7 +4,7 @@
   xmlns:vw="clr-namespace:WPFSpyn.View"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"  
-  Width="400"
+  Width="600"
   >
 
     <UserControl.Resources>
@@ -13,26 +13,26 @@
 
     <Grid Margin="4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="144" />
             <ColumnDefinition Width="6" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="6" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="72" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />   <!--  0 -->
+            <RowDefinition Height="50" />   <!--  0 -->
             <RowDefinition Height="Auto" /> <!--  1 -->
-            <RowDefinition Height="30" />   <!--  2 -->
+            <RowDefinition Height="50" />   <!--  2 -->
             <RowDefinition Height="Auto" /> <!--  3 -->
-            <RowDefinition Height="30" />   <!--  4 -->
+            <RowDefinition Height="50" />   <!--  4 -->
             <RowDefinition Height="Auto" /> <!--  5 -->
-            <RowDefinition Height="30" />   <!--  6 -->
+            <RowDefinition Height="50" />   <!--  6 -->
             <RowDefinition Height="Auto" /> <!--  7 -->
-            <RowDefinition Height="30" />   <!--  8 -->
+            <RowDefinition Height="50" />   <!--  8 -->
             <RowDefinition Height="50" />   <!--  9 -->
-            <RowDefinition Height="15" />   <!-- 10 -->
-            <RowDefinition Height="30" />   <!-- 11 -->
+            <RowDefinition Height="50" />   <!-- 10 -->
+            <RowDefinition Height="32" />   <!-- 11 -->
         </Grid.RowDefinitions>
 
         <Grid.Resources>
@@ -53,13 +53,14 @@
             Grid.Row="1" 
             Grid.Column="0" 
             HorizontalAlignment="Right"
-            Style="{StaticResource HeaderLabelTextStyle}"
+            Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=syncPairTypeCmb}" 
             />
         <ComboBox 
             x:Name="syncPairTypeCmb"
             Grid.Row="1" 
-            Grid.Column="2"       
+            Grid.Column="2"    
+            FontSize="13"
             ItemsSource="{Binding Path=SyncPairTypeOptions, Mode=OneTime}"
             SelectedItem="{Binding Path=SyncPairType, ValidatesOnDataErrors=True}"
             Validation.ErrorTemplate="{x:Null}"
@@ -76,13 +77,14 @@
             Grid.Column="0" 
             Content="Descri_ption:" 
             HorizontalAlignment="Right"
-            Style="{StaticResource HeaderLabelTextStyle}"
+            Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=descriptionTxt}"
             />
         <TextBox 
             x:Name="descriptionTxt"
             Grid.Row="3" 
             Grid.Column="2" 
+            Style="{StaticResource InputTextStyle}"
             Text="{Binding Path=Description, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
             Validation.ErrorTemplate="{x:Null}"
             />
@@ -99,13 +101,14 @@
             Grid.Column="0" 
             Content="Sou_rce Root:" 
             HorizontalAlignment="Right"
-            Style="{StaticResource HeaderLabelTextStyle}"
+            Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=srcRootTxt}" 
             />
         <TextBox 
             x:Name="srcRootTxt"
             Grid.Row="5" 
             Grid.Column="2" 
+            Style="{StaticResource InputTextStyle}"
             Text="{Binding Path=SrcRoot, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
             Validation.ErrorTemplate="{x:Null}"
             />
@@ -130,13 +133,14 @@
             Grid.Column="0" 
             Content="Destin_ation Root:" 
             HorizontalAlignment="Right"
-            Style="{StaticResource HeaderLabelTextStyle}"
+            Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=dstRootTxt}" 
             />
         <TextBox 
             x:Name="dstRootTxt"
             Grid.Row="7" 
             Grid.Column="2" 
+            Style="{StaticResource InputTextStyle}"
             Text="{Binding Path=DstRoot, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
             Validation.ErrorTemplate="{x:Null}"
             />
@@ -161,9 +165,10 @@
             Grid.Column="2"
             Command="{Binding Path=SaveCommand}"
             Content="Save"
+            FontSize="16"
             HorizontalAlignment="Right"
             Margin="4,2" 
-            MinWidth="60" 
+            MinWidth="98" 
             Style="{StaticResource MainBTNStyle}"
             />
 
@@ -173,9 +178,10 @@
             Grid.Column="2"
             Command="{Binding Path=SyncCommand}"
             Content="Sync"
+            FontSize="16"
             HorizontalAlignment="Left"
             Margin="4,2" 
-            MinWidth="60" 
+            MinWidth="98" 
             Style="{StaticResource MainBTNStyle}"
             />
 

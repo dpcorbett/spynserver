@@ -12,7 +12,7 @@
                         x:Name="txt" 
                         Background="{StaticResource Brush_HeaderBackground}"
                         FontWeight="Bold"
-                        Foreground="#88191970"
+                        Foreground="#FF06181F"
                         Margin="1"
                         Padding="4,2,0,2"
                         Text=" Push Sync Pairs" 
@@ -39,39 +39,19 @@
         <!--
                 Attach double click command.
             -->
-        <Setter 
-            Property="acb:CommandBehavior.Event"
-            Value="MouseDoubleClick" 
-            />
-        <Setter 
-            Property="acb:CommandBehavior.Command"
-            Value="{Binding  Path=DataContext.EditSyncPairCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" 
-            />
-        <Setter 
-            Property="acb:CommandBehavior.CommandParameter"
-            Value="{Binding}" 
-            />
-
-        <Setter 
-            Property="Background" 
-            Value="Transparent" 
-            />
+        <Setter Property="acb:CommandBehavior.Event" Value="MouseDoubleClick" />
+        <Setter Property="acb:CommandBehavior.Command" Value="{Binding  Path=DataContext.EditSyncPairCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
+        <Setter Property="acb:CommandBehavior.CommandParameter" Value="{Binding}" />
         <!-- 
                 Stretch the content of each cell so that we can 
                 right-align text in the Total Sales column. 
             -->
-        <Setter 
-            Property="HorizontalContentAlignment" 
-            Value="Stretch" 
-            />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <!-- 
                 Bind the IsSelected property of a ListViewItem to the 
                 IsSelected property of a SyncPairViewModel object.
             -->
-        <Setter 
-            Property="IsSelected" 
-            Value="{Binding Path=IsSelected, Mode=TwoWay}" 
-            />
+        <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
         
         <Style.Triggers>
             <MultiTrigger>
@@ -97,13 +77,17 @@
     <Style x:Key="MainListViewStyle" TargetType="ListView">
         <Setter Property="AlternationCount" Value="2" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="MidnightBlue" />
     </Style>
 
     
     <Style x:Key="MainListViewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Opacity" Value="0.5" />
     </Style>
 
 

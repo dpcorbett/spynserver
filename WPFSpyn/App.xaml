@@ -35,6 +35,7 @@
         Defines header label text style.
         -->
         <Style x:Key="HeaderLabelTextStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="ExtraBold" />
         </Style>
 
@@ -43,7 +44,8 @@
   This style configures buttons.
   -->
         <Style x:Key="MainBTNStyle" TargetType="{x:Type  Button}">
-            <Setter Property="Background" Value="{StaticResource Brush_HeaderBackground}"/>
+            <Setter Property="Background" Value="Silver"/>
+            <Setter Property="Opacity" Value="0.8" />
             <Setter Property="Foreground" Value="MidnightBlue"/>
             <Setter Property="Padding" Value="3"/>
             <Setter Property="BorderThickness" Value="2"/>
@@ -67,35 +69,20 @@
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal">
                                         <Storyboard>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="{x:Null}"/>
-                                            <DoubleAnimation Duration="0" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" To="Silver"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" To="Snow"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" To="Snow"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" To="Silver"/>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Silver"/>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"  To="0.3"/>
                                         </Storyboard>
-
                                     </VisualState>
                                     <VisualState x:Name="MouseOver">
                                         <Storyboard>
-                                            <ColorAnimation Duration="0" To="MidnightBlue" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter"/>
                                             <DoubleAnimation Duration="0" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" To="Snow"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" To="Silver"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" To="Silver"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" To="Snow"/>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Pressed">
                                         <Storyboard>
-                                            <ColorAnimation Duration="0" To="MidnightBlue" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter"/>
                                             <ColorAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Aqua"/>
-                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"  To="0.5"/>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Background" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Opacity)"  To="0.4"/>
                                             <DoubleAnimation Duration="0" Storyboard.TargetName="BackgroundAnimation" Storyboard.TargetProperty="Opacity" To="1"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" To="Snow"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" To="Snow"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" To="Snow"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="BackgroundGradient" Storyboard.TargetProperty="(Rectangle.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" To="Silver"/>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Disabled">
@@ -113,19 +100,9 @@
                                     <VisualState x:Name="Unfocused" />
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Border x:Name="Background" CornerRadius="3" Background="snow" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <Border x:Name="Background" CornerRadius="3" Background="Snow" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                                 <Grid Background="{TemplateBinding Background}"  Margin="3">
-                                    <Border Opacity="0"  x:Name="BackgroundAnimation" Background="Black" />
-                                    <Rectangle x:Name="BackgroundGradient" >
-                                        <Rectangle.Fill>
-                                            <LinearGradientBrush StartPoint=".7,0" EndPoint=".7,1">
-                                                <GradientStop Color="#FFFFFFFF" Offset="0" />
-                                                <GradientStop Color="#F9FFFFFF" Offset="0.375" />
-                                                <GradientStop Color="#E5FFFFFF" Offset="0.625" />
-                                                <GradientStop Color="#C6FFFFFF" Offset="1" />
-                                            </LinearGradientBrush>
-                                        </Rectangle.Fill>
-                                    </Rectangle>
+                                    <Border Opacity="0"  x:Name="BackgroundAnimation" Background="#C0C0C0C0" />
                                 </Grid>
                             </Border>
                             <ContentPresenter

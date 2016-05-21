@@ -1,5 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
-    
+
+
+    <!--
+        Defines header label text style.
+        -->
+    <Style x:Key="InputTextStyle" TargetType="TextBox">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <!--
+        Defines header label text style.
+        -->
+    <Style x:Key="LabelTextStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="ExtraBold" />
+        <Setter Property="Opacity" Value="0.5" />
+    </Style>
+
 </ResourceDictionary>

@@ -128,7 +128,7 @@
     This style is intended to keep the commands button settings.
     -->
     <Style x:Key="MainHBTNStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MainBTNStyle}">
-        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontSize" Value="12"/>
         <Setter Property="Height" Value="100" />
         <Setter Property="Width" Value="100" />
     </Style>
@@ -138,6 +138,7 @@
     This style is intended to keep the commands button settings.
     -->
     <Style x:Key="CommandsButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MainBTNStyle}">
+        <Setter Property="FontSize" Value="18" />
         <Setter Property="Height" Value="100" />
         <Setter Property="Width" Value="100" />
     </Style>
@@ -232,17 +233,19 @@
                                         Name="Border" 
                                         Margin="0,0,0,0" 
                                         Background="Transparent"
-                                        BorderBrush="Black" 
+                                        BorderBrush="Silver" 
                                         BorderThickness="1,1,1,1" 
                                         CornerRadius="3,6,1,1"
                                         >
                                         <ContentPresenter 
                                             x:Name="ContentSite" 
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Center"
                                             ContentSource="Header" 
+                                            HorizontalAlignment="Center"
                                             Margin="12,2,12,2"
+                                            Opacity="0.5"
                                             RecognizesAccessKey="True"
+                                            TextBlock.FontWeight="Bold"
+                                            VerticalAlignment="Center"
                                             >
                                         </ContentPresenter>
                                     </Border>
@@ -253,11 +256,15 @@
                                         <Setter TargetName="Border" Property="Background" Value="{StaticResource Brush_HeaderBackground}" />
                                         <Setter TargetName="Border" Property="BorderThickness" Value="3,1,1,1" />
                                         <Setter TargetName="Border" Property="BorderBrush" Value="#7F00FFFF" />
+                                        <Setter TargetName="ContentSite"  Property="Opacity" Value="1" />
+                                        <Setter TargetName="ContentSite"  Property="TextBlock.FontSize" Value="13" />
+                                        <Setter TargetName="ContentSite"  Property="TextBlock.FontWeight" Value="ExtraBold" />
                                     </Trigger>
                                     <Trigger Property="IsEnabled" Value="False">
                                         <Setter TargetName="Border" Property="Background" Value="DarkRed" />
-                                        <Setter TargetName="Border" Property="BorderBrush" Value="Black" />
+                                        <Setter TargetName="Border" Property="BorderBrush" Value="Snow" />
                                         <Setter Property="Foreground" Value="DarkGray" />
+                                        <Setter Property="Opacity" Value="0.5" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
