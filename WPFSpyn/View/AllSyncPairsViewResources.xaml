@@ -65,9 +65,8 @@
 
 
     <Style x:Key="MainStackPanelStyle" TargetType="{x:Type StackPanel}">
-        <Setter Property="Background" Value="{StaticResource Brush_HeaderBackground}" />
         <Setter Property="TextBlock.FontWeight"  Value="ExtraBold"  />
-        <Setter Property="TextBlock.Foreground" Value="#88191970" />
+        <Setter Property="TextBlock.Foreground" Value="#FF06181F" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Orientation" Value="Horizontal" />
         <Setter Property="VerticalAlignment" Value="Center" />

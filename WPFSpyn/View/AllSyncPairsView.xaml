@@ -18,11 +18,11 @@
                 Style="{StaticResource MainStackPanelStyle}"
                 >
                 <TextBlock 
+                    Opacity="0.5"
                     Text="Sync Pair selected: " 
                     />
                 <ContentPresenter
                     Content="{Binding Path=SyncPairSelected}"
-                    ContentStringFormat="c"
                     />
             </StackPanel>
         </Grid>
