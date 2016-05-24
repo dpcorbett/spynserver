@@ -136,6 +136,9 @@
     <Compile Include="View\AllSyncPairsView.xaml.cs">
       <DependentUpon>AllSyncPairsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SyncEditView.xaml.cs">
+      <DependentUpon>SyncEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SyncPairView.xaml.cs">
       <DependentUpon>SyncPairView.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SyncEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SyncEditViewResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SyncPairView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SyncView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SyncViewResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

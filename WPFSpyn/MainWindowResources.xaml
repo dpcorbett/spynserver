@@ -143,13 +143,6 @@
         <Setter Property="Width" Value="100" />
     </Style>
 
-    <!--
-    This style is intended to keep the commands button settings.
-    -->
-    <Style x:Key="MainSBBTNStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MainBTNStyle}">
-        <Setter Property="FontSize" Value="10"/>
-    </Style>
-
 
     <!--
   This template explains how to render the list of commands on the left

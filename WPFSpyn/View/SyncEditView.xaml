@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="WPFSpyn.View.SyncEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="SyncEditViewResources.xaml" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition 
+                Height="64"
+                />
+            <RowDefinition 
+                Height="*"
+                />
+            <RowDefinition
+                Height="64"
+                />
+        </Grid.RowDefinitions>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition 
+                    Width="1*"
+                    />
+                <ColumnDefinition 
+                    Width="1*"
+                    />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                />
+            <TextBlock
+                Grid.Column="1"
+                />
+        </Grid>
+        
+        <Button
+            Grid.Row="2"
+            >
+            
+        </Button>
+    </Grid>
+</UserControl>

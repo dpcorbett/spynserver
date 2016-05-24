@@ -158,5 +158,21 @@
         </Style>
 
 
+        <!--
+    This style is intended to keep the commands button settings.
+    -->
+        <Style x:Key="MainSBBTNStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MainBTNStyle}">
+            <Setter Property="FontSize" Value="10"/>
+        </Style>
+
+        <!--
+    This style is intended to keep the status bar consistent.
+    -->
+        <Style x:Key="MainStatusBarStyle" TargetType="{x:Type StatusBar}" >
+            <Setter Property="Background" Value="{StaticResource Brush_HeaderBackground}" />
+        </Style>
+
+
+
     </Application.Resources>
 </Application>
