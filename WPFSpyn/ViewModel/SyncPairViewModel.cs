@@ -28,23 +28,25 @@ namespace WPFSpyn.ViewModel
 
         #region Fields
 
-        readonly SyncPair _syncPair;
-        readonly SyncPairRepository _syncPairRepository;
-        private ObservableCollection<string> m_obcLog;
-        private string m_strSrcPath;
-        private string m_strDstPath;
+        private readonly SyncPair _syncPair;
+        private readonly SyncPairRepository _syncPairRepository;
+        //private ObservableCollection<string> m_obcLog;
+        //private string m_strSrcPath;
+        //private string m_strDstPath;
         private bool m_booIsSynchronising;
-        string _syncPairType;
-        string[] _syncPairTypeOptions;
-        bool _isSelected;
-        SharpToolsMVVMRelayCommand _saveCommand;
-        SharpToolsMVVMRelayCommand _deleteCommand;
-
+        private string _syncPairType;
+        private string[] _syncPairTypeOptions;
+        private bool _isSelected;
+        private SharpToolsMVVMRelayCommand _saveCommand;
+        private SharpToolsMVVMRelayCommand _deleteCommand;
+        private SharpToolsMVVMRelayCommand _deleteSyncPairCommand;
+        private SharpToolsMVVMRelayCommand _syncCommand;
+        private IWorkspaceCommands _wsCommands;
 
         #endregion // Fields
 
 
-        private SharpToolsMVVMRelayCommand _deleteSyncPairCommand;
+        #region Properties
 
         public SharpToolsMVVMRelayCommand DeleteSyncPairCommand
         {
@@ -59,11 +61,19 @@ namespace WPFSpyn.ViewModel
             }
         }
 
-        IWorkspaceCommands _wsCommands;
-
-
-        #region Properties
-
+        public SharpToolsMVVMRelayCommand SyncCommand
+        {
+            get { return _syncCommand; }
+            set
+            {
+                if (_syncCommand != value)
+                {
+                    _syncCommand = value;
+                    base.OnPropertyChanged("SyncCommand");
+                }
+            }
+        }
+        
         public SharpToolsMVVMRelayCommand GetSrcRootCommand { get; set; }
 
         public SharpToolsMVVMRelayCommand GetDstRootCommand { get; set; }
@@ -81,7 +91,6 @@ namespace WPFSpyn.ViewModel
                 base.OnPropertyChanged("Description");
             }
         }
-
        
         public string SrcRoot
         {
@@ -177,7 +186,8 @@ namespace WPFSpyn.ViewModel
 
             GetSrcRootCommand = new SharpToolsMVVMRelayCommand(GetSrcRoot);
             GetDstRootCommand = new SharpToolsMVVMRelayCommand(GetDstRoot);
-            DeleteSyncPairCommand = new SharpToolsMVVMRelayCommand(Delete);  
+            DeleteSyncPairCommand = new SharpToolsMVVMRelayCommand(Delete);
+            SyncCommand = new SharpToolsMVVMRelayCommand(Sync);
 
         }
 
@@ -186,8 +196,8 @@ namespace WPFSpyn.ViewModel
 
        // public void DeleteSyncPair(object syncpair)
   //      {
-            //SyncPairViewModel customerVM = syncpair as SyncPairViewModel;
-            //SyncPairViewModel customerVM = new  SyncPairViewModel(_syncPair,_syncPairRepository, _wsCommands);
+            //SyncPairViewModel syncpairVM = syncpair as SyncPairViewModel;
+            //SyncPairViewModel syncpairVM = new  SyncPairViewModel(_syncPair,_syncPairRepository, _wsCommands);
 
          //   _wsCommands.RemoveWorkspace(this);
 
@@ -371,6 +381,19 @@ namespace WPFSpyn.ViewModel
             base.Dispose();
         }
 
+        public void Sync(object obj)
+        {
+            if (!_syncPair.IsValid)
+            {
+                //throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
+                MessageBox.Show("Not Saved");
+                return;
+            }
+            SyncViewModel syncVM = obj as SyncViewModel;
+            _wsCommands.AddWorkspace(syncVM);
+
+
+        }
 
         private void GetSrcRoot(object param)
         {

@@ -36,17 +36,17 @@
     <ApplicationIcon>Spyn.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClassLibrarySharpTools.Synch">
-      <HintPath>..\..\SharpTools\ClassLibrarySharpTools.Synch\bin\Debug\ClassLibrarySharpTools.Synch.dll</HintPath>
-    </Reference>
-    <Reference Include="ClassLibrarySharpTools.TCPSocketClient">
-      <HintPath>..\..\SharpTools\SharpTools.TCPSocketClient\bin\Debug\ClassLibrarySharpTools.TCPSocketClient.dll</HintPath>
-    </Reference>
-    <Reference Include="ClassLibrarySharpTools.TCPSocketServer">
-      <HintPath>..\..\SharpTools\SharpTools.TCPSocketServer\bin\Debug\ClassLibrarySharpTools.TCPSocketServer.dll</HintPath>
-    </Reference>
     <Reference Include="SharpTools">
       <HintPath>..\..\SharpTools\ClassLibrarySharpTools\bin\Debug\SharpTools.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTools.Synch">
+      <HintPath>..\..\SharpTools\SharpTools.Synch\bin\Debug\SharpTools.Synch.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTools.TCPSocketClient">
+      <HintPath>..\..\SharpTools\SharpTools.TCPSocketClient\bin\Debug\SharpTools.TCPSocketClient.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTools.TCPSocketServer">
+      <HintPath>..\..\SharpTools\SharpTools.TCPSocketServer\bin\Debug\SharpTools.TCPSocketServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

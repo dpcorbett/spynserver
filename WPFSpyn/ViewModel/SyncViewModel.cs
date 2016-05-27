@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WPFSpyn.DataAccess;
+using WPFSpyn.Library;
 
 namespace WPFSpyn.ViewModel
 {
@@ -14,6 +16,7 @@ namespace WPFSpyn.ViewModel
 
         #region Fields
 
+        //private IWorkspaceCommands _wsCommands;
         private ObservableCollection<string> m_obcLog;
 
         #endregion
@@ -23,6 +26,11 @@ namespace WPFSpyn.ViewModel
         public SyncViewModel()
         {
             //SyncCommand = new SharpToolsMVVMRelayCommand(TrySync);
+        }
+
+        public SyncViewModel(object sync)
+        {
+          
         }
 
         #endregion

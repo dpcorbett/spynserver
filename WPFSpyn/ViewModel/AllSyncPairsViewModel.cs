@@ -60,8 +60,8 @@ namespace WPFSpyn.ViewModel
 
         public void EditSyncPair(object syncpair)
         {
-            SyncPairViewModel customerVM = syncpair as SyncPairViewModel;
-            _wsCommands.AddWorkspace(customerVM);
+            SyncPairViewModel syncpairVM = syncpair as SyncPairViewModel;
+            _wsCommands.AddWorkspace(syncpairVM);
 
         }
 

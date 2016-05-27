@@ -176,7 +176,7 @@
         <Button 
             Grid.Row="9" 
             Grid.Column="2"
-            Command="{Binding Path=SyncCommand}"
+            Command="{Binding Path=DataContext.SyncCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
             Content="Sync"
             FontSize="16"
             HorizontalAlignment="Left"
