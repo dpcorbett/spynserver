@@ -4,13 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Height="465" Width="512">
+             d:DesignHeight="500"
+             d:DesignWidth="900"
+             >
 
     <UserControl.Resources>
         <ResourceDictionary Source="SyncViewResources.xaml" />
     </UserControl.Resources>
-    
-    <Grid x:Name="grdMain"  >
+
+    <Grid x:Name="grdMain"
+          Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"  />
@@ -27,41 +30,82 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*"  />
             </Grid.ColumnDefinitions>
-        </Grid> 
+            
+            <TextBlock
+                Background="Beige"
+                Text="Top Left"
+                Grid.Column="0"
+                Grid.Row="0"
+                />
+            <TextBlock
+                Background="Bisque"
+                Grid.Column="1"
+                Grid.Row="0"
+                Text="Top Right"
+                />
+            <TextBlock
+                Background="BlanchedAlmond"
+                Grid.Column="0"
+                Grid.Row="1"
+                Text="Bottom Left"
+                />
+            <TextBlock
+                Background="Cornsilk"
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="Bottom Right"
+                />
+        </Grid>
         <StatusBar 
             x:Name="stsMain" 
-            Grid.Row="2" 
-            Height="33" 
-            HorizontalAlignment="Stretch" 
-            Margin="0" 
+            DockPanel.Dock="Bottom"
+            Grid.Row="1" 
+            Height="Auto"
+            HorizontalAlignment="Stretch"
             Style="{StaticResource MainStatusBarStyle}"
-            VerticalAlignment="Bottom" 
+            VerticalAlignment="Stretch"
+            Width="Auto"
             >
+            <StatusBarItem>
+                <Button 
+                    x:Name="btnSync" 
+                    Background="{DynamicResource Brush_HeaderBackground}"
+                    Content="SYNC"
+                    Grid.Column="0"
+                    Style="{StaticResource SyncViewSBBTNStyle}"
+                    />
+            </StatusBarItem>
+            <StatusBarItem>
+
             <Button 
-                x:Name="btnSync" 
-                Background="{DynamicResource Brush_HeaderBackground}"
-                Content="SYNC" 
-                Style="{StaticResource MainSBBTNStyle}"
-                />
-            <Button 
-                x:Name="btnTaskList" 
-                Background="{DynamicResource Brush_HeaderBackground}"
-                Content="Task List" 
-                Style="{StaticResource MainSBBTNStyle}"
-                />
-            <ListBox 
-                x:Name="lbxLog"
-                Margin="5"
-                Height="Auto"
-                MinWidth="360"
-                />
-            <Button 
-                x:Name="btnClose" 
-                Background="{DynamicResource Brush_HeaderBackground}"
-                Content="Close" 
-                Margin="5,0"
-                Style="{StaticResource MainSBBTNStyle}"
-                />
+                        x:Name="btnTaskList" 
+                        Background="{DynamicResource Brush_HeaderBackground}"
+                        Content="Task List" 
+                    Grid.Column="1"
+                        Style="{StaticResource SyncViewSBBTNStyle}"
+                        />
+            </StatusBarItem>
+            <StatusBarItem>
+                <ListBox 
+                        x:Name="lbxLog"
+                    Grid.Column="2"
+                    Height="64"
+                        MinWidth="600"
+                        Width="Auto"
+                        />
+            </StatusBarItem>
+            <StatusBarItem 
+                HorizontalAlignment="Right"
+                >
+                <Button 
+                    x:Name="btnClose" 
+                    Background="{DynamicResource Brush_HeaderBackground}"
+                    Content="Close" 
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource SyncViewSBBTNStyle}" 
+                    >
+                </Button>
+            </StatusBarItem>
         </StatusBar>
     </Grid>
 </UserControl>

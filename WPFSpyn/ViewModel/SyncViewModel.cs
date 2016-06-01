@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WPFSpyn.DataAccess;
 using WPFSpyn.Library;
+using WPFSpyn.Model;
+using WPFSpyn.Properties;
 
 namespace WPFSpyn.ViewModel
 {
@@ -16,7 +18,9 @@ namespace WPFSpyn.ViewModel
 
         #region Fields
 
-        //private IWorkspaceCommands _wsCommands;
+        private readonly SyncPair _syncPair;
+        private readonly SyncPairRepository _syncPairRepository;
+        private IWorkspaceCommands _wsCommands;
         private ObservableCollection<string> m_obcLog;
 
         #endregion
@@ -28,9 +32,19 @@ namespace WPFSpyn.ViewModel
             //SyncCommand = new SharpToolsMVVMRelayCommand(TrySync);
         }
 
-        public SyncViewModel(object sync)
+        // TODO Needs to setup for display
+        public SyncViewModel(SyncPair p_syncPair, SyncPairRepository p_syncPairRepository, IWorkspaceCommands wsCommands)
         {
-          
+            _wsCommands = wsCommands;
+
+            if (p_syncPair == null)
+                throw new ArgumentNullException("p_syncPair");
+
+            if (p_syncPairRepository == null)
+                throw new ArgumentNullException("p_syncPairRepository");
+
+            _syncPair = p_syncPair;
+            _syncPairRepository = p_syncPairRepository;
         }
 
         #endregion
@@ -56,6 +70,17 @@ namespace WPFSpyn.ViewModel
         public SharpToolsMVVMRelayCommand SyncCommand { get; set; }
 
         #endregion
+
+
+
+        public override string DisplayName
+        {
+            get
+            {
+                    return _syncPair.Description;
+            }
+        }
+
 
 
 /*

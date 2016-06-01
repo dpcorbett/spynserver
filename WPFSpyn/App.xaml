@@ -171,6 +171,15 @@
         <Style x:Key="MainStatusBarStyle" TargetType="{x:Type StatusBar}" >
             <Setter Property="Background" Value="{StaticResource Brush_HeaderBackground}" />
         </Style>
+        
+        
+        <!--
+        This style is used to keep status bar buttons on SyncView.xaml consistent.
+        -->
+        <Style x:Key="SyncViewSBBTNStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MainSBBTNStyle}">
+            <Setter Property="Height" Value="64"/>
+            <Setter Property="Width" Value="64"/>
+        </Style>
 
 
 

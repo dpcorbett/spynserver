@@ -30,6 +30,7 @@ namespace WPFSpyn.ViewModel
 
         private readonly SyncPair _syncPair;
         private readonly SyncPairRepository _syncPairRepository;
+        private readonly ObservableCollection<WorkspaceViewModel> _workspaces;
         //private ObservableCollection<string> m_obcLog;
         //private string m_strSrcPath;
         //private string m_strDstPath;
@@ -192,16 +193,6 @@ namespace WPFSpyn.ViewModel
         }
 
         #endregion // Constructor
-
-
-       // public void DeleteSyncPair(object syncpair)
-  //      {
-            //SyncPairViewModel syncpairVM = syncpair as SyncPairViewModel;
-            //SyncPairViewModel syncpairVM = new  SyncPairViewModel(_syncPair,_syncPairRepository, _wsCommands);
-
-         //   _wsCommands.RemoveWorkspace(this);
-
-//        }
 
 
         #region Presentation Properties
@@ -381,7 +372,7 @@ namespace WPFSpyn.ViewModel
             base.Dispose();
         }
 
-        public void Sync(object obj)
+        public void Sync(object syncpair)
         {
             if (!_syncPair.IsValid)
             {
@@ -389,8 +380,22 @@ namespace WPFSpyn.ViewModel
                 MessageBox.Show("Not Saved");
                 return;
             }
-            SyncViewModel syncVM = obj as SyncViewModel;
+
+            var syncVM = new SyncViewModel(_syncPair, _syncPairRepository, _wsCommands);
             _wsCommands.AddWorkspace(syncVM);
+
+
+            //SyncViewModel syncVM =
+            //    _workspaces.FirstOrDefault(vm => vm is SyncViewModel)
+             //   as SyncViewModel;
+
+            //if (syncVM == null)
+            //{
+              //   syncVM = new SyncViewModel(_syncPair, _syncPairRepository, _wsCommands);
+              //  _wsCommands.AddWorkspace(syncVM);
+            //}
+
+//            _workspaces.SetActiveWorkspace(syncVM);
 
 
         }
@@ -487,6 +492,25 @@ namespace WPFSpyn.ViewModel
         }
 
         #endregion // IDataErrorInfo Members
+
+
+        #region Event Handling Methods
+
+
+        /// <summary>
+        /// Handles OnSyncPairAddedToRepository Event
+        /// </summary>
+        /// <param name="sender">Sending Object</param>
+        /// <param name="e">Event Arguments</param>
+        void OnSyncPairAddedToRepository(object sender, SyncPairAddedEventArgs e)
+        {
+            var viewModel = new SyncViewModel(e.NewSyncPair, _syncPairRepository, _wsCommands);
+            _wsCommands.AddWorkspace(viewModel);
+        }
+
+
+        #endregion // Event Handling Methods
+
 
     }
 }

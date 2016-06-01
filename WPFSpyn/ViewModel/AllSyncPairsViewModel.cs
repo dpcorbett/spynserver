@@ -25,13 +25,13 @@ namespace WPFSpyn.ViewModel
         #region Fields
 
         readonly SyncPairRepository _syncPairRepository;
+        IWorkspaceCommands _wsCommands;
 
         #endregion // Fields
 
 
         #region Constructor
 
-        IWorkspaceCommands _wsCommands;
         /// <summary>
         /// Constructor taking Sync Pair Repository.
         /// </summary>

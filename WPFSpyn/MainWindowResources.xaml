@@ -22,6 +22,16 @@
         <vw:SyncPairView />
     </DataTemplate>
 
+
+    <!-- 
+  This template applies a SyncView to an instance  
+  of the SyncViewModel class shown in the main window.
+  -->
+    <DataTemplate DataType="{x:Type vm:SyncViewModel}">
+        <vw:SyncView />
+    </DataTemplate>
+
+
     <!-- 
   This style configures both of the main content areas in the main window.
   -->

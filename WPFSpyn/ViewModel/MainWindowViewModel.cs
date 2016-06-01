@@ -358,7 +358,7 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         void CreateNewSyncPair()
         {
-            SyncPair newSyncPair = SyncPair.CreateNewSyncPair();
+            SyncPair newSyncPair = WPFSpyn.Model.SyncPair.CreateNewSyncPair();
             SyncPairViewModel workspace = new SyncPairViewModel(newSyncPair, _syncPairRepository, this);
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
@@ -366,7 +366,7 @@ namespace WPFSpyn.ViewModel
 
 
         /// <summary>
-        /// Adds all Sync Pair workspace.
+        /// Adds all Sync Pair workspaces.
         /// </summary>
         void ShowAllSyncPairs()
         {
@@ -383,13 +383,6 @@ namespace WPFSpyn.ViewModel
             this.SetActiveWorkspace(workspace);
         }
 
-
-     //   void DeleteSyncPair()
-       // {
-      //      SyncPair newSyncPair = SyncPair.CreateNewSyncPair();
-//SyncPairViewModel workspace = new SyncPairViewModel(newSyncPair, _syncPairRepository, this);
-       //     this.Workspaces.Remove(workspace);
-      //  }
 
         /// <summary>
         /// Sets active workspace.
