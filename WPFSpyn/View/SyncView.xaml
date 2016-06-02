@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sev="clr-namespace:WPFSpyn.View"
              mc:Ignorable="d" 
              d:DesignHeight="500"
              d:DesignWidth="900"
@@ -31,29 +32,21 @@
                 <ColumnDefinition Width="1*"  />
             </Grid.ColumnDefinitions>
             
-            <UserControl
-                Background="Beige"
-                Content="Top Left"
+            <sev:SyncEditView x:Name="sevSrcAdd"
                 Grid.Column="0"
                 Grid.Row="0"
                 />
-            <UserControl
-                Background="Bisque"
+            <sev:SyncEditView x:Name="sevDstAdd"
                 Grid.Column="1"
                 Grid.Row="0"
-                Content="Top Right"
                 />
-            <UserControl
-                Background="BlanchedAlmond"
+            <sev:SyncEditView x:Name="sevSrcDel"
                 Grid.Column="0"
                 Grid.Row="1"
-                Content="Bottom Left"
                 />
-            <UserControl
-                Background="Cornsilk"
+            <sev:SyncEditView x:Name="sevDstDel"
                 Grid.Column="1"
                 Grid.Row="1"
-                Content="Bottom Right"
                 />
         </Grid>
         <StatusBar 
