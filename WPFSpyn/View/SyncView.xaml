@@ -31,29 +31,29 @@
                 <ColumnDefinition Width="1*"  />
             </Grid.ColumnDefinitions>
             
-            <TextBlock
+            <UserControl
                 Background="Beige"
-                Text="Top Left"
+                Content="Top Left"
                 Grid.Column="0"
                 Grid.Row="0"
                 />
-            <TextBlock
+            <UserControl
                 Background="Bisque"
                 Grid.Column="1"
                 Grid.Row="0"
-                Text="Top Right"
+                Content="Top Right"
                 />
-            <TextBlock
+            <UserControl
                 Background="BlanchedAlmond"
                 Grid.Column="0"
                 Grid.Row="1"
-                Text="Bottom Left"
+                Content="Bottom Left"
                 />
-            <TextBlock
+            <UserControl
                 Background="Cornsilk"
                 Grid.Column="1"
                 Grid.Row="1"
-                Text="Bottom Right"
+                Content="Bottom Right"
                 />
         </Grid>
         <StatusBar 
