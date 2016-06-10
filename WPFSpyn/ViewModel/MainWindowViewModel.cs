@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
+//using System.IO;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
@@ -31,8 +31,6 @@ namespace WPFSpyn.ViewModel
         readonly SyncPairRepository _syncPairRepository;
         ObservableCollection<WorkspaceViewModel> _workspaces;
         private ObservableCollection<string> m_obcLog;
-        private ObservableCollection<FileInfo> m_obcPath1Files;
-        private ObservableCollection<FileInfo> m_obcPath2Files;
 
         #endregion
 
@@ -56,39 +54,6 @@ namespace WPFSpyn.ViewModel
                 }
             }
         }
-
-        public ObservableCollection<FileInfo> Path1Files
-        {
-            get
-            {
-                return m_obcPath1Files;
-            }
-            set
-            {
-                if (m_obcPath1Files != value)
-                {
-                    m_obcPath1Files = value;
-                    OnPropertyChanged("Path1Files");
-                }
-            }
-        }
-
-        public ObservableCollection<FileInfo> Path2Files
-        {
-            get
-            {
-                return m_obcPath2Files;
-            }
-            set
-            {
-                if (m_obcPath2Files != value)
-                {
-                    m_obcPath2Files = value;
-                    OnPropertyChanged("Path2Files");
-                }
-            }
-        }
-
         
         #endregion // Properties
 
@@ -109,22 +74,6 @@ namespace WPFSpyn.ViewModel
 
 
         #region Junk
-
-        /// <summary>
-        /// Checks source and destination directories existence for pairing
-        /// Created: 12-Mar-2016
-        /// </summary>
-        private bool CheckPairFolders(string p_strPath1, string p_strPath2)
-        {
-            bool m_booPairValid = false;
-            DirectoryInfo directory1 = new DirectoryInfo(p_strPath1);
-            DirectoryInfo directory2 = new DirectoryInfo(p_strPath2);
-
-            if ((directory1.Exists) && (directory2.Exists))
-                m_booPairValid = true;
-
-           return m_booPairValid;
-        }
 
 
         private void SetUpDummyFolders()
