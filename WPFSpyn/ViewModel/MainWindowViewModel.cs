@@ -37,6 +37,9 @@ namespace WPFSpyn.ViewModel
 
         #region Properties
 
+        public static string APP_PATH = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        public static string DATA_PATH = APP_PATH += "\\Data\\syncpairs.xml";
+
         public SharpToolsMVVMRelayCommand GetTestCommand { get; set; }
      
         public ObservableCollection<string> Log

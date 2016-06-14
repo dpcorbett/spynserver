@@ -1,15 +1,6 @@
-﻿//using Microsoft.Synchronization;
-//using Microsoft.Synchronization.Files;
-using SharpTools.MVVM.RelayCommand;
+﻿using SharpTools.MVVM.RelayCommand;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-//using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Forms;
 using WPFSpyn.DataAccess;
@@ -30,10 +21,6 @@ namespace WPFSpyn.ViewModel
 
         private readonly SyncPair _syncPair;
         private readonly SyncPairRepository _syncPairRepository;
-        private readonly ObservableCollection<WorkspaceViewModel> _workspaces;
-        //private ObservableCollection<string> m_obcLog;
-        //private string m_strSrcPath;
-        //private string m_strDstPath;
         private bool m_booIsSynchronising;
         private string _syncPairType;
         private string[] _syncPairTypeOptions;
@@ -338,7 +325,6 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         public void Save()
         {
-            //_syncPair.SyncType = 
             if (!_syncPair.IsValid)
                 throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
 
@@ -346,7 +332,7 @@ namespace WPFSpyn.ViewModel
                 _syncPairRepository.AddSyncPair(_syncPair);
             
             base.OnPropertyChanged("DisplayName");
-            SyncPairRepository.SaveSyncPairs(this._syncPairRepository, MainWindow.DATA_PATH);
+            SyncPairRepository.SaveSyncPairs(this._syncPairRepository, MainWindowViewModel.DATA_PATH);
         }
 
 
@@ -368,7 +354,7 @@ namespace WPFSpyn.ViewModel
                 _wsCommands.RemoveWorkspace(this);
             }
             base.OnPropertyChanged("DisplayName");
-            SyncPairRepository.SaveSyncPairs(this._syncPairRepository, MainWindow.DATA_PATH);
+            SyncPairRepository.SaveSyncPairs(this._syncPairRepository, MainWindowViewModel.DATA_PATH);
             base.Dispose();
         }
 
@@ -383,20 +369,6 @@ namespace WPFSpyn.ViewModel
 
             var syncVM = new SyncViewModel(_syncPair, _syncPairRepository, _wsCommands);
             _wsCommands.AddWorkspace(syncVM);
-
-
-            //SyncViewModel syncVM =
-            //    _workspaces.FirstOrDefault(vm => vm is SyncViewModel)
-             //   as SyncViewModel;
-
-            //if (syncVM == null)
-            //{
-              //   syncVM = new SyncViewModel(_syncPair, _syncPairRepository, _wsCommands);
-              //  _wsCommands.AddWorkspace(syncVM);
-            //}
-
-//            _workspaces.SetActiveWorkspace(syncVM);
-
 
         }
 

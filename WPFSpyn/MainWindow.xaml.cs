@@ -3,20 +3,9 @@ using SharpTools.TCPSocketClient;
 using SharpTools.TCPSocketServer;
 using SharpTools.Utility.UserInput;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPFSpyn.ViewModel;
 
 namespace WPFSpyn
@@ -27,29 +16,21 @@ namespace WPFSpyn
     public partial class MainWindow : Window
     {
 
-        public static string APP_PATH = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) ;
-        public static string DATA_PATH = APP_PATH += "\\Data\\syncpairs.xml";
-
-        SharpToolsSystem stsSharpToolsSystem;
-
-
         public MainWindow()
         {
             InitializeComponent();
 
             this.Closed += new EventHandler(OnExit);
             
-            stsSharpToolsSystem = new SharpToolsSystem();
-            
             // Display name of computer executing on
-            this.txtLocalHost.Text = this.getLocalHost();
-            
+            this.txtLocalHost.Text = SharpToolsSystem.strComputerName.ToUpper();
+
             // Display name of computer service is executing on
             this.SetSpynServer(Properties.Settings.Default.strSpynServ.ToUpper());
 
             // Create the ViewModel to which 
             // the main window binds.
-            var viewModel = new MainWindowViewModel(DATA_PATH);
+            var viewModel = new MainWindowViewModel(MainWindowViewModel.DATA_PATH);
 
             // When the ViewModel asks to be closed, 
             // close the window.
@@ -83,13 +64,6 @@ namespace WPFSpyn
         {
             this.Close();
         }
-
-
-        private string getLocalHost()
-        {
-            return stsSharpToolsSystem.strComputerName.ToUpper();
-        }
-
 
         private string getSyncHost()
         {
