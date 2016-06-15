@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:WPFSpyn.Properties"
+        xmlns:st="clr-namespace:SharpTools.System;assembly=SharpTools.System"
         Height="677.715" 
         Style="{StaticResource MainWindowStyle}"
         Title="SPYN" 
@@ -102,6 +103,7 @@
             <TextBlock 
                 x:Name="txtLocalHost" 
                 Style="{StaticResource LocalHostTextBlockStyle}"
+                Text="{Binding Source={x:Static st:SharpToolsSystem.strComputerName}}"
                 />
             <Button 
                 x:Name="btnPoll" 

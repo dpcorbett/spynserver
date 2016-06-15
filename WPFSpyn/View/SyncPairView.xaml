@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"  
-  Width="600"
+  Width="765"
   >
 
     <UserControl.Resources>
@@ -12,11 +12,13 @@
 
     <Grid Margin="4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="144" />
-            <ColumnDefinition Width="6" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="6" />
-            <ColumnDefinition Width="72" />
+            <ColumnDefinition Width="144" />  <!--  0 -->
+            <ColumnDefinition Width="60" />   <!--  1 -->
+            <ColumnDefinition Width="144" />  <!--  2 -->
+            <ColumnDefinition Width="60" />   <!--  3 -->
+            <ColumnDefinition Width="Auto" /> <!--  4 -->
+            <ColumnDefinition Width="60" />   <!--  5 -->
+            <ColumnDefinition Width="144" />  <!--  6 -->
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -25,13 +27,11 @@
             <RowDefinition Height="50" />   <!--  2 -->
             <RowDefinition Height="Auto" /> <!--  3 -->
             <RowDefinition Height="50" />   <!--  4 -->
-            <RowDefinition Height="Auto" /> <!--  5 -->
-            <RowDefinition Height="50" />   <!--  6 -->
-            <RowDefinition Height="Auto" /> <!--  7 -->
+            <RowDefinition Height="50" />   <!--  5 -->
+            <RowDefinition Height="200" />   <!--  6 -->
+            <RowDefinition Height="50" />   <!--  7 -->
             <RowDefinition Height="50" />   <!--  8 -->
             <RowDefinition Height="50" />   <!--  9 -->
-            <RowDefinition Height="50" />   <!-- 10 -->
-            <RowDefinition Height="32" />   <!-- 11 -->
         </Grid.RowDefinitions>
 
         <Grid.Resources>
@@ -50,7 +50,7 @@
         <Label 
             Content="Sync Pair _Type"
             Grid.Row="1" 
-            Grid.Column="0" 
+            Grid.Column="4" 
             HorizontalAlignment="Right"
             Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=syncPairTypeCmb}" 
@@ -58,7 +58,7 @@
         <ComboBox 
             x:Name="syncPairTypeCmb"
             Grid.Row="1" 
-            Grid.Column="2"    
+            Grid.Column="6"    
             FontSize="13"
             ItemsSource="{Binding Path=SyncPairTypeOptions, Mode=OneTime}"
             SelectedItem="{Binding Path=SyncPairType, ValidatesOnDataErrors=True}"
@@ -66,13 +66,13 @@
             />
         <ContentPresenter 
             Grid.Row="2" 
-            Grid.Column="2"
+            Grid.Column="6"
             Content="{Binding ElementName=syncPairTypeCmb, Path=(Validation.Errors).CurrentItem}"
             />
 
         <!-- DESCRIPTION -->
         <Label 
-            Grid.Row="3" 
+            Grid.Row="1" 
             Grid.Column="0" 
             Content="Descri_ption:" 
             HorizontalAlignment="Right"
@@ -81,14 +81,14 @@
             />
         <TextBox 
             x:Name="descriptionTxt"
-            Grid.Row="3" 
+            Grid.Row="1" 
             Grid.Column="2" 
             Style="{StaticResource InputTextStyle}"
             Text="{Binding Path=Description, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
             Validation.ErrorTemplate="{x:Null}"
             />
         <ContentPresenter 
-            Grid.Row="4" 
+            Grid.Row="2" 
             Grid.Column="2"
             Content="{Binding ElementName=descriptionTxt, Path=(Validation.Errors).CurrentItem}"
             />
@@ -96,7 +96,7 @@
 
         <!-- SOURCE ROOT -->
         <Label 
-            Grid.Row="5" 
+            Grid.Row="3" 
             Grid.Column="0" 
             Content="Sou_rce Root:" 
             HorizontalAlignment="Right"
@@ -105,22 +105,22 @@
             />
         <TextBox 
             x:Name="srcRootTxt"
-            Grid.Row="5" 
+            Grid.Row="3" 
             Grid.Column="2" 
             Style="{StaticResource InputTextStyle}"
             Text="{Binding Path=SrcRoot, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
             Validation.ErrorTemplate="{x:Null}"
             />
         <ContentPresenter 
-            Grid.Row="6" 
+            Grid.Row="4" 
             Grid.Column="2"
             Content="{Binding ElementName=srcRootTxt, Path=(Validation.Errors).CurrentItem}"
             />
         <Button
             x:Name="btnSrcHost"
             Command="{Binding GetSrcRootCommand}"
-            Grid.Row="5"
-            Grid.Column="4"
+            Grid.Row="4"
+            Grid.Column="0"
             Style="{StaticResource MainBTNStyle}"
             >
             Set Path
@@ -128,8 +128,8 @@
 
         <!-- DESTINATION ROOT -->
         <Label 
-            Grid.Row="7" 
-            Grid.Column="0" 
+            Grid.Row="3" 
+            Grid.Column="4" 
             Content="Destin_ation Root:" 
             HorizontalAlignment="Right"
             Style="{StaticResource LabelTextStyle}"
@@ -137,35 +137,54 @@
             />
         <TextBox 
             x:Name="dstRootTxt"
-            Grid.Row="7" 
-            Grid.Column="2" 
+            Grid.Row="3" 
+            Grid.Column="6" 
             Style="{StaticResource InputTextStyle}"
             Text="{Binding Path=DstRoot, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
             Validation.ErrorTemplate="{x:Null}"
             />
         <ContentPresenter 
-            Grid.Row="8" 
-            Grid.Column="2"
+            Grid.Row="4" 
+            Grid.Column="6"
             Content="{Binding ElementName=dstRootTxt, Path=(Validation.Errors).CurrentItem}"
             />
         <Button
             x:Name="btnDstHost"
             Command="{Binding GetDstRootCommand}"
-            Grid.Row="7"
+            Grid.Row="4"
             Grid.Column="4"
             Style="{StaticResource MainBTNStyle}"
             >
             Set Path
         </Button>
 
+        <ListView
+            x:Name="lsvSrcDir"
+            Grid.Row="6"
+            Grid.ColumnSpan="3"
+            ItemsSource="{Binding PathFilesSrc}"
+            />
+
+        <ListView
+            x:Name="lsvDstDir"
+            Grid.Row="6"
+            Grid.Column="4"
+            Grid.ColumnSpan="3"
+            ItemsSource="{Binding PathFilesDst}"
+            />
+
+
+
+
         <!-- SAVE BUTTON -->
         <Button 
-            Grid.Row="9" 
-            Grid.Column="2"
+            Grid.Row="8" 
+            Grid.Column="5"
+            Grid.ColumnSpan="2"
             Command="{Binding Path=SaveCommand}"
             Content="Save"
             FontSize="16"
-            HorizontalAlignment="Right"
+            HorizontalAlignment="Stretch"
             Margin="4,2" 
             MinWidth="98" 
             Style="{StaticResource MainBTNStyle}"
@@ -173,12 +192,12 @@
 
         <!-- SYNC BUTTON -->
         <Button 
-            Grid.Row="9" 
-            Grid.Column="2"
+            Grid.Row="8" 
+            Grid.ColumnSpan="2"
             Command="{Binding Path=DataContext.SyncCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
             Content="Sync"
             FontSize="16"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Stretch"
             Margin="4,2" 
             MinWidth="98" 
             Style="{StaticResource MainBTNStyle}"
@@ -188,8 +207,8 @@
         <Button
             Command="{Binding Path=DataContext.DeleteSyncPairCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
             Content="Delete"
-            Grid.Row="11"
-            Grid.Column="2"
+            Grid.Row="9"
+            Grid.Column="3"
             HorizontalAlignment="Center"
             Margin="4,2" 
             MinHeight="25"

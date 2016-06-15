@@ -1,6 +1,8 @@
 ﻿using SharpTools.MVVM.RelayCommand;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Input;
 using System.Windows.Forms;
 using WPFSpyn.DataAccess;
@@ -30,6 +32,9 @@ namespace WPFSpyn.ViewModel
         private SharpToolsMVVMRelayCommand _deleteSyncPairCommand;
         private SharpToolsMVVMRelayCommand _syncCommand;
         private IWorkspaceCommands _wsCommands;
+        private ObservableCollection<FileInfo> _pathFilesSrc;
+        private ObservableCollection<FileInfo> _pathFilesDst;
+
 
         #endregion // Fields
 
@@ -113,21 +118,55 @@ namespace WPFSpyn.ViewModel
             get { return _syncPair.IsFullSync; }
         }
 
+
+        public ObservableCollection<FileInfo> PathFilesSrc
+        {
+            get
+            {
+                return _pathFilesSrc;
+            }
+            set
+            {
+                if (_pathFilesSrc != value)
+                {
+                    _pathFilesSrc = value;
+                    base.OnPropertyChanged("PathFilesSrc");
+                }
+            }
+        }
+
+        public ObservableCollection<FileInfo> PathFilesDst
+        {
+            get
+            {
+                return _pathFilesDst;
+            }
+            set
+            {
+                if (_pathFilesDst != value)
+                {
+                    _pathFilesDst = value;
+                    base.OnPropertyChanged("PathFilesDst");
+                }
+            }
+        }
+
+
         //public ObservableCollection<string> Log
         //{
         //    get
-         //   {
-       //         return m_obcLog;
-       //     }
-      //      set
-      //      {
-       //         if (m_obcLog != value)
-       //         {
-       //             m_obcLog = value;
-       //             OnPropertyChanged("Log");
-       //         }
+        //   {
+        //         return m_obcLog;
+        //     }
+        //      set
+        //      {
+        //         if (m_obcLog != value)
+        //         {
+        //             m_obcLog = value;
+        //             OnPropertyChanged("Log");
+        //         }
         //    }
-      //  }
+        //  }
 
         public bool IsSynchronising
         {
@@ -177,6 +216,7 @@ namespace WPFSpyn.ViewModel
             DeleteSyncPairCommand = new SharpToolsMVVMRelayCommand(Delete);
             SyncCommand = new SharpToolsMVVMRelayCommand(Sync);
 
+            this.ReloadFileLists();
         }
 
         #endregion // Constructor
@@ -319,6 +359,23 @@ namespace WPFSpyn.ViewModel
 
 
         #region Public Methods
+
+
+        private void ReloadFileLists()
+        {
+            
+            if ((_syncPair.SrcRoot != null) && (Directory.Exists(_syncPair.SrcRoot)))
+            {
+                 var di = new DirectoryInfo(_syncPair.SrcRoot);
+                PathFilesSrc = new ObservableCollection<FileInfo>(di.GetFiles());
+            }
+            if ((_syncPair.DstRoot != null) && (Directory.Exists(_syncPair.DstRoot)))
+            {
+                var di = new DirectoryInfo(_syncPair.DstRoot);
+                PathFilesDst = new ObservableCollection<FileInfo>(di.GetFiles());
+            }
+        }
+
 
         /// <summary>
         /// Saves the Syncpair to the repository.  This method is invoked by the SaveCommand.

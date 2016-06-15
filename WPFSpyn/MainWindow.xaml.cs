@@ -22,9 +22,6 @@ namespace WPFSpyn
 
             this.Closed += new EventHandler(OnExit);
             
-            // Display name of computer executing on
-            this.txtLocalHost.Text = SharpToolsSystem.strComputerName.ToUpper();
-
             // Display name of computer service is executing on
             this.SetSpynServer(Properties.Settings.Default.strSpynServ.ToUpper());
 

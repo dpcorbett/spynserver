@@ -4,8 +4,7 @@
     xmlns:vm="clr-namespace:WPFSpyn.ViewModel"
     xmlns:vw="clr-namespace:WPFSpyn.View"
     >
-
-
+    
     <!-- 
   This template applies an AllSyncPairsView to an instance 
   of the AllSyncPairsViewModel class shown in the main window.
