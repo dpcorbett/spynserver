@@ -3,6 +3,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Forms;
 using WPFSpyn.DataAccess;
@@ -40,6 +42,8 @@ namespace WPFSpyn.ViewModel
 
 
         #region Properties
+
+        public event EventHandler UpdateDirectoryPath;
 
         public SharpToolsMVVMRelayCommand DeleteSyncPairCommand
         {
@@ -117,8 +121,7 @@ namespace WPFSpyn.ViewModel
         {
             get { return _syncPair.IsFullSync; }
         }
-
-
+        
         public ObservableCollection<FileInfo> PathFilesSrc
         {
             get
@@ -216,7 +219,7 @@ namespace WPFSpyn.ViewModel
             DeleteSyncPairCommand = new SharpToolsMVVMRelayCommand(Delete);
             SyncCommand = new SharpToolsMVVMRelayCommand(Sync);
 
-            this.ReloadFileLists();
+           // UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion // Constructor
@@ -361,20 +364,6 @@ namespace WPFSpyn.ViewModel
         #region Public Methods
 
 
-        private void ReloadFileLists()
-        {
-            
-            if ((_syncPair.SrcRoot != null) && (Directory.Exists(_syncPair.SrcRoot)))
-            {
-                 var di = new DirectoryInfo(_syncPair.SrcRoot);
-                PathFilesSrc = new ObservableCollection<FileInfo>(di.GetFiles());
-            }
-            if ((_syncPair.DstRoot != null) && (Directory.Exists(_syncPair.DstRoot)))
-            {
-                var di = new DirectoryInfo(_syncPair.DstRoot);
-                PathFilesDst = new ObservableCollection<FileInfo>(di.GetFiles());
-            }
-        }
 
 
         /// <summary>
@@ -401,7 +390,7 @@ namespace WPFSpyn.ViewModel
             if (!_syncPair.IsValid)
             {
                 //throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
-                MessageBox.Show("Not Saved");
+                System.Windows.MessageBox.Show("Not Saved");
                 return;
             }
 
@@ -415,12 +404,13 @@ namespace WPFSpyn.ViewModel
             base.Dispose();
         }
 
+
         public void Sync(object syncpair)
         {
             if (!_syncPair.IsValid)
             {
                 //throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
-                MessageBox.Show("Not Saved");
+                System.Windows.MessageBox.Show("Not Saved");
                 return;
             }
 
@@ -429,11 +419,14 @@ namespace WPFSpyn.ViewModel
 
         }
 
+
         private void GetSrcRoot(object param)
         {
             var dialog = new FolderBrowserDialog();
             DialogResult result = dialog.ShowDialog();
             SrcRoot = dialog.SelectedPath;
+            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+
         }
 
 
@@ -442,7 +435,37 @@ namespace WPFSpyn.ViewModel
             var dialog = new FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
             DstRoot = dialog.SelectedPath;
+            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
         }
+
+
+        /*     private void FillTreeView(TreeViewItem parentItem, string path)
+             {
+                 foreach (string str in Directory.EnumerateDirectories(path))
+                 {
+                     TreeViewItem item = new TreeViewItem();
+                     item.Header = str.Substring(str.LastIndexOf('\\') + 1);
+                     item.Tag = str;
+                     item.FontWeight = FontWeights.Normal;
+                     parentItem.Items.Add(item);
+                     fillFiles(item, str);
+                     FillTreeView(item, str);
+                 }
+
+
+             }
+
+             private void fillFiles(TreeViewItem parentItem, string path)
+             {
+                 foreach (string str in Directory.EnumerateFiles(path))
+                 {
+                     TreeViewItem item = new TreeViewItem();
+                     item.Header = str.Substring(str.LastIndexOf('\\') + 1);
+                     item.Tag = str;
+                     item.FontWeight = FontWeights.Normal;
+                     parentItem.Items.Add(item);
+
+               }  }*/
 
         #endregion // Public Methods
 
