@@ -3,7 +3,7 @@
   <Class Name="WPFSpyn.Model.SyncPair">
     <Position X="0.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>FAQBEAAgAAAACQAEAAkAAAAAAKAgABAAAAAAAAAgAAA=</HashCode>
+      <HashCode>UAQBAAAgAAAgCQAAAAkCAAAAAIAgAAAAAAEAAAAgAAA=</HashCode>
       <FileName>Model\SyncPair.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -11,7 +11,7 @@
   <Class Name="WPFSpyn.ViewModel.SyncPairViewModel">
     <Position X="3.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>FAAAEIIIACAAEQBEAAEAAACCAAEgAAAAAEAACABEAAA=</HashCode>
+      <HashCode>EAQCEIKIEKIwEQHAABEAACCCIAEgAQCBAEGBCKBMAAA=</HashCode>
       <FileName>ViewModel\SyncPairViewModel.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -23,7 +23,7 @@
   <Class Name="WPFSpyn.ViewModel.AllSyncPairsViewModel">
     <Position X="7.25" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAECAAAABAAAAAAAAAAAAIABAAAACAACAAAAA=</HashCode>
+      <HashCode>AAAAEAAAECAAQABAAAAAACAAAAAIABAAAACAgCEgAAA=</HashCode>
       <FileName>ViewModel\AllSyncPairsViewModel.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -36,19 +36,10 @@
   <Class Name="WPFSpyn.DataAccess.SyncPairRepository">
     <Position X="11.25" Y="2.5" Width="2" />
     <Members>
-      <Method Name="GetResourceStream" Hidden="true" />
       <Method Name="LoadSyncPairs" Hidden="true" />
     </Members>
-    <AssociationLine Name="_syncPairs" Type="WPFSpyn.Model.SyncPair" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="12.25" Y="4.632" />
-        <Point X="12.25" Y="6.155" />
-        <Point X="1.5" Y="6.155" />
-        <Point X="1.5" Y="5.391" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAAAAEAAEAAAAAAAEAAAAAABAAABAAAAIA=</HashCode>
+      <HashCode>AAAAAAAABAAAAAEAAEAAAAAAAEAIAQAABQAABAAAAIA=</HashCode>
       <FileName>DataAccess\SyncPairRepository.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>

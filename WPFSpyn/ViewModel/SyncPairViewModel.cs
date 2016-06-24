@@ -218,8 +218,6 @@ namespace WPFSpyn.ViewModel
             GetDstRootCommand = new SharpToolsMVVMRelayCommand(GetDstRoot);
             DeleteSyncPairCommand = new SharpToolsMVVMRelayCommand(Delete);
             SyncCommand = new SharpToolsMVVMRelayCommand(Sync);
-
-           // UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion // Constructor
@@ -234,11 +232,7 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         public string SyncPairType
         {
-            get 
-            { 
-                return _syncPairType; 
-            }
-
+            get { return _syncPairType; }
             set
             {
                 if (value == _syncPairType || String.IsNullOrEmpty(value))
@@ -363,9 +357,6 @@ namespace WPFSpyn.ViewModel
 
         #region Public Methods
 
-
-
-
         /// <summary>
         /// Saves the Syncpair to the repository.  This method is invoked by the SaveCommand.
         /// </summary>
@@ -437,35 +428,6 @@ namespace WPFSpyn.ViewModel
             DstRoot = dialog.SelectedPath;
             UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
         }
-
-
-        /*     private void FillTreeView(TreeViewItem parentItem, string path)
-             {
-                 foreach (string str in Directory.EnumerateDirectories(path))
-                 {
-                     TreeViewItem item = new TreeViewItem();
-                     item.Header = str.Substring(str.LastIndexOf('\\') + 1);
-                     item.Tag = str;
-                     item.FontWeight = FontWeights.Normal;
-                     parentItem.Items.Add(item);
-                     fillFiles(item, str);
-                     FillTreeView(item, str);
-                 }
-
-
-             }
-
-             private void fillFiles(TreeViewItem parentItem, string path)
-             {
-                 foreach (string str in Directory.EnumerateFiles(path))
-                 {
-                     TreeViewItem item = new TreeViewItem();
-                     item.Header = str.Substring(str.LastIndexOf('\\') + 1);
-                     item.Tag = str;
-                     item.FontWeight = FontWeights.Normal;
-                     parentItem.Items.Add(item);
-
-               }  }*/
 
         #endregion // Public Methods
 

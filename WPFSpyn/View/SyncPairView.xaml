@@ -165,12 +165,11 @@
             Grid.ColumnSpan="3"
             />
 
-        <TreeView
+        <dtv:DirectoryTreeViewControl
             x:Name="trvDstDir"
             Grid.Row="6"
             Grid.Column="4"
             Grid.ColumnSpan="3"
-            ItemsSource="{Binding PathFilesDst}"
             />
 
 

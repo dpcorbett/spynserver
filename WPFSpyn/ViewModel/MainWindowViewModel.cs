@@ -329,10 +329,10 @@ namespace WPFSpyn.ViewModel
             if (workspace == null)
             {
                 workspace = new AllSyncPairsViewModel(_syncPairRepository, this);
-                this.Workspaces.Add(workspace);
+                Workspaces.Add(workspace);
             }
 
-            this.SetActiveWorkspace(workspace);
+            SetActiveWorkspace(workspace);
         }
 
 
