@@ -62,7 +62,7 @@
             Grid.Column="6"    
             FontSize="13"
             ItemsSource="{Binding Path=SyncPairTypeOptions, Mode=OneTime}"
-            SelectedItem="{Binding Path=SyncPairType, ValidatesOnDataErrors=True}"
+            SelectedItem="{Binding Path=SyncPairType, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
             Validation.ErrorTemplate="{x:Null}"
             />
         <ContentPresenter 

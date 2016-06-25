@@ -477,7 +477,7 @@ namespace WPFSpyn.ViewModel
 
                 if (propertyName == "SyncPairType")
                 {
-                    // The IsCompany property of the SyncPair class 
+                    // The IsFullSync property of the SyncPair class 
                     // is Boolean, so it has no concept of being in
                     // an "unselected" state.  The SyncPairViewModel
                     // class handles this mapping and validation.
