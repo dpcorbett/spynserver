@@ -226,7 +226,7 @@ namespace WPFSpyn.ViewModel
             {
                 new CommandViewModel(
                     Strings.MainWindowViewModel_Command_ViewAllSyncPairs,
-                    new SharpToolsMVVMRelayCommand(param => this.ShowAllSyncPairs())),
+                    new SharpToolsMVVMRelayCommand(param => ShowAllSyncPairs())),
 
                 new CommandViewModel(
                     Strings.MainWindowViewModel_Command_CreateNewSyncPair,

@@ -8,9 +8,9 @@ namespace WPFSpyn.DataAccess
     /// </summary>
     public class SyncPairRemovedEventArgs : EventArgs
     {
-        public SyncPairRemovedEventArgs(SyncPair oldSyncPair)
+        public SyncPairRemovedEventArgs(SyncPair p_oldSyncPair)
         {
-            this.OldSyncPair = oldSyncPair;
+            OldSyncPair = p_oldSyncPair;
         }
 
         public SyncPair OldSyncPair { get; private set; }

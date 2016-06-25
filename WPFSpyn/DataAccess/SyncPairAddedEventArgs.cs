@@ -8,9 +8,9 @@ namespace WPFSpyn.DataAccess
     /// </summary>
     public class SyncPairAddedEventArgs : EventArgs
     {
-        public SyncPairAddedEventArgs(SyncPair newSyncPair)
+        public SyncPairAddedEventArgs(SyncPair p_newSyncPair)
         {
-            this.NewSyncPair = newSyncPair;
+            NewSyncPair = p_newSyncPair;
         }
 
         public SyncPair NewSyncPair { get; private set; }

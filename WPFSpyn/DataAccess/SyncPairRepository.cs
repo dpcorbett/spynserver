@@ -1,12 +1,7 @@
-﻿//using ClassLibrarySharpTools;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Windows;
-using System.Windows.Resources;
 using System.Xml;
-using System.Xml.Linq;
 using System.Xml.Serialization;
 using WPFSpyn.Model;
 
@@ -58,16 +53,6 @@ namespace WPFSpyn.DataAccess
         #endregion // Constructor
 
 
-        #region Destructor
-
-      //   ~SyncPairRepository()
-       // {
-        //    SaveSyncPairs(  this._syncPairs);
-       // }
-
-        #endregion
-
-
         #region Public Interface
 
         /// <summary>
@@ -84,7 +69,7 @@ namespace WPFSpyn.DataAccess
         /// <summary>
         /// Places the specified syncpair into the repository.
         /// If the syncpair is already in the repository, an
-        /// exception is not thrown.
+        /// event is not triggered.
         /// </summary>
         /// <param name="p_syncPair"></param>
         public void AddSyncPair(SyncPair p_syncPair)
@@ -95,13 +80,16 @@ namespace WPFSpyn.DataAccess
             if (!_syncPairs.Contains(p_syncPair))
             {
                 _syncPairs.Add(p_syncPair);
-
-                if (this.SyncPairAdded != null)
-                    this.SyncPairAdded(this, new SyncPairAddedEventArgs(p_syncPair));
+                SyncPairAdded?.Invoke(this, new SyncPairAddedEventArgs(p_syncPair));
             }
         }
 
 
+        /// <summary>
+        /// Removes the syncpair from the repository and
+        /// if successful, raise an event.
+        /// </summary>
+        /// <param name="p_syncPair"></param>
         public void DeleteSyncPair(SyncPair p_syncPair)
         {
             if (p_syncPair == null)
@@ -110,9 +98,7 @@ namespace WPFSpyn.DataAccess
             if (_syncPairs.Contains(p_syncPair))
             {
                 _syncPairs.Remove(p_syncPair);
-
-                if (this.SyncPairRemoved != null)
-                    this.SyncPairRemoved(this, new SyncPairRemovedEventArgs(p_syncPair));
+                SyncPairRemoved?.Invoke(this, new SyncPairRemovedEventArgs(p_syncPair));
             }
         }
 
@@ -147,19 +133,25 @@ namespace WPFSpyn.DataAccess
         #region Private Helpers
 
          /// <summary>
-         /// Returns a list of SyncPairs retrieved from file.
+         /// Returns a list of SyncPairs retrieved from an XML file.
          /// </summary>
          /// <param name="p_syncPairDataFile"></param>
          /// <returns></returns>
         static List<SyncPair> LoadSyncPairs(string p_syncPairDataFile)
         {
-            // TODO Handle no file present
-            using (XmlReader xmlRdr = new XmlTextReader(p_syncPairDataFile))
+            try
             {
-
-                XmlSerializer x = new XmlSerializer(typeof(SyncPairRepository));
-                SyncPairRepository myRepo = (SyncPairRepository)x.Deserialize(xmlRdr);
-                return myRepo._syncPairs;
+                using (XmlReader xmlRdr = new XmlTextReader(p_syncPairDataFile))
+                {
+                    XmlSerializer x = new XmlSerializer(typeof(SyncPairRepository));
+                    SyncPairRepository myRepo = (SyncPairRepository)x.Deserialize(xmlRdr);
+                    return myRepo._syncPairs;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new List<SyncPair>();
             }
         }
 
