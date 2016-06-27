@@ -4,7 +4,7 @@
   xmlns:dtv="clr-namespace:WpfDirectoryTreeView;assembly=WpfDirectoryTreeView"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"  
-  Width="765"
+  Width="780"
   >
 
     <UserControl.Resources>
@@ -13,13 +13,13 @@
 
     <Grid Margin="4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="144" />  <!--  0 -->
-            <ColumnDefinition Width="60" />   <!--  1 -->
-            <ColumnDefinition Width="144" />  <!--  2 -->
-            <ColumnDefinition Width="60" />   <!--  3 -->
-            <ColumnDefinition Width="Auto" /> <!--  4 -->
-            <ColumnDefinition Width="60" />   <!--  5 -->
-            <ColumnDefinition Width="144" />  <!--  6 -->
+            <ColumnDefinition Width="140" />  <!--  0 -->
+            <ColumnDefinition Width="40" />   <!--  1 -->
+            <ColumnDefinition Width="170" />  <!--  2 -->
+            <ColumnDefinition Width="*" />   <!--  3 -->
+            <ColumnDefinition Width="140" />  <!--  4 -->
+            <ColumnDefinition Width="40" />   <!--  5 -->
+            <ColumnDefinition Width="170" />  <!--  6 -->
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -29,7 +29,7 @@
             <RowDefinition Height="Auto" /> <!--  3 -->
             <RowDefinition Height="50" />   <!--  4 -->
             <RowDefinition Height="50" />   <!--  5 -->
-            <RowDefinition Height="200" />   <!--  6 -->
+            <RowDefinition Height="200" />  <!--  6 -->
             <RowDefinition Height="50" />   <!--  7 -->
             <RowDefinition Height="50" />   <!--  8 -->
             <RowDefinition Height="50" />   <!--  9 -->
@@ -52,7 +52,7 @@
             Content="Sync Pair _Type"
             Grid.Row="1" 
             Grid.Column="4" 
-            HorizontalAlignment="Right"
+            HorizontalAlignment="Left"
             Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=syncPairTypeCmb}" 
             />
@@ -76,7 +76,7 @@
             Grid.Row="1" 
             Grid.Column="0" 
             Content="Descri_ption:" 
-            HorizontalAlignment="Right"
+            HorizontalAlignment="Left"
             Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=descriptionTxt}"
             />
@@ -100,7 +100,7 @@
             Grid.Row="3" 
             Grid.Column="0" 
             Content="Sou_rce Root:" 
-            HorizontalAlignment="Right"
+            HorizontalAlignment="Left"
             Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=srcRootTxt}" 
             />
@@ -122,6 +122,7 @@
             Command="{Binding GetSrcRootCommand}"
             Grid.Row="4"
             Grid.Column="0"
+            Margin="10"
             Style="{StaticResource MainBTNStyle}"
             >
             Set Path
@@ -132,7 +133,7 @@
             Grid.Row="3" 
             Grid.Column="4" 
             Content="Destin_ation Root:" 
-            HorizontalAlignment="Right"
+            HorizontalAlignment="Left"
             Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=dstRootTxt}" 
             />
@@ -154,17 +155,31 @@
             Command="{Binding GetDstRootCommand}"
             Grid.Row="4"
             Grid.Column="4"
+            Margin="10"
             Style="{StaticResource MainBTNStyle}"
             >
             Set Path
         </Button>
 
+        
+        <!-- SOURCE DIRECTORY TREE VIEW -->
         <dtv:DirectoryTreeViewControl
             x:Name="trvSrcDir"
             Grid.Row="6"
             Grid.ColumnSpan="3"
             />
 
+        <!-- PAIR DIRECTORIES FOR SYNCING -->
+        <Button
+            Content="Pair"
+            Grid.Column="3"
+            Grid.Row="6"
+            Margin="10"
+            Style="{StaticResource MainBTNStyle}"
+            />
+
+
+        <!-- DESTINATION DIRECTORY TREE VIEW -->
         <dtv:DirectoryTreeViewControl
             x:Name="trvDstDir"
             Grid.Row="6"
@@ -173,12 +188,9 @@
             />
 
 
-
-
         <!-- SAVE BUTTON -->
         <Button 
             Grid.Row="8" 
-            Grid.Column="5"
             Grid.ColumnSpan="2"
             Command="{Binding Path=SaveCommand}"
             Content="Save"
@@ -192,6 +204,7 @@
         <!-- SYNC BUTTON -->
         <Button 
             Grid.Row="8" 
+            Grid.Column="5"
             Grid.ColumnSpan="2"
             Command="{Binding Path=DataContext.SyncCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
             Content="Sync"
@@ -208,7 +221,7 @@
             Content="Delete"
             Grid.Row="9"
             Grid.Column="3"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Stretch"
             Margin="4,2" 
             MinHeight="25"
             MinWidth="50" 
