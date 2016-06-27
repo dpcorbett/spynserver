@@ -8,56 +8,47 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-//using System.IO;
 using System.Linq;
 using System.Security.Principal;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Threading;
 using WPFSpyn.DataAccess;
 using WPFSpyn.Model;
 using WPFSpyn.Library;
 using WPFSpyn.Properties;
-using WPFSpyn.ViewModel;
 
 namespace WPFSpyn.ViewModel
 {
+    /// <summary>
+    /// Parent window for program.
+    /// </summary>
     public class MainWindowViewModel : WorkspaceViewModel, IWorkspaceCommands
     {
         
         #region Fields
 
+        // Create command collection.
         ReadOnlyCollection<CommandViewModel> _commands;
+        // Create sync pair collection.
         readonly SyncPairRepository _syncPairRepository;
+        // Create worksapce collection.
         ObservableCollection<WorkspaceViewModel> _workspaces;
-        private ObservableCollection<string> m_obcLog;
 
         #endregion
 
 
         #region Properties
 
+        // Retrieve program path from system.
         public static string APP_PATH = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        // Add data file location to app path.
         public static string DATA_PATH = APP_PATH += "\\Data\\syncpairs.xml";
 
+        /// <summary>
+        /// Test command for Settings button.
+        /// </summary>
         public SharpToolsMVVMRelayCommand GetTestCommand { get; set; }
-     
-        public ObservableCollection<string> Log
-        {
-            get
-            {
-                return m_obcLog;
-            }
-            set
-            {
-                if (m_obcLog != value)
-                {
-                    m_obcLog = value;
-                    OnPropertyChanged("Log");
-                }
-            }
-        }
-        
+             
         #endregion // Properties
 
 
@@ -77,51 +68,6 @@ namespace WPFSpyn.ViewModel
 
 
         #region Junk
-
-
-        private void SetUpDummyFolders()
-        { /*
-            DirectoryInfo directory1 = new DirectoryInfo(FOLDER1);
-            DirectoryInfo directory2 = new DirectoryInfo(FOLDER2);
-
-            if (!directory1.Exists)
-                Directory.CreateDirectory(FOLDER1);
-            if (!directory2.Exists)
-                Directory.CreateDirectory(FOLDER2);
-            
-            //clear out old files
-            foreach (System.IO.FileInfo file in directory1.GetFiles()) file.Delete();
-            foreach (System.IO.FileInfo file in directory2.GetFiles()) file.Delete();
-
-            int fileNumber = 1;
-            for (var a = 0; a < 5; a++)
-                File.Create(System.IO.Path.Combine(directory1.ToString(), "File_" + fileNumber++ + ".txt"));
-            for (var a = 0; a < 5; a++)
-                File.Create(System.IO.Path.Combine(directory2.ToString(), "File_" + fileNumber++ + ".txt"));
-            File.Create(System.IO.Path.Combine(directory2.ToString(), "File_" + fileNumber++ + ".pete"));
-
-            Path1 = directory1.FullName;
-            Path2 = directory2.FullName;
-        */}
-
-
-        private void ReloadFileLists()
-        {/*
-            var di = new DirectoryInfo(FOLDER1);
-            Path1Files = new ObservableCollection<FileInfo>(di.GetFiles());
-            di = new DirectoryInfo(FOLDER2);
-            Path2Files = new ObservableCollection<FileInfo>(di.GetFiles());
-        */}
-
-
-        void AddUpdate(object param)
-        {
-            System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-            {
-                Log.Add(param as string);
-            }));
-        }
-
 
         public static void FindFileSystemReplicaChanges(string replicaRootPath, FileSyncScopeFilter filter, FileSyncOptions options)
         {
@@ -211,30 +157,36 @@ namespace WPFSpyn.ViewModel
         {
             get
             {
+                // Check list doesn't already exist.
                 if (_commands == null)
                 {
-                    List<CommandViewModel> cmds = this.CreateCommands();
+                    // Create command list.
+                    List<CommandViewModel> cmds = CreateCommands();
+                    // Set field.
                     _commands = new ReadOnlyCollection<CommandViewModel>(cmds);
                 }
                 return _commands;
             }
-        }
+        } 
 
+        /// <summary>
+        /// Creates command view models specified.
+        /// </summary>
+        /// <returns>list of command view models</returns>
         List<CommandViewModel> CreateCommands()
         {
+            // Create and return list.
             return new List<CommandViewModel>
             {
+                // All sync pairs view model.
                 new CommandViewModel(
                     Strings.MainWindowViewModel_Command_ViewAllSyncPairs,
                     new SharpToolsMVVMRelayCommand(param => ShowAllSyncPairs())),
 
+                // New sync pair view model.
                 new CommandViewModel(
                     Strings.MainWindowViewModel_Command_CreateNewSyncPair,
-                    new SharpToolsMVVMRelayCommand(param => this.CreateNewSyncPair())),
-                    
-                //new CommandViewModel(
-                 //   Strings.MainWindowViewModel_Command_EditSyncPair,
-                //    new SharpToolsMVVMRelayCommand(param => this.EditSyncPair())                    )
+                    new SharpToolsMVVMRelayCommand(param => CreateNewSyncPair())),
             };
         }
 
@@ -251,36 +203,51 @@ namespace WPFSpyn.ViewModel
         {
             get
             {
+                // Check if list exists.
                 if (_workspaces == null)
                 {
+                    // Create list.
                     _workspaces = new ObservableCollection<WorkspaceViewModel>();
-                    _workspaces.CollectionChanged += this.OnWorkspacesChanged;
-                    
+                    // Attach worspace changed event.
+                    _workspaces.CollectionChanged += OnWorkspacesChanged;
                 }
                 return _workspaces;
             }
         }
 
-
-
+        /// <summary>
+        /// Handles workspace changed event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnWorkspacesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            // Check for new workspaces.
             if (e.NewItems != null && e.NewItems.Count != 0)
                 foreach (WorkspaceViewModel workspace in e.NewItems)
-                    workspace.RequestClose += this.OnWorkspaceRequestClose;
+                    // Attach workspace close request event to each one.
+                    workspace.RequestClose += OnWorkspaceRequestClose;
 
+            // Check for new workspaces.
             if (e.OldItems != null && e.OldItems.Count != 0)
                 foreach (WorkspaceViewModel workspace in e.OldItems)
-                    workspace.RequestClose -= this.OnWorkspaceRequestClose;
+                    // Attach workspace close request event to each one.
+                    workspace.RequestClose -= OnWorkspaceRequestClose;
         }
 
-
-
+        /// <summary>
+        /// Handles workspace request close event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnWorkspaceRequestClose(object sender, EventArgs e)
         {
+            // Store workspace view model address locally.
             WorkspaceViewModel workspace = sender as WorkspaceViewModel;
+            // Destroy workspace.
             workspace.Dispose();
-            this.Workspaces.Remove(workspace);
+            // Remove reference to workspace.
+            Workspaces.Remove(workspace);
         }
 
         #endregion // Workspaces
@@ -288,6 +255,10 @@ namespace WPFSpyn.ViewModel
 
         #region Public Methods
 
+        /// <summary>
+        /// USED FOR TESTING ONLY.
+        /// </summary>
+        /// <param name="param"></param>
         private void GetTest(object param)
         {
             SharpTools.System.User.SystemUser sus = new SharpTools.System.User.SystemUser();
@@ -310,31 +281,35 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         void CreateNewSyncPair()
         {
-            SyncPair newSyncPair = WPFSpyn.Model.SyncPair.CreateNewSyncPair();
+            // Create sync pair.
+            SyncPair newSyncPair = SyncPair.CreateNewSyncPair();
+            // Create new sync pair model passing sync pair, repository and itself??? TODO Fix this.
             SyncPairViewModel workspace = new SyncPairViewModel(newSyncPair, _syncPairRepository, this);
-            this.Workspaces.Add(workspace);
-            this.SetActiveWorkspace(workspace);
+            // Add sync pair view model to workspaces.
+            Workspaces.Add(workspace);
+            // Give workspace focus.
+            SetActiveWorkspace(workspace);
         }
-
 
         /// <summary>
         /// Adds all Sync Pair workspaces.
         /// </summary>
         void ShowAllSyncPairs()
         {
+            // Select workspace if it is already open.
             AllSyncPairsViewModel workspace =
-                this.Workspaces.FirstOrDefault(vm => vm is AllSyncPairsViewModel)
+                Workspaces.FirstOrDefault(vm => vm is AllSyncPairsViewModel)
                 as AllSyncPairsViewModel;
 
+            // Create and add an all sync pairs view model.
             if (workspace == null)
             {
                 workspace = new AllSyncPairsViewModel(_syncPairRepository, this);
                 Workspaces.Add(workspace);
             }
-
+            // Give workspace focus.
             SetActiveWorkspace(workspace);
         }
-
 
         /// <summary>
         /// Sets active workspace.
@@ -342,9 +317,13 @@ namespace WPFSpyn.ViewModel
         /// <param name="workspace">Workspace to select</param>
         void SetActiveWorkspace(WorkspaceViewModel workspace)
         {
-            Debug.Assert(this.Workspaces.Contains(workspace));
+            // Ascertain existance for debugging.
+            Debug.Assert(Workspaces.Contains(workspace));
 
-            ICollectionView collectionView = CollectionViewSource.GetDefaultView(this.Workspaces);
+            // Create collection view of workspaces.
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(Workspaces);
+
+            // Set supplied workspace as active.
             if (collectionView != null)
                 collectionView.MoveCurrentTo(workspace);
         }
@@ -355,8 +334,14 @@ namespace WPFSpyn.ViewModel
 
         #region IWorkspaceCommands Members
 
+        /// <summary>
+        /// Add supplied workspace view model if it doesn't exist,
+        /// and set active.
+        /// </summary>
+        /// <param name="view"></param>
         public void AddWorkspace(WorkspaceViewModel view)
         {
+            // Check that workspace doesn't exist.
             if (!Workspaces.Contains(view))
             {
                 Workspaces.Add(view);
@@ -364,8 +349,13 @@ namespace WPFSpyn.ViewModel
             SetActiveWorkspace(view);
         }
 
+        /// <summary>
+        /// Delete supplied workspace view model if it exists.
+        /// </summary>
+        /// <param name="view"></param>
         public void RemoveWorkspace(WorkspaceViewModel view)
         {
+            // Check that workspace exists.
             if (Workspaces.Contains(view))
             {
                 Workspaces.Remove(view);

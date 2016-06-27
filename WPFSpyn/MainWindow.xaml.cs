@@ -20,10 +20,10 @@ namespace WPFSpyn
         {
             InitializeComponent();
 
-            this.Closed += new EventHandler(OnExit);
-            
+            Closed += new EventHandler(OnExit);
+
             // Display name of computer service is executing on
-            this.SetSpynServer(Properties.Settings.Default.strSpynServ.ToUpper());
+            SetSpynServer(Properties.Settings.Default.strSpynServ.ToUpper());
 
             // Create the ViewModel to which 
             // the main window binds.
@@ -35,7 +35,7 @@ namespace WPFSpyn
             handler = delegate
             {
                 viewModel.RequestClose -= handler;
-                this.Close();
+                Close();
             };
             viewModel.RequestClose += handler;
 
@@ -44,7 +44,7 @@ namespace WPFSpyn
             // bind to the ViewModel by setting the 
             // DataContext, which propagates down 
             // the element tree.
-            this.DataContext = viewModel;
+            DataContext = viewModel;
 
             //this.Show();
 
@@ -53,13 +53,13 @@ namespace WPFSpyn
 
         private void btnPoll_Click(object sender, RoutedEventArgs e)
         {
-            this.SetSpynServer(Properties.Settings.Default.strSpynServ.ToUpper());
+            SetSpynServer(Properties.Settings.Default.strSpynServ.ToUpper());
         }
 
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private string getSyncHost()
@@ -76,12 +76,12 @@ namespace WPFSpyn
         /// <param name="e"></param>
         private void txtSpynServ_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            UserInput suu = new UserInput("Enter Server Name:", this.txtSpynServ.Text);
+            UserInput suu = new UserInput("Enter Server Name:", txtSpynServ.Text);
              suu.ShowDialog();
             bool booResponse = suu.booResponse;
             if (booResponse ==  true)
-                this.SetSpynServer(suu.Answer.ToUpper());
-            this.txtSpynServ.Select(0, 0);
+                SetSpynServer(suu.Answer.ToUpper());
+            txtSpynServ.Select(0, 0);
 
         }
 
@@ -112,9 +112,9 @@ namespace WPFSpyn
             Properties.Settings.Default.strSpynServ = p_strSpynServ;
             string strServerOnline = PollServer();
             if (strServerOnline == "ONLINE")
-                this.txtSpynServ.Foreground = Brushes.LimeGreen;
+                txtSpynServ.Foreground = Brushes.LimeGreen;
             else
-                this.txtSpynServ.Foreground = Brushes.Red;
+                txtSpynServ.Foreground = Brushes.Red;
         }
 
     }

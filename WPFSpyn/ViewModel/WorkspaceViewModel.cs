@@ -11,19 +11,26 @@ namespace WPFSpyn.ViewModel
     /// </summary>
     public abstract class WorkspaceViewModel : ViewModelBase
     {
+
         #region Fields
 
+        // Use relay to issue close command.
         SharpToolsMVVMRelayCommand _closeCommand;
 
         #endregion // Fields
 
+
         #region Constructor
 
+        /// <summary>
+        /// Empty constructor.
+        /// </summary>
         protected WorkspaceViewModel()
         {
         }
 
         #endregion // Constructor
+
 
         #region CloseCommand
 
@@ -36,13 +43,14 @@ namespace WPFSpyn.ViewModel
             get
             {
                 if (_closeCommand == null)
-                    _closeCommand = new SharpToolsMVVMRelayCommand(param => this.OnRequestClose());
+                    _closeCommand = new SharpToolsMVVMRelayCommand(param => OnRequestClose());
 
                 return _closeCommand;
             }
         }
 
         #endregion // CloseCommand
+
 
         #region RequestClose [event]
 
@@ -53,7 +61,7 @@ namespace WPFSpyn.ViewModel
 
         void OnRequestClose()
         {
-            EventHandler handler = this.RequestClose;
+            EventHandler handler = RequestClose;
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }

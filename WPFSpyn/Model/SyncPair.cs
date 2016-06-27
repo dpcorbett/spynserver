@@ -64,27 +64,6 @@ namespace WPFSpyn.Model
             return new SyncPair();
         }
 
-        /// <summary>
-        /// Static method returns syncpair object initialised with supplied args.
-        /// </summary>
-        /// <param name="p_strDescription"></param>
-        /// <param name="p_booIsFullSync"></param>
-        /// <param name="p_strSyncType"></param>
-        /// <param name="p_strSrcRoot"></param>
-        /// <param name="p_strDstRoot"></param>
-        /// <returns></returns>
-        public static SyncPair CreateSyncPair(string p_strDescription, bool p_booIsFullSync, string p_strSyncType, string p_strSrcRoot, string p_strDstRoot)
-        {
-            return new SyncPair
-            {
-                Description = p_strDescription,
-                IsFullSync = p_booIsFullSync,
-                SyncType = p_strSyncType,
-                SrcRoot = p_strSrcRoot,
-                DstRoot = p_strDstRoot,
-            };
-        }
-              
         #endregion
 
 
@@ -147,7 +126,7 @@ namespace WPFSpyn.Model
                     break;
 
                 case "SyncType":
-                    error = this.ValidateSyncType();
+                    error = ValidateSyncType();
                     break;
 
                 case "SrcRoot":
@@ -186,7 +165,7 @@ namespace WPFSpyn.Model
         /// <returns></returns>
         string ValidateSyncType()
         {
-            if (this.SyncType != Strings.SyncPairViewModel_SyncPairTypeOption_FullSync && this.SyncType != Strings.SyncPairViewModel_SyncPairTypeOption_PushSync)
+            if (SyncType != Strings.SyncPairViewModel_SyncPairTypeOption_FullSync && SyncType != Strings.SyncPairViewModel_SyncPairTypeOption_PushSync)
             {
                 return "No Valid sync type";
             }

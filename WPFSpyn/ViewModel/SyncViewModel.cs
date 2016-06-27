@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows.Threading;
 using WPFSpyn.DataAccess;
 using WPFSpyn.Library;
 using WPFSpyn.Model;
@@ -13,12 +14,18 @@ namespace WPFSpyn.ViewModel
 
         #region Fields
 
+        // Create sync pair.
         private readonly SyncPair _syncPair;
+        // Create sync pair repository.
         private readonly SyncPairRepository _syncPairRepository;
+        // Create workspace commands.
         private IWorkspaceCommands _wsCommands;
+        // Create log for actions.
         private ObservableCollection<string> m_obcLog;
-        private ObservableCollection<FileInfo> m_obcPath1Files;
-        private ObservableCollection<FileInfo> m_obcPath2Files;
+        // Create collection for source.
+        private ObservableCollection<FileInfo> m_obcSrcFiles;
+        // Create collection for destination.
+        private ObservableCollection<FileInfo> m_obcDstFiles;
 
         #endregion
 
@@ -68,13 +75,13 @@ namespace WPFSpyn.ViewModel
         {
             get
             {
-                return m_obcPath1Files;
+                return m_obcSrcFiles;
             }
             set
             {
-                if (m_obcPath1Files != value)
+                if (m_obcSrcFiles != value)
                 {
-                    m_obcPath1Files = value;
+                    m_obcSrcFiles = value;
                     OnPropertyChanged("Path1Files");
                 }
             }
@@ -84,13 +91,13 @@ namespace WPFSpyn.ViewModel
         {
             get
             {
-                return m_obcPath2Files;
+                return m_obcDstFiles;
             }
             set
             {
-                if (m_obcPath2Files != value)
+                if (m_obcDstFiles != value)
                 {
-                    m_obcPath2Files = value;
+                    m_obcDstFiles = value;
                     OnPropertyChanged("Path2Files");
                 }
             }
@@ -176,5 +183,14 @@ namespace WPFSpyn.ViewModel
                     }
                 }
                 */
+
+        void AddUpdate(object param)
+        {
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                Log.Add(param as string);
+            }));
+        }
+
     }
 }

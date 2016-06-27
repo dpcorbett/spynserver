@@ -17,7 +17,7 @@ namespace WPFSpyn.View
         {
             InitializeComponent();
             DataContextChanged += TreeViewPath_DataContextChanged;
-            this.Loaded += new RoutedEventHandler(ViewModel_UpdateDirectoryPath);
+            Loaded += new RoutedEventHandler(ViewModel_UpdateDirectoryPath);
         }
 
         /// <summary>

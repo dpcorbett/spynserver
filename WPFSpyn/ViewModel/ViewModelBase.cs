@@ -1,23 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.ComponentModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WPFSpyn.ViewModel
 {
+    /// <summary>
+    /// Provide common view model behaviour for child objects.
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged, IDisposable
     {
       
         #region Constructor
 
+        /// <summary>
+        /// Empty constructor.
+        /// </summary>
         protected ViewModelBase()
         {
         }
 
         #endregion // Constructor
+
 
         #region DisplayName
 
@@ -29,6 +32,7 @@ namespace WPFSpyn.ViewModel
         public virtual string DisplayName { get; protected set; }
 
         #endregion // DisplayName
+
 
         #region Debugging Aides
 
@@ -47,7 +51,7 @@ namespace WPFSpyn.ViewModel
             {
                 string msg = "Invalid property name: " + propertyName;
 
-                if (this.ThrowOnInvalidPropertyName)
+                if (ThrowOnInvalidPropertyName)
                     throw new Exception(msg);
                 else
                     Debug.Fail(msg);
@@ -64,6 +68,7 @@ namespace WPFSpyn.ViewModel
 
         #endregion // Debugging Aides
 
+
         #region INotifyPropertyChanged Members
 
         /// <summary>
@@ -77,9 +82,10 @@ namespace WPFSpyn.ViewModel
         /// <param name="propertyName">The property that has a new value.</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            this.VerifyPropertyName(propertyName);
+            // Debug test.
+            VerifyPropertyName(propertyName);
 
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
             {
                 var e = new PropertyChangedEventArgs(propertyName);
@@ -89,6 +95,7 @@ namespace WPFSpyn.ViewModel
 
         #endregion // INotifyPropertyChanged Members
 
+
         #region IDisposable Members
 
         /// <summary>
@@ -97,7 +104,7 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         public void Dispose()
         {
-            this.OnDispose();
+            OnDispose();
         }
 
         /// <summary>
@@ -114,7 +121,7 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         ~ViewModelBase()
         {
-            string msg = string.Format("{0} ({1}) ({2}) Finalized", this.GetType().Name, this.DisplayName, this.GetHashCode());
+            string msg = string.Format("{0} ({1}) ({2}) Finalized", GetType().Name, DisplayName, GetHashCode());
             System.Diagnostics.Debug.WriteLine(msg);
         }
 #endif

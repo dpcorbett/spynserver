@@ -32,35 +32,35 @@ namespace WSVSpyn
         {
             InitializeComponent();
             // Create event log
-            this.CreateEventLog();
+            CreateEventLog();
 
 
-           /*             try
-                        {
-                            this.stlLogFile = new LogFile(new FileStream("./Output.txt", FileMode.Create, FileAccess.Write));
-                            // Get a FileSecurity object that represents the
-                            // current security settings.
-                            FileSecurity fSecurity = File.GetAccessControl("Output.txt");
-                            // Add the FileSystemAccessRule to the security settings.
-                            fSecurity.AddAccessRule(new FileSystemAccessRule(@"DPCCS\LocalSystem", FileSystemRights.FullControl, AccessControlType.Allow));
-                            // Set the new access settings.
-                            File.SetAccessControl("Output.txt", fSecurity);
+            /*             try
+                         {
+                             this.stlLogFile = new LogFile(new FileStream("./Output.txt", FileMode.Create, FileAccess.Write));
+                             // Get a FileSecurity object that represents the
+                             // current security settings.
+                             FileSecurity fSecurity = File.GetAccessControl("Output.txt");
+                             // Add the FileSystemAccessRule to the security settings.
+                             fSecurity.AddAccessRule(new FileSystemAccessRule(@"DPCCS\LocalSystem", FileSystemRights.FullControl, AccessControlType.Allow));
+                             // Set the new access settings.
+                             File.SetAccessControl("Output.txt", fSecurity);
 
-                            this.stlLogFile.stwLogOutput = new StreamWriter(stlLogFile.fstLogFile);
-                            Console.SetOut(stlLogFile.stwLogOutput);
-                            this.stlLogFile.stwLogOutput.WriteLine(this.stlLogFile.logWriteLine("Log Created"));
-                            this.stlLogFile.stwLogOutput.Flush();
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("Cannot open Output.txt for writing");
-                            Console.WriteLine(e.Message);
-                            return;
-                        }
-            */
+                             this.stlLogFile.stwLogOutput = new StreamWriter(stlLogFile.fstLogFile);
+                             Console.SetOut(stlLogFile.stwLogOutput);
+                             this.stlLogFile.stwLogOutput.WriteLine(this.stlLogFile.logWriteLine("Log Created"));
+                             this.stlLogFile.stwLogOutput.Flush();
+                         }
+                         catch (Exception e)
+                         {
+                             Console.WriteLine("Cannot open Output.txt for writing");
+                             Console.WriteLine(e.Message);
+                             return;
+                         }
+             */
 
-            this.ReadConfig();
-            this.StartTimer();
+            ReadConfig();
+            StartTimer();
         }
 
 
