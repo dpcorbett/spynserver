@@ -52,7 +52,6 @@
             Content="Sync Pair _Type"
             Grid.Row="1" 
             Grid.Column="4" 
-            HorizontalAlignment="Left"
             Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=syncPairTypeCmb}" 
             />
@@ -76,7 +75,6 @@
             Grid.Row="1" 
             Grid.Column="0" 
             Content="Descri_ption:" 
-            HorizontalAlignment="Left"
             Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=descriptionTxt}"
             />
@@ -100,7 +98,6 @@
             Grid.Row="3" 
             Grid.Column="0" 
             Content="Sou_rce Root:" 
-            HorizontalAlignment="Left"
             Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=srcRootTxt}" 
             />
@@ -133,7 +130,6 @@
             Grid.Row="3" 
             Grid.Column="4" 
             Content="Destin_ation Root:" 
-            HorizontalAlignment="Left"
             Style="{StaticResource LabelTextStyle}"
             Target="{Binding ElementName=dstRootTxt}" 
             />
@@ -171,6 +167,7 @@
 
         <!-- PAIR DIRECTORIES FOR SYNCING -->
         <Button
+            Command="{Binding Path=PairCommand}"
             Content="Pair"
             Grid.Column="3"
             Grid.Row="6"

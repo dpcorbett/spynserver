@@ -1,4 +1,5 @@
 ﻿using SharpTools.MVVM.RelayCommand;
+using SharpTools.Synch;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -41,6 +42,8 @@ namespace WPFSpyn.ViewModel
         private SharpToolsMVVMRelayCommand _deleteSyncPairCommand;
         // Create a sync relay command.
         private SharpToolsMVVMRelayCommand _syncCommand;
+        // Create a pair relay command
+        private SharpToolsMVVMRelayCommand _pairCommand;
         // Create commands.
         private IWorkspaceCommands _wsCommands;
         // Create an observable collection of source directories and files.
@@ -83,7 +86,7 @@ namespace WPFSpyn.ViewModel
         }
 
         /// <summary>
-        /// Exposes for sync command.
+        /// Exposes sync command.
         /// </summary>
         public SharpToolsMVVMRelayCommand SyncCommand
         {
@@ -391,6 +394,24 @@ namespace WPFSpyn.ViewModel
             }
         }
 
+        /// <summary>
+        /// Returns a command that pairs the SyncPair.
+        /// </summary>
+        public ICommand PairCommand
+        {
+            get
+            {
+                if (_pairCommand == null)
+                {
+                    _pairCommand = new SharpToolsMVVMRelayCommand(
+                        param => Pair(),
+                        param => CanPair
+                        );
+                }
+                return _pairCommand;
+            }
+        }
+
         #endregion // Presentation Properties
 
 
@@ -416,6 +437,13 @@ namespace WPFSpyn.ViewModel
             SyncPairRepository.SaveSyncPairs(_syncPairRepository, MainWindowViewModel.DATA_PATH);
         }
 
+        /// <summary>
+        /// Adds the sync metadata. This method is invoked by the PairCommand. 
+        /// </summary>
+        public void Pair()
+        {
+            SharpToolsSynch.SetSync(_syncPair.SrcRoot, _syncPair.DstRoot);
+        }
 
         /// <summary>
         /// Deletes the Syncpair from the repository.  This method is invoked by the DeleteCommand.
@@ -526,6 +554,14 @@ namespace WPFSpyn.ViewModel
         /// Returns true if the SyncPair is valid and can be deleted.
         /// </summary>
         bool CanDelete
+        {
+            get { return String.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
+        }
+        
+        /// <summary>
+        /// Returns true if the SyncPair is valid and can be paired.
+        /// </summary>
+        bool CanPair
         {
             get { return String.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
         }

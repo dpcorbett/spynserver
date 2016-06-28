@@ -75,6 +75,9 @@
     <Reference Include="SharpTools.MVVM.RelayCommand">
       <HintPath>..\..\SharpTools\SharpTools.MVVM.RelayCommand\bin\Debug\SharpTools.MVVM.RelayCommand.dll</HintPath>
     </Reference>
+    <Reference Include="SharpTools.Synch">
+      <HintPath>..\..\SharpTools\SharpTools.Synch\bin\Debug\SharpTools.Synch.dll</HintPath>
+    </Reference>
     <Reference Include="SharpTools.System">
       <HintPath>..\..\SharpTools\SharpTools.System\bin\Debug\SharpTools.System.dll</HintPath>
     </Reference>
