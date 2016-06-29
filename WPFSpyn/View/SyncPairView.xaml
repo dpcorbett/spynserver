@@ -4,7 +4,6 @@
   xmlns:dtv="clr-namespace:WpfDirectoryTreeView;assembly=WpfDirectoryTreeView"
   HorizontalAlignment="Center"
   VerticalAlignment="Center"  
-  Width="780"
   >
 
     <UserControl.Resources>
@@ -15,11 +14,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140" />  <!--  0 -->
             <ColumnDefinition Width="40" />   <!--  1 -->
-            <ColumnDefinition Width="170" />  <!--  2 -->
-            <ColumnDefinition Width="*" />   <!--  3 -->
+            <ColumnDefinition Width="270" />  <!--  2 -->
+            <ColumnDefinition Width="*" />    <!--  3 -->
             <ColumnDefinition Width="140" />  <!--  4 -->
             <ColumnDefinition Width="40" />   <!--  5 -->
-            <ColumnDefinition Width="170" />  <!--  6 -->
+            <ColumnDefinition Width="270" />  <!--  6 -->
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -28,8 +27,8 @@
             <RowDefinition Height="50" />   <!--  2 -->
             <RowDefinition Height="Auto" /> <!--  3 -->
             <RowDefinition Height="50" />   <!--  4 -->
-            <RowDefinition Height="50" />   <!--  5 -->
-            <RowDefinition Height="200" />  <!--  6 -->
+            <RowDefinition Height="200" />   <!--  5 -->
+            <RowDefinition Height="50" />  <!--  6 -->
             <RowDefinition Height="50" />   <!--  7 -->
             <RowDefinition Height="50" />   <!--  8 -->
             <RowDefinition Height="50" />   <!--  9 -->
@@ -161,25 +160,40 @@
         <!-- SOURCE DIRECTORY TREE VIEW -->
         <dtv:DirectoryTreeViewControl
             x:Name="trvSrcDir"
-            Grid.Row="6"
+            Grid.Row="5"
             Grid.ColumnSpan="3"
             />
 
         <!-- PAIR DIRECTORIES FOR SYNCING -->
         <Button
-            Command="{Binding Path=PairCommand}"
-            Content="Pair"
+            Command="{Binding Path=RefreshCommand}"
             Grid.Column="3"
-            Grid.Row="6"
-            Margin="10"
+            Grid.Row="5"
+            Margin="35"
             Style="{StaticResource MainBTNStyle}"
-            />
+            >
+            <TextBlock>
+                <Run Text="R"/>
+                <LineBreak/>
+                <Run Text="E"/>
+                <LineBreak/>
+                <Run Text="F"/>
+                <LineBreak/>
+                <Run Text="R"/>
+                <LineBreak/>
+                <Run Text="E"/>
+                <LineBreak/>
+                <Run Text="S"/>
+                <LineBreak/>
+                <Run Text="H"/>
+            </TextBlock>
+        </Button>
 
 
         <!-- DESTINATION DIRECTORY TREE VIEW -->
         <dtv:DirectoryTreeViewControl
             x:Name="trvDstDir"
-            Grid.Row="6"
+            Grid.Row="5"
             Grid.Column="4"
             Grid.ColumnSpan="3"
             />
@@ -187,12 +201,24 @@
 
         <!-- SAVE BUTTON -->
         <Button 
-            Grid.Row="8" 
-            Grid.ColumnSpan="2"
             Command="{Binding Path=SaveCommand}"
             Content="Save"
             FontSize="16"
+            Grid.ColumnSpan="2"
+            Grid.Row="6" 
             HorizontalAlignment="Stretch"
+            Margin="4,2" 
+            MinWidth="98" 
+            Style="{StaticResource MainBTNStyle}"
+            />
+
+        <!-- PREVIEW BUTTON -->
+        <Button 
+            Content="Preview"
+            FontSize="16"
+            Grid.Column="3"
+            Grid.Row="6" 
+            HorizontalAlignment="Center"
             Margin="4,2" 
             MinWidth="98" 
             Style="{StaticResource MainBTNStyle}"
@@ -200,7 +226,7 @@
 
         <!-- SYNC BUTTON -->
         <Button 
-            Grid.Row="8" 
+            Grid.Row="6" 
             Grid.Column="5"
             Grid.ColumnSpan="2"
             Command="{Binding Path=DataContext.SyncCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
@@ -210,6 +236,13 @@
             Margin="4,2" 
             MinWidth="98" 
             Style="{StaticResource MainBTNStyle}"
+            />
+
+        <!-- LOG LISTVIEW -->
+        <ListView
+            Grid.Row="7"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="7"
             />
 
         <!-- DELETE BUTTON -->
