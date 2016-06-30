@@ -487,10 +487,6 @@ namespace WPFSpyn.ViewModel
                 System.Windows.MessageBox.Show("Not Saved");
                 return;
             }
-
-            // Create sync pair view model and add it to workspaces.
-            var syncVM = new SyncViewModel(_syncPair, _syncPairRepository, _wsCommands);
-            _wsCommands.AddWorkspace(syncVM);
         }
 
         /// <summary>
@@ -637,11 +633,7 @@ namespace WPFSpyn.ViewModel
         /// <param name="e">Event Arguments</param>
         void OnSyncPairAddedToRepository(object sender, SyncPairAddedEventArgs e)
         {
-            // Create new view model.
-            var viewModel = new SyncViewModel(e.NewSyncPair, _syncPairRepository, _wsCommands);
-
-            // Add to workspaces.
-            _wsCommands.AddWorkspace(viewModel);
+            // President Not Sure
         }
 
 
