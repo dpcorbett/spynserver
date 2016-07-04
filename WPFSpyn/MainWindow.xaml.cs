@@ -1,4 +1,5 @@
-﻿using SharpTools.System;
+﻿using SharpTools.Log;
+using SharpTools.System;
 using SharpTools.TCPSocketClient;
 using SharpTools.TCPSocketServer;
 using SharpTools.Utility.UserInput;
@@ -15,19 +16,26 @@ namespace WPFSpyn
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly log4net.ILog _log = SharpToolsLog.GetLogger();
 
         public MainWindow()
         {
             InitializeComponent();
+            // DEBUG
+            _log.Debug("init complete");
 
             Closed += new EventHandler(OnExit);
 
             // Display name of computer service is executing on
             SetSpynServer(Properties.Settings.Default.strSpynServ.ToUpper());
+            // DEBUG
+            _log.Debug("Checking for service on [" + Properties.Settings.Default.strSpynServ.ToUpper() + "]");
 
             // Create the ViewModel to which 
             // the main window binds.
             var viewModel = new MainWindowViewModel(MainWindowViewModel.DATA_PATH);
+            // DEBUG
+            _log.Debug("View Model created from [" + MainWindowViewModel.DATA_PATH  + "]");
 
             // When the ViewModel asks to be closed, 
             // close the window.
@@ -45,8 +53,8 @@ namespace WPFSpyn
             // DataContext, which propagates down 
             // the element tree.
             DataContext = viewModel;
-
-            //this.Show();
+            // DEBUG
+            _log.Debug("Data Context set");
 
         }
 
@@ -62,12 +70,6 @@ namespace WPFSpyn
             Close();
         }
 
-        private string getSyncHost()
-        {
-            return Properties.Settings.Default.strSpynServ.ToUpper();
-
-        }
-
 
         /// <summary>
         /// Opens window to collect new name for server
@@ -76,11 +78,17 @@ namespace WPFSpyn
         /// <param name="e"></param>
         private void txtSpynServ_DoubleClick(object sender, MouseButtonEventArgs e)
         {
+            // DEBUG
+            _log.Debug("Edit SpynServer");
+
             UserInput suu = new UserInput("Enter Server Name:", txtSpynServ.Text);
              suu.ShowDialog();
             bool booResponse = suu.booResponse;
             if (booResponse ==  true)
                 SetSpynServer(suu.Answer.ToUpper());
+            // DEBUG
+            _log.Debug("Set SpynServer to [" + suu.Answer.ToUpper() + "]");
+
             txtSpynServ.Select(0, 0);
 
         }

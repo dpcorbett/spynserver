@@ -33,7 +33,7 @@ namespace WPFSpyn.View
         }
 
         /// <summary>
-        /// Update directory tree view with data context's new valu.
+        /// Update directory tree view with data context's new value.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

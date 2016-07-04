@@ -10,6 +10,10 @@ using WPFSpyn.DataAccess;
 using WPFSpyn.Library;
 using WPFSpyn.Model;
 using WPFSpyn.Properties;
+using Microsoft.Synchronization;
+using SharpTools.MVVM.Mediator;
+using System.Windows.Threading;
+using SharpTools.Log;
 
 namespace WPFSpyn.ViewModel
 {
@@ -22,6 +26,8 @@ namespace WPFSpyn.ViewModel
 
         #region Fields
 
+        // Create logger.
+        private static readonly log4net.ILog _log = SharpToolsLog.GetLogger();
         // Create a sync pair.
         private readonly SyncPair _syncPair;
         // Create a sync pair repository.
@@ -42,14 +48,18 @@ namespace WPFSpyn.ViewModel
         private SharpToolsMVVMRelayCommand _deleteSyncPairCommand;
         // Create a sync relay command.
         private SharpToolsMVVMRelayCommand _syncCommand;
-        // Create a pair relay command
-        private SharpToolsMVVMRelayCommand _pairCommand;
+        // Create a preview relay command
+        private SharpToolsMVVMRelayCommand _previewCommand;
+        // Create a refresh relay command.
+        private SharpToolsMVVMRelayCommand _refreshCommand;
         // Create commands.
         private IWorkspaceCommands _wsCommands;
         // Create an observable collection of source directories and files.
         private ObservableCollection<FileInfo> _srcTree;
         // Create an observable collection of destination directories and files.
         private ObservableCollection<FileInfo> _dstTree;
+        // Create an observable collection for preview sync results.
+        ObservableCollection<string> _srcLog;
 
         #endregion // Fields
 
@@ -202,6 +212,23 @@ namespace WPFSpyn.ViewModel
             }
         }
 
+
+        public ObservableCollection<string> SrcLog
+        {
+            get
+            {
+                return _srcLog;
+            }
+            set
+            {
+                if (_srcLog != value)
+                {
+                    _srcLog = value;
+                    OnPropertyChanged("Log");
+                }
+            }
+        }
+
         #endregion // Properties
 
 
@@ -252,6 +279,11 @@ namespace WPFSpyn.ViewModel
             
             // Initialise sync.
             SyncCommand = new SharpToolsMVVMRelayCommand(Sync);
+
+            SharpToolsMVVMMediator.Register("update", AddUpdate ); // Listener for change events
+            // DEBUG
+            _log.Debug("Mediator Registered");
+
         }
 
         #endregion // Constructor
@@ -395,20 +427,38 @@ namespace WPFSpyn.ViewModel
         }
 
         /// <summary>
-        /// Returns a command that pairs the SyncPair.
+        /// Returns a command that previews the sync pair.
         /// </summary>
-        public ICommand PairCommand
+        public ICommand PreviewCommand
         {
             get
             {
-                if (_pairCommand == null)
+                if (_previewCommand == null)
                 {
-                    _pairCommand = new SharpToolsMVVMRelayCommand(
-                        param => Pair(),
-                        param => CanPair
+                    _previewCommand = new SharpToolsMVVMRelayCommand(
+                        param => Preview(),
+                        param => CanPreview
                         );
                 }
-                return _pairCommand;
+                return _previewCommand;
+            }
+        }
+
+        /// <summary>
+        /// Returns a command that refreshes the sync pair.
+        /// </summary>
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                if (_refreshCommand == null)
+                {
+                    _refreshCommand = new SharpToolsMVVMRelayCommand(
+                        param => Refresh(),
+                        param => CanRefresh
+                        );
+                }
+                return _refreshCommand;
             }
         }
 
@@ -440,9 +490,28 @@ namespace WPFSpyn.ViewModel
         /// <summary>
         /// Adds the sync metadata. This method is invoked by the PairCommand. 
         /// </summary>
-        public void Pair()
+        public void Preview()
         {
-            SharpToolsSynch.SetSync(_syncPair.SrcRoot, _syncPair.DstRoot);
+
+            SyncOperationStatistics sos = SharpToolsSynch.PreviewSync(_syncPair.SrcRoot, _syncPair.DstRoot);
+            string msg;
+
+            if (sos != null)
+            {
+                // Display statistics for the synchronization operation.
+                msg = "Synchronization analysis...\n\n" +
+                    sos.DownloadChangesApplied + " update source changes found\n" +
+                    sos.DownloadChangesFailed + " update source changes failed\n" +
+                    sos.UploadChangesApplied + " update destination changes found\n" +
+                    sos.UploadChangesFailed + " update destination changes failed";
+                MessageBox.Show(msg, "Synchronization Results");
+
+            }
+        }
+
+        public void Refresh()
+        {
+
         }
 
         /// <summary>
@@ -524,6 +593,23 @@ namespace WPFSpyn.ViewModel
             UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Refresh path for destination root directory, 
+        /// and notify tree view.
+        /// </summary>
+        /// <param name="param"></param>
+        private void RefreshDst(object param)
+        {
+            // Create dialog window.
+            var dialog = new FolderBrowserDialog();
+            // Open dialog window.
+            DialogResult result = dialog.ShowDialog();
+            // Retrieve selected path.
+            DstRoot = dialog.SelectedPath;
+            // Raise event for directory tree view.
+            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+        }
+
         #endregion // Public Methods
 
 
@@ -557,9 +643,26 @@ namespace WPFSpyn.ViewModel
         /// <summary>
         /// Returns true if the SyncPair is valid and can be paired.
         /// </summary>
-        bool CanPair
+        bool CanPreview
         {
             get { return String.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
+        }
+
+        /// <summary>
+        /// Returns true if the sync pair is valid and can be refreshed.
+        /// </summary>
+        bool CanRefresh
+        {
+            get { return String.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
+        }
+
+
+        void AddUpdate(object param)
+        {
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                SrcLog.Add(param as string);
+            }));
         }
 
         #endregion // Private Helpers
@@ -621,23 +724,6 @@ namespace WPFSpyn.ViewModel
         }
 
         #endregion // IDataErrorInfo Members
-
-
-        #region Event Handling Methods
-
-
-        /// <summary>
-        /// Handles OnSyncPairAddedToRepository Event
-        /// </summary>
-        /// <param name="sender">Sending Object</param>
-        /// <param name="e">Event Arguments</param>
-        void OnSyncPairAddedToRepository(object sender, SyncPairAddedEventArgs e)
-        {
-            // President Not Sure
-        }
-
-
-        #endregion // Event Handling Methods
 
     }
 }
