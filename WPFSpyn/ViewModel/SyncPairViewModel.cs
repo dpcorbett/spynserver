@@ -14,6 +14,7 @@ using Microsoft.Synchronization;
 using SharpTools.MVVM.Mediator;
 using System.Windows.Threading;
 using SharpTools.Log;
+using Microsoft.Synchronization.Files;
 
 namespace WPFSpyn.ViewModel
 {
@@ -224,7 +225,7 @@ namespace WPFSpyn.ViewModel
                 if (_srcLog != value)
                 {
                     _srcLog = value;
-                    OnPropertyChanged("Log");
+                    OnPropertyChanged("SrcLog");
                 }
             }
         }
@@ -284,6 +285,7 @@ namespace WPFSpyn.ViewModel
             // DEBUG
             _log.Debug("Mediator Registered");
 
+            SrcLog = new ObservableCollection<string>();
         }
 
         #endregion // Constructor
@@ -302,7 +304,7 @@ namespace WPFSpyn.ViewModel
             set
             {
                 // Break if type is already selected or is empty.
-                if (value == _syncPairType || String.IsNullOrEmpty(value))
+                if (value == _syncPairType || string.IsNullOrEmpty(value))
                     return;
 
                 // Set type.
@@ -500,10 +502,10 @@ namespace WPFSpyn.ViewModel
             {
                 // Display statistics for the synchronization operation.
                 msg = "Synchronization analysis...\n\n" +
-                    sos.DownloadChangesApplied + " update source changes found\n" +
-                    sos.DownloadChangesFailed + " update source changes failed\n" +
-                    sos.UploadChangesApplied + " update destination changes found\n" +
-                    sos.UploadChangesFailed + " update destination changes failed";
+                    sos.DownloadChangesApplied + " update(s) to source pending.\n" +
+                    sos.DownloadChangesFailed + " update(s) to source will fail.\n" +
+                    sos.UploadChangesApplied + " update(s) to destination pending.\n" +
+                    sos.UploadChangesFailed + " update(s) to destination will fail.";
                 MessageBox.Show(msg, "Synchronization Results");
 
             }
@@ -550,10 +552,15 @@ namespace WPFSpyn.ViewModel
         public void Sync(object syncpair)
         {
             // Check sync pair is ready to sync.
-            if (!_syncPair.IsValid)
+            if (_syncPair.IsValid)
             {
+                SrcLog = new ObservableCollection<string>(); //reset log
+               // DstLog = new ObservableCollection<string>(); //reset log
+
+                SyncOperationStatistics sos = SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot);
+
                 // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
-                System.Windows.MessageBox.Show("Not Saved");
+                //System.Windows.MessageBox.Show("Not Saved");
                 return;
             }
         }
@@ -629,7 +636,7 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         bool CanSave
         {
-            get { return String.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
+            get { return string.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
         }
 
         /// <summary>
@@ -637,7 +644,7 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         bool CanDelete
         {
-            get { return String.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
+            get { return string.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
         }
         
         /// <summary>
@@ -645,7 +652,7 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         bool CanPreview
         {
-            get { return String.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
+            get { return string.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
         }
 
         /// <summary>
@@ -653,7 +660,7 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         bool CanRefresh
         {
-            get { return String.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
+            get { return string.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
         }
 
 
@@ -724,6 +731,36 @@ namespace WPFSpyn.ViewModel
         }
 
         #endregion // IDataErrorInfo Members
+
+
+
+        //public static void OnAppliedChange(object sender, AppliedChangeEventArgs args)
+        //{
+        //    switch (args.ChangeType)
+        //    {
+        //        case ChangeType.Create:
+        //            SharpToolsMVVMMediator.NotifyColleagues("update", "File created: " + args.NewFilePath);
+        //            break;
+        //        case ChangeType.Delete:
+        //            SharpToolsMVVMMediator.NotifyColleagues("update", "Deleted File: " + args.OldFilePath);
+        //            break;
+        //        case ChangeType.Update:
+        //            SharpToolsMVVMMediator.NotifyColleagues("update", "Overwrote file: " + args.OldFilePath);
+        //            break;
+        //        case ChangeType.Rename:
+        //            SharpToolsMVVMMediator.NotifyColleagues("update", "Renamed file: " + args.OldFilePath + " to " + args.NewFilePath);
+        //            break;
+        //    }
+        //}
+
+        //public static void OnSkippedChange(object sender, SkippedChangeEventArgs args)
+        //{
+        //    Mediator.NotifyColleagues("update", "Error! Skipped file: " + args.ChangeType.ToString().ToUpper() + " for "
+        //        + (!string.IsNullOrEmpty(args.CurrentFilePath) ? args.CurrentFilePath : args.NewFilePath));
+
+        //    if (args.Exception != null)
+        //        Mediator.NotifyColleagues("update", "Error: " + args.Exception.Message);
+        //}
 
     }
 }
