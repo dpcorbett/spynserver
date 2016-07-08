@@ -15,6 +15,8 @@ using SharpTools.MVVM.Mediator;
 using System.Windows.Threading;
 using SharpTools.Log;
 using Microsoft.Synchronization.Files;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace WPFSpyn.ViewModel
 {
@@ -51,8 +53,6 @@ namespace WPFSpyn.ViewModel
         private SharpToolsMVVMRelayCommand _syncCommand;
         // Create a preview relay command
         private SharpToolsMVVMRelayCommand _previewCommand;
-        // Create a refresh relay command.
-        private SharpToolsMVVMRelayCommand _refreshCommand;
         // Create commands.
         private IWorkspaceCommands _wsCommands;
         // Create an observable collection of source directories and files.
@@ -60,7 +60,7 @@ namespace WPFSpyn.ViewModel
         // Create an observable collection of destination directories and files.
         private ObservableCollection<FileInfo> _dstTree;
         // Create an observable collection for preview sync results.
-        ObservableCollection<string> _srcLog;
+        ObservableCollection<string> _resultLog;
 
         #endregion // Fields
 
@@ -214,18 +214,18 @@ namespace WPFSpyn.ViewModel
         }
 
 
-        public ObservableCollection<string> SrcLog
+        public ObservableCollection<string> ResultLog
         {
             get
             {
-                return _srcLog;
+                return _resultLog;
             }
             set
             {
-                if (_srcLog != value)
+                if (_resultLog != value)
                 {
-                    _srcLog = value;
-                    OnPropertyChanged("SrcLog");
+                    _resultLog = value;
+                    OnPropertyChanged("ResultLog");
                 }
             }
         }
@@ -285,7 +285,7 @@ namespace WPFSpyn.ViewModel
             // DEBUG
             _log.Debug("Mediator Registered");
 
-            SrcLog = new ObservableCollection<string>();
+            ResultLog = new ObservableCollection<string>();
         }
 
         #endregion // Constructor
@@ -449,20 +449,20 @@ namespace WPFSpyn.ViewModel
         /// <summary>
         /// Returns a command that refreshes the sync pair.
         /// </summary>
-        public ICommand RefreshCommand
-        {
-            get
-            {
-                if (_refreshCommand == null)
-                {
-                    _refreshCommand = new SharpToolsMVVMRelayCommand(
-                        param => Refresh(),
-                        param => CanRefresh
-                        );
-                }
-                return _refreshCommand;
-            }
-        }
+        //public ICommand RefreshCommand
+        //{
+        //    get
+        //    {
+        //        if (_refreshCommand == null)
+        //        {
+        //            _refreshCommand = new SharpToolsMVVMRelayCommand(
+        //                param => Refresh(),
+        //                param => CanRefresh
+        //                );
+        //        }
+        //        return _refreshCommand;
+        //    }
+        //}
 
         #endregion // Presentation Properties
 
@@ -500,19 +500,21 @@ namespace WPFSpyn.ViewModel
 
             if (sos != null)
             {
+                UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
                 // Display statistics for the synchronization operation.
                 msg = "Synchronization analysis...\n\n" +
                     sos.DownloadChangesApplied + " update(s) to source pending.\n" +
                     sos.DownloadChangesFailed + " update(s) to source will fail.\n" +
                     sos.UploadChangesApplied + " update(s) to destination pending.\n" +
                     sos.UploadChangesFailed + " update(s) to destination will fail.";
-                MessageBox.Show(msg, "Synchronization Results");
+                System.Windows.MessageBox.Show(msg, "Synchronization Results");
 
             }
         }
 
         public void Refresh()
         {
+            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
 
         }
 
@@ -522,20 +524,25 @@ namespace WPFSpyn.ViewModel
         public void Delete(object syncpair)
         {
             // Check state for deletion.
-            if (!_syncPair.IsValid)
-            {
-                // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
-                System.Windows.MessageBox.Show("Not Saved");
-                return;
-            }
+            //if (!_syncPair.IsValid)
+            //{
+            //    // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
+            //    System.Windows.MessageBox.Show("Not Saved");
+            //    return;
+            //}
 
             // Check if sync pair has been saved.
             if (!IsNewSyncPair)
             {
-                // Remove sync pair.
-                _syncPairRepository.DeleteSyncPair(_syncPair);
-                // Remove workspace.
-                _wsCommands.RemoveWorkspace(this);
+                // Check if user is certain.
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    // Remove sync pair.
+                    _syncPairRepository.DeleteSyncPair(_syncPair);
+                    // Remove workspace.
+                    _wsCommands.RemoveWorkspace(this);
+                }
             }
 
             // Update data store.
@@ -554,10 +561,16 @@ namespace WPFSpyn.ViewModel
             // Check sync pair is ready to sync.
             if (_syncPair.IsValid)
             {
-                SrcLog = new ObservableCollection<string>(); //reset log
+                ResultLog = new ObservableCollection<string>(); //reset log
                // DstLog = new ObservableCollection<string>(); //reset log
 
-                SyncOperationStatistics sos = SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot);
+//                SyncOperationStatistics sos = SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot);
+                SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot);            
+                // Put sync on background thread
+                //Task.Factory.StartNew(() => { SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot); }).ContinueWith(_ => { IsSynchronising = false; });
+
+
+                UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
 
                 // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
                 //System.Windows.MessageBox.Show("Not Saved");
@@ -589,23 +602,6 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         /// <param name="param"></param>
         private void GetDstRoot(object param)
-        {
-            // Create dialog window.
-            var dialog = new FolderBrowserDialog();
-            // Open dialog window.
-            DialogResult result = dialog.ShowDialog();
-            // Retrieve selected path.
-            DstRoot = dialog.SelectedPath;
-            // Raise event for directory tree view.
-            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
-        }
-
-        /// <summary>
-        /// Refresh path for destination root directory, 
-        /// and notify tree view.
-        /// </summary>
-        /// <param name="param"></param>
-        private void RefreshDst(object param)
         {
             // Create dialog window.
             var dialog = new FolderBrowserDialog();
@@ -668,7 +664,7 @@ namespace WPFSpyn.ViewModel
         {
             System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                SrcLog.Add(param as string);
+                ResultLog.Add(param as string);
             }));
         }
 

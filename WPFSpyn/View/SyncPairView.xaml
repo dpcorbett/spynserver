@@ -27,11 +27,15 @@
             <RowDefinition Height="50" />   <!--  2 -->
             <RowDefinition Height="Auto" /> <!--  3 -->
             <RowDefinition Height="50" />   <!--  4 -->
-            <RowDefinition Height="200" />  <!--  5 -->
-            <RowDefinition Height="50" />   <!--  6 -->
-            <RowDefinition Height="50" />   <!--  7 -->
+            <RowDefinition Height="50" />   <!--  5 -->
+            <RowDefinition Height="50" />  <!--  6 -->
+            <RowDefinition Height="200" />   <!--  7 -->
             <RowDefinition Height="50" />   <!--  8 -->
             <RowDefinition Height="50" />   <!--  9 -->
+            <RowDefinition Height="50" />   <!-- 10 -->
+            <RowDefinition Height="50" />   <!-- 11 -->
+            <RowDefinition Height="50" />   <!-- 12 -->
+            <RowDefinition Height="50" />   <!-- 13 -->
         </Grid.RowDefinitions>
 
         <Grid.Resources>
@@ -113,11 +117,21 @@
             Grid.Column="2"
             Content="{Binding ElementName=srcRootTxt, Path=(Validation.Errors).CurrentItem}"
             />
+        
+        <!--<Button
+            x:Name="btnBrowseSrc"
+            Grid.Row="5"
+            Margin="10"
+            Style="{StaticResource MainBTNStyle}"
+            >
+            Browse
+        </Button>-->
+        
         <Button
             x:Name="btnSrcHost"
             Command="{Binding GetSrcRootCommand}"
-            Grid.Row="4"
-            Grid.Column="0"
+            Grid.Row="5"
+            Grid.Column="2"
             Margin="10"
             Style="{StaticResource MainBTNStyle}"
             >
@@ -145,11 +159,22 @@
             Grid.Column="6"
             Content="{Binding ElementName=dstRootTxt, Path=(Validation.Errors).CurrentItem}"
             />
+
+        <!--<Button
+            x:Name="btnBrowseDst"
+            Grid.Column="4"
+            Grid.Row="5"
+            Margin="10"
+            Style="{StaticResource MainBTNStyle}"
+            >
+            Browse
+        </Button>-->
+
         <Button
             x:Name="btnDstHost"
             Command="{Binding GetDstRootCommand}"
-            Grid.Row="4"
-            Grid.Column="4"
+            Grid.Row="5"
+            Grid.Column="6"
             Margin="10"
             Style="{StaticResource MainBTNStyle}"
             >
@@ -160,40 +185,14 @@
         <!-- SOURCE DIRECTORY TREE VIEW -->
         <dtv:DirectoryTreeViewControl
             x:Name="trvSrcDir"
-            Grid.Row="5"
+            Grid.Row="7"
             Grid.ColumnSpan="3"
             />
-
-        <!-- PAIR DIRECTORIES FOR SYNCING -->
-        <Button
-            Command="{Binding Path=RefreshCommand}"
-            Grid.Column="3"
-            Grid.Row="5"
-            Margin="35"
-            Style="{StaticResource MainBTNStyle}"
-            >
-            <TextBlock>
-                <Run Text="R"/>
-                <LineBreak/>
-                <Run Text="E"/>
-                <LineBreak/>
-                <Run Text="F"/>
-                <LineBreak/>
-                <Run Text="R"/>
-                <LineBreak/>
-                <Run Text="E"/>
-                <LineBreak/>
-                <Run Text="S"/>
-                <LineBreak/>
-                <Run Text="H"/>
-            </TextBlock>
-        </Button>
-
 
         <!-- DESTINATION DIRECTORY TREE VIEW -->
         <dtv:DirectoryTreeViewControl
             x:Name="trvDstDir"
-            Grid.Row="5"
+            Grid.Row="7"
             Grid.Column="4"
             Grid.ColumnSpan="3"
             />
@@ -206,7 +205,7 @@
             Content="Save"
             FontSize="16"
             Grid.Column="3"
-            Grid.Row="6" 
+            Grid.Row="9" 
             HorizontalAlignment="Stretch"
             MinWidth="98" 
             Style="{StaticResource MainBTNStyle}"
@@ -219,7 +218,7 @@
             Content="Preview"
             FontSize="16"
             Grid.ColumnSpan="2"
-            Grid.Row="6" 
+            Grid.Row="9" 
             HorizontalAlignment="Stretch"
             MinWidth="98" 
             Style="{StaticResource MainBTNStyle}"
@@ -233,33 +232,26 @@
             FontSize="16"
             Grid.Column="5"
             Grid.ColumnSpan="2"
-            Grid.Row="6" 
+            Grid.Row="9" 
             HorizontalAlignment="Stretch"
             MinWidth="98" 
             Style="{StaticResource MainBTNStyle}"
             />
 
         <!-- LOG SRC LISTVIEW -->
-        <ListBox
-            x:Name="lsvSrc"
-            Grid.ColumnSpan="3"
-            Grid.Row="7"
-            ItemsSource="{Binding SrcLog}"
-            />
-
-        <!-- LOG DST LISTVIEW -->
-        <ListBox
-            x:Name="lsvDst"
-            Grid.Column="4"
-            Grid.ColumnSpan="3"
-            Grid.Row="7"
-            />
+        <!--<ListBox
+            x:Name="lsvLog"
+            Grid.ColumnSpan="7"
+            Grid.Row="11"
+            ItemsSource="{Binding ResultLog}"
+            Margin="50,0"
+            />-->
 
         <!-- DELETE BUTTON -->
         <Button
             Command="{Binding Path=DataContext.DeleteSyncPairCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
             Content="Delete"
-            Grid.Row="9"
+            Grid.Row="13"
             Grid.Column="3"
             HorizontalAlignment="Stretch"
             MinHeight="25"

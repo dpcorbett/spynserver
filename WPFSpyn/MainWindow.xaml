@@ -35,7 +35,7 @@
             Margin="0"
             VerticalAlignment="Stretch"
             >
-            <Button 
+            <!--<Button 
                 x:Name="btnSettings" 
                 Command="{Binding GetTestCommand}"
                 Height="64" 
@@ -45,7 +45,7 @@
                 Width="64"
                 >
                 Settings
-            </Button>
+            </Button>-->
             <Button 
             	x:Name="btnClose" 
             	Click="btnClose_Click" 
