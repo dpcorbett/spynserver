@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpTools.Log;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using WPFSpyn.ViewModel;
@@ -10,12 +11,18 @@ namespace WPFSpyn.View
     /// </summary>
     public partial class SyncPairView : System.Windows.Controls.UserControl
     {
+        // Create logger.
+        private static readonly log4net.ILog _log = SharpToolsLog.GetLogger();
+
         /// <summary>
         /// Constructor that initialises gui and attaches method to data context changed event.
         /// </summary>
         public SyncPairView()
         {
             InitializeComponent();
+            // LOG
+            _log.Debug("init sync pair view complete.");
+            //
             DataContextChanged += TreeViewPath_DataContextChanged;
             Loaded += new RoutedEventHandler(ViewModel_UpdateDirectoryPath);
         }
@@ -41,9 +48,14 @@ namespace WPFSpyn.View
         {
             SyncPairViewModel obj = (SyncPairViewModel)DataContext;
             // Refresh source directory tree view.
-            trvSrcDir.populateTreeView(this, new PropertyChangedEventArgs(obj.SrcRoot));
-            // Refresh destination directory tree view.
-            trvDstDir.populateTreeView(this, new PropertyChangedEventArgs(obj.DstRoot));
+
+            // TODO Check for NULL
+            if (obj != null)
+            {
+                trvSrcDir.populateTreeView(this, new PropertyChangedEventArgs(obj.SrcRoot));
+                // Refresh destination directory tree view.
+                trvDstDir.populateTreeView(this, new PropertyChangedEventArgs(obj.DstRoot));
+            }
         }
 
     }
