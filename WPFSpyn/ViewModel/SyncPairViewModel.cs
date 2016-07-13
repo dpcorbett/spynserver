@@ -81,6 +81,17 @@ namespace WPFSpyn.ViewModel
         public SharpToolsMVVMRelayCommand GetDstRootCommand { get; set; }
 
         /// <summary>
+        /// Exposes get destination root command.
+        /// </summary>
+        public SharpToolsMVVMRelayCommand BrowseSrcRootCommand { get; set; }
+
+        /// <summary>
+        /// Exposes get destination root command.
+        /// </summary>
+        public SharpToolsMVVMRelayCommand BrowseDstRootCommand { get; set; }
+
+
+        /// <summary>
         /// Exposes delete sync pair command.
         /// </summary>
         public SharpToolsMVVMRelayCommand DeleteSyncPairCommand
@@ -274,7 +285,13 @@ namespace WPFSpyn.ViewModel
 
             // Initialise destination root retrieval.
             GetDstRootCommand = new SharpToolsMVVMRelayCommand(GetDstRoot);
-            
+
+            // Initialise source root browser.
+            BrowseSrcRootCommand = new SharpToolsMVVMRelayCommand(BrowseSrcRoot);
+
+            // Initialise destination root browser.
+            BrowseDstRootCommand = new SharpToolsMVVMRelayCommand(BrowseDstRoot);
+
             // Initialise delete sync pair.
             DeleteSyncPairCommand = new SharpToolsMVVMRelayCommand(Delete);
             
@@ -635,6 +652,33 @@ namespace WPFSpyn.ViewModel
             // Raise event for directory tree view.
             UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
         }
+
+        /// <summary>
+        /// Use explorer to edit source.
+        /// </summary>
+        /// <param name="param"></param>
+        private void BrowseSrcRoot(object param)
+        {
+            // Create dialog window.
+            System.Diagnostics.Process.Start("explorer.exe", _syncPair.SrcRoot);
+            // Raise event for directory tree view.
+            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+
+        }
+
+        /// <summary>
+        /// Use explorer to edit destination.
+        /// </summary>
+        /// <param name="param"></param>
+        private void BrowseDstRoot(object param)
+        {
+            // Create dialog window.
+            System.Diagnostics.Process.Start("explorer.exe", _syncPair.DstRoot);
+            // Raise event for directory tree view.
+            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+
+        }
+
 
         #endregion // Public Methods
 

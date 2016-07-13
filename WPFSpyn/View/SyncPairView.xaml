@@ -118,14 +118,15 @@
             Content="{Binding ElementName=srcRootTxt, Path=(Validation.Errors).CurrentItem}"
             />
         
-        <!--<Button
+        <Button
             x:Name="btnBrowseSrc"
+            Command="{Binding BrowseSrcRootCommand}"
             Grid.Row="5"
             Margin="10"
             Style="{StaticResource MainBTNStyle}"
             >
             Browse
-        </Button>-->
+        </Button>
         
         <Button
             x:Name="btnSrcHost"
@@ -159,16 +160,16 @@
             Grid.Column="6"
             Content="{Binding ElementName=dstRootTxt, Path=(Validation.Errors).CurrentItem}"
             />
-
-        <!--<Button
+        <Button
             x:Name="btnBrowseDst"
+            Command="{Binding BrowseDstRootCommand}"
             Grid.Column="4"
             Grid.Row="5"
             Margin="10"
             Style="{StaticResource MainBTNStyle}"
             >
             Browse
-        </Button>-->
+        </Button>
 
         <Button
             x:Name="btnDstHost"
