@@ -96,21 +96,21 @@ namespace WPFSpyn.ViewModel
             }
         }
 
-        /// <summary>
-        /// Exposes sync command.
-        /// </summary>
-        public SharpToolsMVVMRelayCommand SyncCommand
-        {
-            get { return _syncCommand; }
-            set
-            {
-                if (_syncCommand != value)
-                {
-                    _syncCommand = value;
-                    base.OnPropertyChanged("SyncCommand");
-                }
-            }
-        }
+        ///// <summary>
+        ///// Exposes sync command.
+        ///// </summary>
+        //public SharpToolsMVVMRelayCommand SyncCommand
+        //{
+        //    get { return _syncCommand; }
+        //    set
+        //    {
+        //        if (_syncCommand != value)
+        //        {
+        //            _syncCommand = value;
+        //            base.OnPropertyChanged("SyncCommand");
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Exposes description.
@@ -278,10 +278,7 @@ namespace WPFSpyn.ViewModel
             // Initialise delete sync pair.
             DeleteSyncPairCommand = new SharpToolsMVVMRelayCommand(Delete);
             
-            // Initialise sync.
-            SyncCommand = new SharpToolsMVVMRelayCommand(Sync);
-
-            SharpToolsMVVMMediator.Register("update", AddUpdate ); // Listener for change events
+            SharpToolsMVVMMediator.Register("update", AddUpdate); // Listener for change events
             // DEBUG
             _log.Debug("Mediator Registered");
 
@@ -438,13 +435,32 @@ namespace WPFSpyn.ViewModel
                 if (_previewCommand == null)
                 {
                     _previewCommand = new SharpToolsMVVMRelayCommand(
-                        param => Preview(),
+                        param => Preview(this),
                         param => CanPreview
                         );
                 }
                 return _previewCommand;
             }
         }
+
+        /// <summary>
+        /// Returns a command that syncs the sync pair.
+        /// </summary>
+        public ICommand SyncCommand
+        {
+            get
+            {
+                if (_syncCommand == null)
+                {
+                    _syncCommand = new SharpToolsMVVMRelayCommand(
+                        param => Sync(this),
+                        param => CanSync
+                        );
+                }
+                return _syncCommand;
+            }
+        }
+
 
         /// <summary>
         /// Returns a command that refreshes the sync pair.
@@ -490,12 +506,17 @@ namespace WPFSpyn.ViewModel
         }
 
         /// <summary>
-        /// Adds the sync metadata. This method is invoked by the PairCommand. 
+        /// Create/Read sync metadata, and display results in message box. This method is invoked by the PreviewCommand. 
         /// </summary>
-        public void Preview()
+        public void Preview(object syncpair)
         {
 
-            SyncOperationStatistics sos = SharpToolsSynch.PreviewSync(_syncPair.SrcRoot, _syncPair.DstRoot);
+            bool isFullSync = false;
+            SyncPairViewModel spvm = (SyncPairViewModel)syncpair;
+            if (spvm != null)
+                isFullSync = spvm.IsFullSync;
+
+            SyncOperationStatistics sos = SharpToolsSynch.PreviewSync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);
             string msg;
 
             if (sos != null)
@@ -562,10 +583,12 @@ namespace WPFSpyn.ViewModel
             if (_syncPair.IsValid)
             {
                 ResultLog = new ObservableCollection<string>(); //reset log
-               // DstLog = new ObservableCollection<string>(); //reset log
 
-//                SyncOperationStatistics sos = SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot);
-                SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot);            
+                bool isFullSync = false;
+                SyncPairViewModel spvm = (SyncPairViewModel)syncpair;
+                if (spvm != null)
+                    isFullSync = spvm.IsFullSync;
+                SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);            
                 // Put sync on background thread
                 //Task.Factory.StartNew(() => { SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot); }).ContinueWith(_ => { IsSynchronising = false; });
 
@@ -573,7 +596,7 @@ namespace WPFSpyn.ViewModel
                 UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
 
                 // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
-                //System.Windows.MessageBox.Show("Not Saved");
+
                 return;
             }
         }
@@ -619,8 +642,8 @@ namespace WPFSpyn.ViewModel
         #region Private Helpers
 
         /// <summary>
-        /// Returns true if this SyncPair was created by the user and it has not yet
-        /// been saved to the SyncPair repository.
+        /// Returns true if this sync pair was created by the user and it has not yet
+        /// been saved to the sync pair repository.
         /// </summary>
         bool IsNewSyncPair
         {
@@ -628,7 +651,7 @@ namespace WPFSpyn.ViewModel
         }
 
         /// <summary>
-        /// Returns true if the SyncPair is valid and can be saved.
+        /// Returns true if the sync pair is valid and can be saved.
         /// </summary>
         bool CanSave
         {
@@ -636,7 +659,7 @@ namespace WPFSpyn.ViewModel
         }
 
         /// <summary>
-        /// Returns true if the SyncPair is valid and can be deleted.
+        /// Returns true if the sync pair is valid and can be deleted.
         /// </summary>
         bool CanDelete
         {
@@ -644,7 +667,7 @@ namespace WPFSpyn.ViewModel
         }
         
         /// <summary>
-        /// Returns true if the SyncPair is valid and can be paired.
+        /// Returns true if the sync pair is valid and can be paired.
         /// </summary>
         bool CanPreview
         {
@@ -654,7 +677,7 @@ namespace WPFSpyn.ViewModel
         /// <summary>
         /// Returns true if the sync pair is valid and can be refreshed.
         /// </summary>
-        bool CanRefresh
+        bool CanSync
         {
             get { return string.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
         }
