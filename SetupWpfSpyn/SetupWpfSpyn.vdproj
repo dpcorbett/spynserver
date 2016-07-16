@@ -487,11 +487,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.TCPSocketClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_06B67DA64F8E7977ABA16BCED92E3B26"
-                    {
-                    "Name" = "8:SharpTools.TCPSocketClient.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.TCPSocketClient.dll"
             "TargetName" = "8:"
@@ -518,11 +513,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.System.User, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_12107DE2586D989BD24F298BBE28AFE4"
-                    {
-                    "Name" = "8:SharpTools.System.User.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.System.User.dll"
             "TargetName" = "8:"
@@ -569,11 +559,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.MVVM.RelayCommand, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_314914EE19773EC0E6CF3503631B4318"
-                    {
-                    "Name" = "8:SharpTools.MVVM.RelayCommand.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.MVVM.RelayCommand.dll"
             "TargetName" = "8:"
@@ -631,11 +616,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.MVVM.AttachedCommandBehaviour, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3C656C49AA647475F3AACBE9A58A6BC3"
-                    {
-                    "Name" = "8:SharpTools.MVVM.AttachedCommandBehaviour.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.MVVM.AttachedCommandBehaviour.dll"
             "TargetName" = "8:"
@@ -662,11 +642,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Utility.UserInput, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_50B373A305AD81934DA7FDC7BEB5DFF9"
-                    {
-                    "Name" = "8:SharpTools.Utility.UserInput.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.Utility.UserInput.dll"
             "TargetName" = "8:"
@@ -693,11 +668,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Log, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6E4B8B093AAACF9816CAEAA37CAD9849"
-                    {
-                    "Name" = "8:SharpTools.Log.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.Log.dll"
             "TargetName" = "8:"
@@ -744,11 +714,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.TCPSocketServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7EDC2212EF762F70CD07D8800FD36563"
-                    {
-                    "Name" = "8:SharpTools.TCPSocketServer.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.TCPSocketServer.dll"
             "TargetName" = "8:"
@@ -775,11 +740,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.MVVM.Mediator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8E139F173CC808A49548365DD41C109F"
-                    {
-                    "Name" = "8:SharpTools.MVVM.Mediator.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.MVVM.Mediator.dll"
             "TargetName" = "8:"
@@ -806,11 +766,6 @@
             "AssemblyAsmDisplayName" = "8:WpfDirectoryTreeView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_92B39283DEC46F66B2828D5082EFD640"
-                    {
-                    "Name" = "8:WpfDirectoryTreeView.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:WpfDirectoryTreeView.dll"
             "TargetName" = "8:"
@@ -837,11 +792,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.System, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_99D2514716FB101CCB1D5F77B1ED0B19"
-                    {
-                    "Name" = "8:SharpTools.System.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.System.dll"
             "TargetName" = "8:"
@@ -899,11 +849,6 @@
             "AssemblyAsmDisplayName" = "8:HidSharp, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BF5E6D0A8C55F21FD0954F3FDA0CF170"
-                    {
-                    "Name" = "8:HidSharp.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:HidSharp.dll"
             "TargetName" = "8:"
@@ -930,11 +875,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.File.Access, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_C1E9009A739879BFF4A540ABA78D8390"
-                    {
-                    "Name" = "8:SharpTools.File.Access.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.File.Access.dll"
             "TargetName" = "8:"
@@ -961,11 +901,6 @@
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CBE189E9CF9929FC763C46152DF27E45"
-                    {
-                    "Name" = "8:log4net.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:log4net.dll"
             "TargetName" = "8:"
@@ -992,11 +927,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Input, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E11AF4AB0482B48380A895B24241772F"
-                    {
-                    "Name" = "8:SharpTools.Input.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.Input.dll"
             "TargetName" = "8:"
@@ -1023,11 +953,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E301A4E109CEEDA15159730F00F18ABF"
-                    {
-                    "Name" = "8:SharpTools.Utility.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.Utility.dll"
             "TargetName" = "8:"
@@ -1054,11 +979,6 @@
             "AssemblyAsmDisplayName" = "8:System.Windows, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_E6B7C2F51F2D65E89C3728928AFF3A25"
-                    {
-                    "Name" = "8:System.Windows.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Windows.dll"
             "TargetName" = "8:"
@@ -1085,11 +1005,6 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Synch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F334C48E47F20B34FA1CFF8DD90F7B16"
-                    {
-                    "Name" = "8:SharpTools.Synch.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpTools.Synch.dll"
             "TargetName" = "8:"
@@ -1238,15 +1153,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SpynSync"
-        "ProductCode" = "8:{20FCE9E5-2B96-433A-B956-3384493C190E}"
-        "PackageCode" = "8:{6D9ED34B-AB08-4F73-960F-AF2C7D49FCEE}"
+        "ProductCode" = "8:{504E4D9B-E817-4F0F-A9AD-F5115E747CAF}"
+        "PackageCode" = "8:{2E41DEC2-6F7C-481C-ACDA-A60C633FE586}"
         "UpgradeCode" = "8:{AAF97ED9-2265-410B-8A6B-EECCC7FE11CA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.7"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:dpcsoft"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

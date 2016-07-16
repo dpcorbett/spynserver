@@ -296,9 +296,9 @@ namespace WPFSpyn.ViewModel
             DeleteSyncPairCommand = new SharpToolsMVVMRelayCommand(Delete);
             
             SharpToolsMVVMMediator.Register("update", AddUpdate); // Listener for change events
-            // DEBUG
+            // LOG
             _log.Debug("Mediator Registered");
-
+            //
             ResultLog = new ObservableCollection<string>();
         }
 
@@ -731,7 +731,11 @@ namespace WPFSpyn.ViewModel
         {
             System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                ResultLog.Add(param as string);
+                // LOG
+                //_log.Debug(param as string);
+                //
+
+                   ResultLog.Add(param as string);
             }));
         }
 
