@@ -52,6 +52,8 @@ namespace WPFSpyn.ViewModel
         // Create a sync relay command.
         private SharpToolsMVVMRelayCommand _syncCommand;
         // Create a preview relay command
+      //  private SharpToolsMVVMRelayCommand _previewSyncPairCommand;
+        // Create a preview relay command
         private SharpToolsMVVMRelayCommand _previewCommand;
         // Create commands.
         private IWorkspaceCommands _wsCommands;
@@ -110,15 +112,15 @@ namespace WPFSpyn.ViewModel
         ///// <summary>
         ///// Exposes sync command.
         ///// </summary>
-        //public SharpToolsMVVMRelayCommand SyncCommand
+        //public SharpToolsMVVMRelayCommand PreviewSyncPairCommand
         //{
-        //    get { return _syncCommand; }
+        //    get { return _previewSyncPairCommand; }
         //    set
         //    {
-        //        if (_syncCommand != value)
+        //        if (_previewSyncPairCommand != value)
         //        {
-        //            _syncCommand = value;
-        //            base.OnPropertyChanged("SyncCommand");
+        //            _previewSyncPairCommand = value;
+        //            base.OnPropertyChanged("SyncSyncPairCommand");
         //        }
         //    }
         //}

@@ -33,25 +33,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_314914EE19773EC0E6CF3503631B4318"
+        "MsmKey" = "8:_2A3E83E612E18DB0797379F4FD8403BA"
         "OwnerKey" = "8:_64644DCDF43743D4BA161861D549C9AA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_33B958694034B3882E940EEF1F561D71"
-        "OwnerKey" = "8:_F9CD52B737A11619F38613979E1615DB"
+        "MsmKey" = "8:_2A3E83E612E18DB0797379F4FD8403BA"
+        "OwnerKey" = "8:_F334C48E47F20B34FA1CFF8DD90F7B16"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_33B958694034B3882E940EEF1F561D71"
-        "OwnerKey" = "8:_F435E824BD642B1E091B2F82D0B00616"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_33B958694034B3882E940EEF1F561D71"
+        "MsmKey" = "8:_314914EE19773EC0E6CF3503631B4318"
         "OwnerKey" = "8:_64644DCDF43743D4BA161861D549C9AA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -135,32 +129,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BEF467A04611522F63F5387F7895B204"
-        "OwnerKey" = "8:_33B958694034B3882E940EEF1F561D71"
+        "MsmKey" = "8:_9C9EC3675D99435BAF3DAAC9AADD2795"
+        "OwnerKey" = "8:_2A3E83E612E18DB0797379F4FD8403BA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BEF467A04611522F63F5387F7895B204"
-        "OwnerKey" = "8:_F334C48E47F20B34FA1CFF8DD90F7B16"
+        "MsmKey" = "8:_9C9EC3675D99435BAF3DAAC9AADD2795"
+        "OwnerKey" = "8:_C2B0F4E76FD4A9AAA55D4097F674667D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BEF467A04611522F63F5387F7895B204"
+        "MsmKey" = "8:_9C9EC3675D99435BAF3DAAC9AADD2795"
         "OwnerKey" = "8:_64644DCDF43743D4BA161861D549C9AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BEF467A04611522F63F5387F7895B204"
-        "OwnerKey" = "8:_F435E824BD642B1E091B2F82D0B00616"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BEF467A04611522F63F5387F7895B204"
-        "OwnerKey" = "8:_F9CD52B737A11619F38613979E1615DB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -177,7 +159,43 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C0493D40DD35AB9B6E5A75946F3515C6"
+        "OwnerKey" = "8:_64644DCDF43743D4BA161861D549C9AA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C0493D40DD35AB9B6E5A75946F3515C6"
+        "OwnerKey" = "8:_F334C48E47F20B34FA1CFF8DD90F7B16"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C0493D40DD35AB9B6E5A75946F3515C6"
+        "OwnerKey" = "8:_C2B0F4E76FD4A9AAA55D4097F674667D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C0493D40DD35AB9B6E5A75946F3515C6"
+        "OwnerKey" = "8:_9C9EC3675D99435BAF3DAAC9AADD2795"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C0493D40DD35AB9B6E5A75946F3515C6"
+        "OwnerKey" = "8:_2A3E83E612E18DB0797379F4FD8403BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C1E9009A739879BFF4A540ABA78D8390"
+        "OwnerKey" = "8:_64644DCDF43743D4BA161861D549C9AA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C2B0F4E76FD4A9AAA55D4097F674667D"
         "OwnerKey" = "8:_64644DCDF43743D4BA161861D549C9AA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -237,44 +255,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F435E824BD642B1E091B2F82D0B00616"
-        "OwnerKey" = "8:_64644DCDF43743D4BA161861D549C9AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F9CD52B737A11619F38613979E1615DB"
-        "OwnerKey" = "8:_64644DCDF43743D4BA161861D549C9AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F9CD52B737A11619F38613979E1615DB"
-        "OwnerKey" = "8:_F334C48E47F20B34FA1CFF8DD90F7B16"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BEF467A04611522F63F5387F7895B204"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F9CD52B737A11619F38613979E1615DB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F435E824BD642B1E091B2F82D0B00616"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_33B958694034B3882E940EEF1F561D71"
+        "OwnerKey" = "8:_C0493D40DD35AB9B6E5A75946F3515C6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -385,6 +367,24 @@
         "OwnerKey" = "8:_E6B7C2F51F2D65E89C3728928AFF3A25"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C2B0F4E76FD4A9AAA55D4097F674667D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2A3E83E612E18DB0797379F4FD8403BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9C9EC3675D99435BAF3DAAC9AADD2795"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -487,6 +487,11 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.TCPSocketClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_06B67DA64F8E7977ABA16BCED92E3B26"
+                    {
+                    "Name" = "8:SharpTools.TCPSocketClient.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.TCPSocketClient.dll"
             "TargetName" = "8:"
@@ -513,6 +518,11 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.System.User, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_12107DE2586D989BD24F298BBE28AFE4"
+                    {
+                    "Name" = "8:SharpTools.System.User.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.System.User.dll"
             "TargetName" = "8:"
@@ -552,15 +562,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_314914EE19773EC0E6CF3503631B4318"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2A3E83E612E18DB0797379F4FD8403BA"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpTools.MVVM.RelayCommand, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Microsoft.Synchronization.Files, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_2A3E83E612E18DB0797379F4FD8403BA"
+                    {
+                    "Name" = "8:Microsoft.Synchronization.Files.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
-            "SourcePath" = "8:SharpTools.MVVM.RelayCommand.dll"
+            "SourcePath" = "8:Microsoft.Synchronization.Files.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
@@ -578,20 +593,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_33B958694034B3882E940EEF1F561D71"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_314914EE19773EC0E6CF3503631B4318"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.Synchronization.MetadataStorage, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SharpTools.MVVM.RelayCommand, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_33B958694034B3882E940EEF1F561D71"
+                    "_314914EE19773EC0E6CF3503631B4318"
                     {
-                    "Name" = "8:Microsoft.Synchronization.MetadataStorage.dll"
+                    "Name" = "8:SharpTools.MVVM.RelayCommand.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Microsoft.Synchronization.MetadataStorage.dll"
+            "SourcePath" = "8:SharpTools.MVVM.RelayCommand.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
@@ -613,9 +628,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpTools.MVVM.AttachedCommandBehaviour, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SharpTools.MVVM.AttachedCommandBehaviour, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_3C656C49AA647475F3AACBE9A58A6BC3"
+                    {
+                    "Name" = "8:SharpTools.MVVM.AttachedCommandBehaviour.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.MVVM.AttachedCommandBehaviour.dll"
             "TargetName" = "8:"
@@ -642,6 +662,11 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Utility.UserInput, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_50B373A305AD81934DA7FDC7BEB5DFF9"
+                    {
+                    "Name" = "8:SharpTools.Utility.UserInput.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.Utility.UserInput.dll"
             "TargetName" = "8:"
@@ -668,6 +693,11 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Log, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_6E4B8B093AAACF9816CAEAA37CAD9849"
+                    {
+                    "Name" = "8:SharpTools.Log.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.Log.dll"
             "TargetName" = "8:"
@@ -714,6 +744,11 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.TCPSocketServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_7EDC2212EF762F70CD07D8800FD36563"
+                    {
+                    "Name" = "8:SharpTools.TCPSocketServer.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.TCPSocketServer.dll"
             "TargetName" = "8:"
@@ -737,9 +772,14 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpTools.MVVM.Mediator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SharpTools.MVVM.Mediator, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_8E139F173CC808A49548365DD41C109F"
+                    {
+                    "Name" = "8:SharpTools.MVVM.Mediator.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.MVVM.Mediator.dll"
             "TargetName" = "8:"
@@ -766,6 +806,11 @@
             "AssemblyAsmDisplayName" = "8:WpfDirectoryTreeView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_92B39283DEC46F66B2828D5082EFD640"
+                    {
+                    "Name" = "8:WpfDirectoryTreeView.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:WpfDirectoryTreeView.dll"
             "TargetName" = "8:"
@@ -792,6 +837,11 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.System, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_99D2514716FB101CCB1D5F77B1ED0B19"
+                    {
+                    "Name" = "8:SharpTools.System.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.System.dll"
             "TargetName" = "8:"
@@ -811,20 +861,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BEF467A04611522F63F5387F7895B204"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9C9EC3675D99435BAF3DAAC9AADD2795"
             {
             "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.Synchronization, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.Synchronization.MetadataStorage, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BEF467A04611522F63F5387F7895B204"
+                    "_9C9EC3675D99435BAF3DAAC9AADD2795"
                     {
-                    "Name" = "8:Microsoft.Synchronization.dll"
+                    "Name" = "8:Microsoft.Synchronization.MetadataStorage.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Microsoft.Synchronization.dll"
+            "SourcePath" = "8:Microsoft.Synchronization.MetadataStorage.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
@@ -849,8 +899,44 @@
             "AssemblyAsmDisplayName" = "8:HidSharp, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_BF5E6D0A8C55F21FD0954F3FDA0CF170"
+                    {
+                    "Name" = "8:HidSharp.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:HidSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C0493D40DD35AB9B6E5A75946F3515C6"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.Synchronization, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C0493D40DD35AB9B6E5A75946F3515C6"
+                    {
+                    "Name" = "8:Microsoft.Synchronization.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Microsoft.Synchronization.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
@@ -875,8 +961,44 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.File.Access, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_C1E9009A739879BFF4A540ABA78D8390"
+                    {
+                    "Name" = "8:SharpTools.File.Access.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.File.Access.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C2B0F4E76FD4A9AAA55D4097F674667D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.Synchronization.SimpleProviders, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C2B0F4E76FD4A9AAA55D4097F674667D"
+                    {
+                    "Name" = "8:Microsoft.Synchronization.SimpleProviders.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Microsoft.Synchronization.SimpleProviders.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
@@ -901,6 +1023,11 @@
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_CBE189E9CF9929FC763C46152DF27E45"
+                    {
+                    "Name" = "8:log4net.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:log4net.dll"
             "TargetName" = "8:"
@@ -927,6 +1054,11 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Input, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_E11AF4AB0482B48380A895B24241772F"
+                    {
+                    "Name" = "8:SharpTools.Input.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.Input.dll"
             "TargetName" = "8:"
@@ -953,6 +1085,11 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_E301A4E109CEEDA15159730F00F18ABF"
+                    {
+                    "Name" = "8:SharpTools.Utility.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.Utility.dll"
             "TargetName" = "8:"
@@ -979,6 +1116,11 @@
             "AssemblyAsmDisplayName" = "8:System.Windows, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
+                    "_E6B7C2F51F2D65E89C3728928AFF3A25"
+                    {
+                    "Name" = "8:System.Windows.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:System.Windows.dll"
             "TargetName" = "8:"
@@ -1005,70 +1147,13 @@
             "AssemblyAsmDisplayName" = "8:SharpTools.Synch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_F334C48E47F20B34FA1CFF8DD90F7B16"
+                    {
+                    "Name" = "8:SharpTools.Synch.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:SharpTools.Synch.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F435E824BD642B1E091B2F82D0B00616"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.Synchronization.SimpleProviders, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_F435E824BD642B1E091B2F82D0B00616"
-                    {
-                    "Name" = "8:Microsoft.Synchronization.SimpleProviders.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Microsoft.Synchronization.SimpleProviders.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F9CD52B737A11619F38613979E1615DB"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.Synchronization.Files, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_F9CD52B737A11619F38613979E1615DB"
-                    {
-                    "Name" = "8:Microsoft.Synchronization.Files.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Microsoft.Synchronization.Files.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4B883C3B937C4B4599E0C6A11CCAA6FB"
@@ -1153,15 +1238,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SpynSync"
-        "ProductCode" = "8:{504E4D9B-E817-4F0F-A9AD-F5115E747CAF}"
-        "PackageCode" = "8:{2E41DEC2-6F7C-481C-ACDA-A60C633FE586}"
+        "ProductCode" = "8:{C9F63FA8-0529-4DA8-AB74-0F6DBDD30500}"
+        "PackageCode" = "8:{79A0B04B-BC6B-454B-A6F8-5370AEC443F4}"
         "UpgradeCode" = "8:{AAF97ED9-2265-410B-8A6B-EECCC7FE11CA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.1.4"
         "Manufacturer" = "8:dpcsoft"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1171,7 +1256,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Install SpynSync"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_764E578850C545788A5BD8D8D37E97C5"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
