@@ -256,12 +256,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C0493D40DD35AB9B6E5A75946F3515C6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_64644DCDF43743D4BA161861D549C9AA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -383,6 +377,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9C9EC3675D99435BAF3DAAC9AADD2795"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C0493D40DD35AB9B6E5A75946F3515C6"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -659,7 +659,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpTools.Utility.UserInput, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SharpTools.Utility.UserInput, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_50B373A305AD81934DA7FDC7BEB5DFF9"
@@ -958,7 +958,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpTools.File.Access, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SharpTools.File.Access, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C1E9009A739879BFF4A540ABA78D8390"
@@ -1144,7 +1144,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpTools.Synch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SharpTools.Synch, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_F334C48E47F20B34FA1CFF8DD90F7B16"
@@ -1238,15 +1238,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SpynSync"
-        "ProductCode" = "8:{C9F63FA8-0529-4DA8-AB74-0F6DBDD30500}"
-        "PackageCode" = "8:{79A0B04B-BC6B-454B-A6F8-5370AEC443F4}"
+        "ProductCode" = "8:{BAA796EE-4CC1-451B-9A68-654E0CE12EDF}"
+        "PackageCode" = "8:{6515FA6B-0A60-4368-A54E-77B5D5D006F9}"
         "UpgradeCode" = "8:{AAF97ED9-2265-410B-8A6B-EECCC7FE11CA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.4"
+        "ProductVersion" = "8:1.1.8"
         "Manufacturer" = "8:dpcsoft"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

@@ -45,14 +45,10 @@ namespace WPFSpyn.ViewModel
         private bool _isSelected;
         // Create a save relay command.
         private SharpToolsMVVMRelayCommand _saveCommand;
-        // Create a delete relay command.
-        private SharpToolsMVVMRelayCommand _deleteCommand;
         // Create a delete sync pair relay command.
         private SharpToolsMVVMRelayCommand _deleteSyncPairCommand;
         // Create a sync relay command.
         private SharpToolsMVVMRelayCommand _syncCommand;
-        // Create a preview relay command
-      //  private SharpToolsMVVMRelayCommand _previewSyncPairCommand;
         // Create a preview relay command
         private SharpToolsMVVMRelayCommand _previewCommand;
         // Create commands.
@@ -92,7 +88,6 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         public SharpToolsMVVMRelayCommand BrowseDstRootCommand { get; set; }
 
-
         /// <summary>
         /// Exposes delete sync pair command.
         /// </summary>
@@ -108,22 +103,6 @@ namespace WPFSpyn.ViewModel
                 }
             }
         }
-
-        ///// <summary>
-        ///// Exposes sync command.
-        ///// </summary>
-        //public SharpToolsMVVMRelayCommand PreviewSyncPairCommand
-        //{
-        //    get { return _previewSyncPairCommand; }
-        //    set
-        //    {
-        //        if (_previewSyncPairCommand != value)
-        //        {
-        //            _previewSyncPairCommand = value;
-        //            base.OnPropertyChanged("SyncSyncPairCommand");
-        //        }
-        //    }
-        //}
 
         /// <summary>
         /// Exposes description.
@@ -226,7 +205,9 @@ namespace WPFSpyn.ViewModel
             }
         }
 
-
+        /// <summary>
+        /// Exposes sync results observable collection.
+        /// </summary>
         public ObservableCollection<string> ResultLog
         {
             get
@@ -427,24 +408,6 @@ namespace WPFSpyn.ViewModel
         }
 
         /// <summary>
-        /// Returns a command that deletes the SyncPair.
-        /// </summary>
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                if (_deleteCommand == null)
-                {
-                    _deleteCommand = new SharpToolsMVVMRelayCommand(
-                        param => Delete(this),
-                        param => CanDelete
-                        );
-                }
-                return _deleteCommand;
-            }
-        }
-
-        /// <summary>
         /// Returns a command that previews the sync pair.
         /// </summary>
         public ICommand PreviewCommand
@@ -479,25 +442,6 @@ namespace WPFSpyn.ViewModel
                 return _syncCommand;
             }
         }
-
-
-        /// <summary>
-        /// Returns a command that refreshes the sync pair.
-        /// </summary>
-        //public ICommand RefreshCommand
-        //{
-        //    get
-        //    {
-        //        if (_refreshCommand == null)
-        //        {
-        //            _refreshCommand = new SharpToolsMVVMRelayCommand(
-        //                param => Refresh(),
-        //                param => CanRefresh
-        //                );
-        //        }
-        //        return _refreshCommand;
-        //    }
-        //}
 
         #endregion // Presentation Properties
 
@@ -552,25 +496,11 @@ namespace WPFSpyn.ViewModel
             }
         }
 
-        public void Refresh()
-        {
-            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
-
-        }
-
         /// <summary>
         /// Deletes the Syncpair from the repository.  This method is invoked by the DeleteCommand.
         /// </summary>
         public void Delete(object syncpair)
         {
-            // Check state for deletion.
-            //if (!_syncPair.IsValid)
-            //{
-            //    // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
-            //    System.Windows.MessageBox.Show("Not Saved");
-            //    return;
-            //}
-
             // Check if sync pair has been saved.
             if (!IsNewSyncPair)
             {
@@ -703,14 +633,6 @@ namespace WPFSpyn.ViewModel
         {
             get { return string.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
         }
-
-        /// <summary>
-        /// Returns true if the sync pair is valid and can be deleted.
-        /// </summary>
-        bool CanDelete
-        {
-            get { return string.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
-        }
         
         /// <summary>
         /// Returns true if the sync pair is valid and can be paired.
@@ -728,16 +650,17 @@ namespace WPFSpyn.ViewModel
             get { return string.IsNullOrEmpty(ValidateSyncPairType()) && _syncPair.IsValid; }
         }
 
-
+        /// <summary>
+        /// Updates result log with supplied string.
+        /// </summary>
+        /// <param name="param"></param>
         void AddUpdate(object param)
         {
+            // Dispatch update for result log.
             System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                // LOG
-                //_log.Debug(param as string);
-                //
-
-                   ResultLog.Add(param as string);
+                // Add string to result log.
+                ResultLog.Add(param as string);
             }));
         }
 
@@ -800,36 +723,6 @@ namespace WPFSpyn.ViewModel
         }
 
         #endregion // IDataErrorInfo Members
-
-
-
-        //public static void OnAppliedChange(object sender, AppliedChangeEventArgs args)
-        //{
-        //    switch (args.ChangeType)
-        //    {
-        //        case ChangeType.Create:
-        //            SharpToolsMVVMMediator.NotifyColleagues("update", "File created: " + args.NewFilePath);
-        //            break;
-        //        case ChangeType.Delete:
-        //            SharpToolsMVVMMediator.NotifyColleagues("update", "Deleted File: " + args.OldFilePath);
-        //            break;
-        //        case ChangeType.Update:
-        //            SharpToolsMVVMMediator.NotifyColleagues("update", "Overwrote file: " + args.OldFilePath);
-        //            break;
-        //        case ChangeType.Rename:
-        //            SharpToolsMVVMMediator.NotifyColleagues("update", "Renamed file: " + args.OldFilePath + " to " + args.NewFilePath);
-        //            break;
-        //    }
-        //}
-
-        //public static void OnSkippedChange(object sender, SkippedChangeEventArgs args)
-        //{
-        //    Mediator.NotifyColleagues("update", "Error! Skipped file: " + args.ChangeType.ToString().ToUpper() + " for "
-        //        + (!string.IsNullOrEmpty(args.CurrentFilePath) ? args.CurrentFilePath : args.NewFilePath));
-
-        //    if (args.Exception != null)
-        //        Mediator.NotifyColleagues("update", "Error: " + args.Exception.Message);
-        //}
 
     }
 }
