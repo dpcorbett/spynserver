@@ -182,7 +182,8 @@ namespace WPFSpyn.Model
             {
                 return "No valid source root";
             }
-            else if (!(SharpTools.File.Access.SharpToolsFileAccess.checkDirectoryAuth(SrcRoot, WindowsIdentity.GetCurrent().Name)))
+            // TODO Account for network seurity.
+            else if (!(SharpTools.File.Access.SharpToolsFileAccess.DirectoryHasPermission(SrcRoot, System.Security.AccessControl.FileSystemRights.Write)))
             {
                 return "No write access for " + WindowsIdentity.GetCurrent().Name;
             }
@@ -199,7 +200,8 @@ namespace WPFSpyn.Model
             {
                 return "No valid destination root";
             }
-            else if (!(SharpTools.File.Access.SharpToolsFileAccess.checkDirectoryAuth(DstRoot, WindowsIdentity.GetCurrent().Name)))
+            // TODO Account for network seurity.
+            else if (!(SharpTools.File.Access.SharpToolsFileAccess.DirectoryHasPermission(DstRoot, System.Security.AccessControl.FileSystemRights.Write)))
             {
                 return "No write access for " + WindowsIdentity.GetCurrent().Name;
             }

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSVSpyn", "WSVSpyn\WSVSpyn.csproj", "{FA7D84AF-D1EF-4A6C-8EE9-EA1ED5FE1790}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFASpyn", "WFASpyn\WFASpyn.csproj", "{687FBA56-1FD4-4F72-939F-9C5A8F0DBB7D}"
@@ -9,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFASpyn", "WFASpyn\WFASpyn.
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFSpyn", "WPFSpyn\WPFSpyn.csproj", "{3ACCE912-C8F7-49C9-8FAB-6C2E63FC04FD}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupWpfSpyn", "SetupWpfSpyn\SetupWpfSpyn.vdproj", "{8F2C5D3C-2524-43BB-BCD0-0743FE710E60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +32,10 @@ Global
 		{3ACCE912-C8F7-49C9-8FAB-6C2E63FC04FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ACCE912-C8F7-49C9-8FAB-6C2E63FC04FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3ACCE912-C8F7-49C9-8FAB-6C2E63FC04FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F2C5D3C-2524-43BB-BCD0-0743FE710E60}.Debug|Any CPU.ActiveCfg = Debug
+		{8F2C5D3C-2524-43BB-BCD0-0743FE710E60}.Debug|Any CPU.Build.0 = Debug
+		{8F2C5D3C-2524-43BB-BCD0-0743FE710E60}.Debug|Any CPU.Deploy.0 = Debug
+		{8F2C5D3C-2524-43BB-BCD0-0743FE710E60}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
