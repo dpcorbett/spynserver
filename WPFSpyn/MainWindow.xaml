@@ -7,8 +7,7 @@
         Style="{StaticResource MainWindowStyle}"
         Title="SPYN" 
         Width="1248.596" 
-        WindowStyle="None" 
-        WindowState="Maximized"
+        WindowState="Normal" Icon="Images/Spyn.ico"
         >
     
     <Window.Resources>
@@ -46,7 +45,7 @@
                 >
                 Settings
             </Button>-->
-            <Button 
+            <!--<Button 
             	x:Name="btnClose" 
             	Click="btnClose_Click" 
                 Height="64" 
@@ -56,7 +55,7 @@
             	Width="64" 
                 >
                 Close
-            </Button>
+            </Button> -->
         </Grid>
         <Border
             Grid.Column="0"
