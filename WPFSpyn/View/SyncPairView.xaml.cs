@@ -34,9 +34,9 @@ namespace WPFSpyn.View
         /// <param name="e"></param>
         private void TreeViewPath_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            SyncPairViewModel vm = (SyncPairViewModel)e.NewValue;
-            if (vm != null)
-                vm.UpdateDirectoryPath += ViewModel_UpdateDirectoryPath;
+            SyncPairViewModel spvm = (SyncPairViewModel)e.NewValue;
+            if (spvm != null)
+                spvm.UpdateDirectoryPath += ViewModel_UpdateDirectoryPath;
         }
 
         /// <summary>
@@ -46,16 +46,30 @@ namespace WPFSpyn.View
         /// <param name="e"></param>
         private void ViewModel_UpdateDirectoryPath(object sender, EventArgs e)
         {
-            SyncPairViewModel obj = (SyncPairViewModel)DataContext;
-            // Refresh source directory tree view.
-
-            // TODO Check for NULL
-            if (obj != null)
+            SyncPairViewModel spvm = (SyncPairViewModel)DataContext;
+            if (spvm != null)
             {
-                trvSrcDir.populateTreeView(this, new PropertyChangedEventArgs(obj.SrcRoot));
+                // Refresh source directory tree view.
+                trvSrcDir.populateTreeView(this, new PropertyChangedEventArgs(spvm.SrcRoot));
                 // Refresh destination directory tree view.
-                trvDstDir.populateTreeView(this, new PropertyChangedEventArgs(obj.DstRoot));
+                trvDstDir.populateTreeView(this, new PropertyChangedEventArgs(spvm.DstRoot));
             }
+        }
+
+        // <summary>
+        /// Update progress bar status view with data context's new value.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewModel_UpdateProgressBar(object sender, EventArgs e)
+        {
+            SyncPairViewModel spvm = (SyncPairViewModel)DataContext;
+            if (spvm != null)
+            {
+                // Refresh source directory tree view.
+                pbrSyncProgress.Value = Convert.ToDouble(e.ToString());
+            }
+
         }
 
     }

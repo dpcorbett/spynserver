@@ -10,7 +10,7 @@
         <ResourceDictionary Source="SyncPairViewResources.xaml"/>
     </UserControl.Resources>
 
-    <Grid Margin="4" Background="Transparent" Height="Auto">
+    <Grid Margin="4" Background="Transparent" Height="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" /> <!--  0 -->
             <ColumnDefinition Width="270" />  <!--  1 -->
@@ -29,6 +29,7 @@
             <RowDefinition Height="50" />   <!--  6 -->
             <RowDefinition Height="75" />   <!--  7 -->
             <RowDefinition Height="50" />   <!--  8 -->
+            <RowDefinition Height="Auto" /> <!--  9 -->
         </Grid.RowDefinitions>
 
         <Grid.Resources>
@@ -254,5 +255,34 @@
             Style="{StaticResource MainBTNStyle}"
             />
 
+        <StatusBar 
+            Background="Transparent"
+            Grid.Row="9"
+            Grid.ColumnSpan="5"
+            HorizontalAlignment="Center"
+            >
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem 
+                Grid.Column="0"
+                >
+                <ProgressBar 
+                    x:Name="pbrSyncProgress"
+                    Background="Transparent"
+                    Height="16"
+                    Value="10" 
+                    Width="500" 
+                    Foreground="CadetBlue"
+                    />
+            </StatusBarItem>
+        </StatusBar>
+        
     </Grid>
 </UserControl>

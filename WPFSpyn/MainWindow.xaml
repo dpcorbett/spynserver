@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:WPFSpyn.Properties"
         xmlns:st="clr-namespace:SharpTools.System;assembly=SharpTools.System"
-        Height="677.715" 
+        Height="768" 
         Style="{StaticResource MainWindowStyle}"
         Title="SPYN" 
-        Width="1248.596" 
-        WindowState="Normal" Icon="Images/Spyn.ico"
+        Width="1024" 
+        WindowState="Normal" Icon="Images/Spyn.ico" 
         >
     
     <Window.Resources>
@@ -23,7 +23,7 @@
             <RowDefinition Height="Auto"  />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="cldControl" Width="256" />
+            <ColumnDefinition x:Name="cldControl" Width="208" />
             <ColumnDefinition x:Name="cldContent" Width="*"  />
         </Grid.ColumnDefinitions>
         
@@ -79,7 +79,9 @@
                 Content="{Binding Path=Workspaces}"
                 ContentTemplate="{StaticResource WorkspacesTemplate}"
                 Header="Pairs"
-                Style="{StaticResource MainHCCStyle}"
+                Style="{StaticResource MainHCCStyle}" 
+                ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
                 />
         </Border>
 
