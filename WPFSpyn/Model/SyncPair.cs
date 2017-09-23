@@ -1,8 +1,10 @@
-﻿using SharpTools.Utility;
+﻿//using SharpTools.Utility;
+using SharpTools.Utility;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Security.Principal;
+using WPFSpyn.Library;
 using WPFSpyn.Properties;
 
 namespace WPFSpyn.Model
@@ -11,20 +13,47 @@ namespace WPFSpyn.Model
     /// Stores individual syncpair data.
     /// </summary>
     [Serializable()]
-    public class SyncPair : IDataErrorInfo
+    public class SyncPair : ISyncPair, IDataErrorInfo
     {
+
+        #region Members
+
+        private string m_strDescription;
+        private bool m_isFullSync;
+
+        #endregion
 
         #region Properties
 
         /// <summary>
         /// Gets/Sets the display name of the pair
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get
+            {
+                return m_strDescription;
+            }
+            set
+            {
+                m_strDescription = value;
+            }
+        }
 
         /// <summary>
         /// Gets/Sets public status of SyncPair
         /// </summary>
-        public bool IsFullSync { get; set; }
+        public bool IsFullSync
+        {
+            get
+            {
+                return m_isFullSync;
+            }
+            set
+            {
+                m_isFullSync = value;
+            }
+        }
 
         /// <summary>
         /// Gets/Sets the display name of the pair 
@@ -51,7 +80,7 @@ namespace WPFSpyn.Model
         /// <summary>
         /// Empty constructor
         /// </summary>
-        protected SyncPair()
+        public SyncPair()
         {
         }
 
@@ -151,8 +180,9 @@ namespace WPFSpyn.Model
         /// <returns></returns>
         string ValidateDescription()
         {
+            var stu = new SharpToolsUtility();
             // TODO Check for existing identical Description
-            if (SharpToolsUtility.IsStringEmpty(Description))
+            if (stu.IsStringEmpty(Description))
             {
                 return "No valid description";
             }
@@ -178,7 +208,8 @@ namespace WPFSpyn.Model
         /// <returns></returns>
         string ValidateSource()
         {
-            if (SharpToolsUtility.IsStringEmpty(SrcRoot) || !System.IO.Directory.Exists(SrcRoot))
+            var stu = new SharpToolsUtility();
+            if (stu.IsStringEmpty(SrcRoot) || !System.IO.Directory.Exists(SrcRoot))
             {
                 return "No valid source root";
             }
@@ -196,7 +227,8 @@ namespace WPFSpyn.Model
         /// <returns></returns>
         string ValidateDestination()
         {
-            if (SharpToolsUtility.IsStringEmpty(DstRoot) || !System.IO.Directory.Exists(DstRoot))
+            var stu = new SharpToolsUtility();
+            if (stu.IsStringEmpty(DstRoot) || !System.IO.Directory.Exists(DstRoot))
             {
                 return "No valid destination root";
             }
