@@ -39,7 +39,7 @@
                         SnapsToDevicePixels="True" 
                         >
                         <TextBlock 
-                            FontSize="32"
+                            FontSize="28"
                             Text="{TemplateBinding Content}" 
                             Style="{StaticResource HeaderTextStyle}"
                             >

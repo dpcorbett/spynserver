@@ -473,10 +473,11 @@ namespace WPFSpyn.ViewModel
         /// </summary>
         public void Preview(object syncpair)
         {
-
             bool isFullSync = false;
             SyncPairViewModel spvm = (SyncPairViewModel)syncpair;
+
             if (spvm != null)
+            {
                 isFullSync = spvm.IsFullSync;
 
             SyncOperationStatistics sos = SharpToolsSynch.PreviewSync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);
@@ -492,7 +493,7 @@ namespace WPFSpyn.ViewModel
                     sos.UploadChangesApplied + " update(s) to destination pending.\n" +
                     sos.UploadChangesFailed + " update(s) to destination will fail.";
                 System.Windows.MessageBox.Show(msg, "Synchronization Results");
-
+            }
             }
         }
 

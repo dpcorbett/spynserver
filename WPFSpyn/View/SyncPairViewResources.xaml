@@ -8,14 +8,15 @@
     <Style x:Key="InputTextStyle" TargetType="TextBox">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Margin" Value="3,1" />
     </Style>
 
     <!--
         Defines header label text style.
         -->
     <Style x:Key="LabelTextStyle" TargetType="Label">
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="ExtraBold" />
         <Setter Property="Opacity" Value="0.5" />

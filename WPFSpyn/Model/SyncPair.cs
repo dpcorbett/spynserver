@@ -1,8 +1,10 @@
-﻿using SharpTools.Utility;
+﻿//using SharpTools.Utility;
+using SharpTools.Utility;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Security.Principal;
+using WPFSpyn.Library;
 using WPFSpyn.Properties;
 
 namespace WPFSpyn.Model
@@ -11,37 +13,67 @@ namespace WPFSpyn.Model
     /// Stores individual syncpair data.
     /// </summary>
     [Serializable()]
-    public class SyncPair : IDataErrorInfo
+    public class SyncPair : ISyncPair, IDataErrorInfo
     {
+
+        #region Members
+
+        private string m_strDescription;
+        private bool m_isFullSync;
+        private string m_syncType;
+        private string m_srcRoot;
+        private string m_dstRoot;
+
+        #endregion
 
         #region Properties
 
         /// <summary>
         /// Gets/Sets the display name of the pair
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get => m_strDescription;
+            set => m_strDescription = value;
+        }
 
         /// <summary>
         /// Gets/Sets public status of SyncPair
         /// </summary>
-        public bool IsFullSync { get; set; }
+        public bool IsFullSync
+        {
+            get => m_isFullSync;
+            set => m_isFullSync = value;
+        }
 
         /// <summary>
-        /// Gets/Sets the display name of the pair 
+        /// Gets/Sets the type of the sync 
         /// 
-        /// TODO Define the variable
+        /// TODO Define a custom type
         /// </summary>
-        public string SyncType { get; set; }
+        public string SyncType
+        {
+            get => m_syncType;
+            set => m_syncType = value;
+        }
 
         /// <summary>
         /// Gets/sets the root directory of data source.
         /// </summary>
-        public string SrcRoot { get; set; }
+        public string SrcRoot
+        {
+            get => m_srcRoot;
+            set => m_srcRoot = value;
+        }
 
         /// <summary>
         /// Gets/sets the root directory of data destination.
         /// </summary>
-        public string DstRoot { get; set; }
+        public string DstRoot
+        {
+            get => m_dstRoot;
+            set => m_dstRoot = value;
+        }
 
         #endregion
 
@@ -51,7 +83,7 @@ namespace WPFSpyn.Model
         /// <summary>
         /// Empty constructor
         /// </summary>
-        protected SyncPair()
+        public SyncPair()
         {
         }
 
@@ -151,8 +183,9 @@ namespace WPFSpyn.Model
         /// <returns></returns>
         string ValidateDescription()
         {
+            var stu = new SharpToolsUtility();
             // TODO Check for existing identical Description
-            if (SharpToolsUtility.IsStringEmpty(Description))
+            if (stu.IsStringEmpty(Description))
             {
                 return "No valid description";
             }
@@ -178,7 +211,8 @@ namespace WPFSpyn.Model
         /// <returns></returns>
         string ValidateSource()
         {
-            if (SharpToolsUtility.IsStringEmpty(SrcRoot) || !System.IO.Directory.Exists(SrcRoot))
+            var stu = new SharpToolsUtility();
+            if (stu.IsStringEmpty(SrcRoot) || !System.IO.Directory.Exists(SrcRoot))
             {
                 return "No valid source root";
             }
@@ -196,7 +230,8 @@ namespace WPFSpyn.Model
         /// <returns></returns>
         string ValidateDestination()
         {
-            if (SharpToolsUtility.IsStringEmpty(DstRoot) || !System.IO.Directory.Exists(DstRoot))
+            var stu = new SharpToolsUtility();
+            if (stu.IsStringEmpty(DstRoot) || !System.IO.Directory.Exists(DstRoot))
             {
                 return "No valid destination root";
             }
