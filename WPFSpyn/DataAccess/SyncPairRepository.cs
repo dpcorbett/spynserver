@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+// dpc
+using WPFSpyn.Library;
 using WPFSpyn.Model;
-
 
 namespace WPFSpyn.DataAccess
 {
@@ -12,20 +13,14 @@ namespace WPFSpyn.DataAccess
     /// Represents a source of syncpairs in the application.
     /// </summary>
      [Serializable()]
-    public class SyncPairRepository
+    public class SyncPairRepository : ISyncPairRepository
     {
 
         #region Fields
 
-        readonly List<SyncPair> _syncPairs;
-        
-        public List<SyncPair> syncPairs
-        {
-            get
-            {
-                return _syncPairs;
-            }
-        }
+        private readonly List<SyncPair> _syncPairs;
+
+        public List<SyncPair> SyncPairs => _syncPairs;
 
         #endregion // Fields
 

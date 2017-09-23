@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// dpc
 using WPFSpyn.ViewModel;
 
 namespace WPFSpyn.Library
@@ -11,7 +8,16 @@ namespace WPFSpyn.Library
     /// </summary>
     public interface IWorkspaceCommands
     {
+        /// <summary>
+        /// Define adding a workspace.
+        /// </summary>
+        /// <param name="view"></param>
         void AddWorkspace(WorkspaceViewModel view);
+
+        /// <summary>
+        /// Define removing a workspace.
+        /// </summary>
+        /// <param name="view"></param>
         void RemoveWorkspace(WorkspaceViewModel view);
     }
 }

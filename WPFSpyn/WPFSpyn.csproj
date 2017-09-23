@@ -147,6 +147,7 @@
     <Compile Include="DataAccess\SyncPairRemovedEventArgs.cs" />
     <Compile Include="DataAccess\SyncPairRepository.cs" />
     <Compile Include="Library\ISyncPair.cs" />
+    <Compile Include="Library\ISyncPairRepository.cs" />
     <Compile Include="Library\IWorkspaceCommands.cs">
       <SubType>Code</SubType>
     </Compile>

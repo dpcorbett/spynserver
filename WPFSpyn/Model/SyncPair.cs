@@ -1,9 +1,9 @@
-﻿//using SharpTools.Utility;
-using SharpTools.Utility;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Security.Principal;
+// dpc
+using SharpTools.Utility;
 using WPFSpyn.Library;
 using WPFSpyn.Properties;
 
