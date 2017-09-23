@@ -20,6 +20,9 @@ namespace WPFSpyn.Model
 
         private string m_strDescription;
         private bool m_isFullSync;
+        private string m_syncType;
+        private string m_srcRoot;
+        private string m_dstRoot;
 
         #endregion
 
@@ -30,14 +33,8 @@ namespace WPFSpyn.Model
         /// </summary>
         public string Description
         {
-            get
-            {
-                return m_strDescription;
-            }
-            set
-            {
-                m_strDescription = value;
-            }
+            get => m_strDescription;
+            set => m_strDescription = value;
         }
 
         /// <summary>
@@ -45,32 +42,38 @@ namespace WPFSpyn.Model
         /// </summary>
         public bool IsFullSync
         {
-            get
-            {
-                return m_isFullSync;
-            }
-            set
-            {
-                m_isFullSync = value;
-            }
+            get => m_isFullSync;
+            set => m_isFullSync = value;
         }
 
         /// <summary>
-        /// Gets/Sets the display name of the pair 
+        /// Gets/Sets the type of the sync 
         /// 
-        /// TODO Define the variable
+        /// TODO Define a custom type
         /// </summary>
-        public string SyncType { get; set; }
+        public string SyncType
+        {
+            get => m_syncType;
+            set => m_syncType = value;
+        }
 
         /// <summary>
         /// Gets/sets the root directory of data source.
         /// </summary>
-        public string SrcRoot { get; set; }
+        public string SrcRoot
+        {
+            get => m_srcRoot;
+            set => m_srcRoot = value;
+        }
 
         /// <summary>
         /// Gets/sets the root directory of data destination.
         /// </summary>
-        public string DstRoot { get; set; }
+        public string DstRoot
+        {
+            get => m_dstRoot;
+            set => m_dstRoot = value;
+        }
 
         #endregion
 

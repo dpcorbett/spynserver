@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WPFSpyn.Library
+﻿namespace WPFSpyn.Library
 {
     public interface ISyncPair
     {
@@ -19,11 +13,20 @@ namespace WPFSpyn.Library
         bool IsFullSync { get; set; }
 
         /// <summary>
-        /// Gets/Sets the display name of the pair 
+        /// Gets/Sets the type of the sync 
         /// 
-        /// TODO Define the variable
+        /// TODO Define the type
         /// </summary>
         string SyncType { get; set; }
 
+        /// <summary>
+        /// Gets/sets the root directory of data source.
+        /// </summary>
+        string SrcRoot { get; set; }
+    
+        /// <summary>
+        /// Gets/sets the root directory of data destination.
+        /// </summary>
+        string DstRoot { get; set; }
     }
 }
