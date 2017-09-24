@@ -240,18 +240,11 @@ namespace WPFSpyn.ViewModel
             // Create local commands.
             _wsCommands = wsCommands;
 
-            // Check sync pair exists.
-            if (p_syncPair == null)
-                throw new ArgumentNullException("p_syncPair");
-
-            // Check sync repository exists.
-            if (p_syncPairRepository == null)
-                throw new ArgumentNullException("p_syncPairRepository");
-
             // Set sync pair.
-            _syncPair = p_syncPair;
+            _syncPair = p_syncPair ?? throw new ArgumentNullException("p_syncPair");
+
             // Set sync pair repository.
-            _syncPairRepository = p_syncPairRepository;
+            _syncPairRepository = p_syncPairRepository ?? throw new ArgumentNullException("p_syncPairRepository");
 
             // Set sync type if specified.
             if (_syncPair.SyncType == null)

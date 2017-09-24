@@ -1,4 +1,5 @@
 ﻿using System;
+using WPFSpyn.Library;
 using WPFSpyn.Model;
 
 namespace WPFSpyn.DataAccess
@@ -8,10 +9,7 @@ namespace WPFSpyn.DataAccess
     /// </summary>
     public class SyncPairRemovedEventArgs : EventArgs
     {
-        public SyncPairRemovedEventArgs(SyncPair p_oldSyncPair)
-        {
-            OldSyncPair = p_oldSyncPair;
-        }
+        public SyncPairRemovedEventArgs(ISyncPair p_oldSyncPair) => OldSyncPair = (SyncPair)p_oldSyncPair;
 
         public SyncPair OldSyncPair { get; private set; }
 

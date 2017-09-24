@@ -23,10 +23,15 @@
         /// Gets/sets the root directory of data source.
         /// </summary>
         string SrcRoot { get; set; }
-    
+
         /// <summary>
         /// Gets/sets the root directory of data destination.
         /// </summary>
         string DstRoot { get; set; }
+
+        /// <summary>
+        /// Returns true if this object has no validation errors.
+        /// </summary>
+        bool IsValid { get; }
     }
 }

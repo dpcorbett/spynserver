@@ -43,15 +43,11 @@ namespace WPFSpyn.ViewModel
             // Store commands locally.
             _wsCommands = wsCommands;
 
-            // Throw exception if parameter supplied is null
-            if (p_syncPairRepository == null)
-                throw new ArgumentNullException("syncPairRepository");
-
             // Set name displayed on tab
             base.DisplayName = Strings.AllSyncPairsViewModel_DisplayName;
 
             // Store sync pair repository locally.
-            _syncPairRepository = p_syncPairRepository;
+            _syncPairRepository = p_syncPairRepository ?? throw new ArgumentNullException("syncPairRepository");
 
             // Subscribe for notifications of when a new SyncPair is saved.
             _syncPairRepository.SyncPairAdded += OnSyncPairAddedToRepository;

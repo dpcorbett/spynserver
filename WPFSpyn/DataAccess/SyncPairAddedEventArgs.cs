@@ -1,4 +1,6 @@
 ﻿using System;
+// dpc
+using WPFSpyn.Library;
 using WPFSpyn.Model;
 
 namespace WPFSpyn.DataAccess
@@ -8,10 +10,7 @@ namespace WPFSpyn.DataAccess
     /// </summary>
     public class SyncPairAddedEventArgs : EventArgs
     {
-        public SyncPairAddedEventArgs(SyncPair p_newSyncPair)
-        {
-            NewSyncPair = p_newSyncPair;
-        }
+        public SyncPairAddedEventArgs(ISyncPair p_newSyncPair) => NewSyncPair = (SyncPair)p_newSyncPair;
 
         public SyncPair NewSyncPair { get; private set; }
     }
