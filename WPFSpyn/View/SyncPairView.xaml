@@ -277,7 +277,9 @@
                     x:Name="pbrSyncProgress"
                     Background="Transparent"
                     Height="16"
-                    Value="10" 
+                    IsIndeterminate="False"
+                    Maximum="100"
+                    Minimum="0" 
                     Width="500" 
                     Foreground="CadetBlue"
                     />

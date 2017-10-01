@@ -99,10 +99,12 @@ namespace WPFSpyn.ViewModel
                 path2Provider.SkippedChange += OnSkippedChange;
                 path2Provider.AppliedChange += OnAppliedChange;
 
-                SyncOrchestrator manager = new SyncOrchestrator();
-                manager.LocalProvider = path1Provider;
-                manager.RemoteProvider = path2Provider;
-                manager.Direction = SyncDirectionOrder.Upload;
+                SyncOrchestrator manager = new SyncOrchestrator
+                {
+                    LocalProvider = path1Provider,
+                    RemoteProvider = path2Provider,
+                    Direction = SyncDirectionOrder.Upload
+                };
                 manager.Synchronize();
             }
             finally

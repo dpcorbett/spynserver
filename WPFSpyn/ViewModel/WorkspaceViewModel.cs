@@ -61,9 +61,7 @@ namespace WPFSpyn.ViewModel
 
         void OnRequestClose()
         {
-            EventHandler handler = RequestClose;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
+            RequestClose?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion // RequestClose [event]

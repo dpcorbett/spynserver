@@ -59,6 +59,12 @@ namespace WPFSpyn.ViewModel
         private ObservableCollection<FileInfo> _dstTree;
         // Create an observable collection for preview sync results.
         ObservableCollection<string> _resultLog;
+        // Store value for progress meter.
+        private double _currentProgress;
+        // To run preview from.
+        private BackgroundWorker _previewWorker = new BackgroundWorker();
+        // To run sync from.
+        private BackgroundWorker _syncWorker = new BackgroundWorker();
 
         #endregion // Fields
 
@@ -224,6 +230,19 @@ namespace WPFSpyn.ViewModel
             }
         }
 
+        /// <summary>
+        /// Update progress meter.
+        /// </summary>
+        public double CurrentProgress
+        {
+            get { return _currentProgress; }
+            private set
+            {
+                _currentProgress = value;
+                OnPropertyChanged("CurrentProgress");
+            }
+        }
+
         #endregion // Properties
 
 
@@ -237,6 +256,15 @@ namespace WPFSpyn.ViewModel
         /// <param name="wsCommands"></param>
         public SyncPairViewModel(SyncPair p_syncPair, SyncPairRepository p_syncPairRepository, IWorkspaceCommands wsCommands)
         {
+            _previewWorker.WorkerReportsProgress = true;
+            _syncWorker.WorkerReportsProgress = true;
+            _previewWorker.WorkerSupportsCancellation = true;
+            _syncWorker.WorkerSupportsCancellation = true;
+            _previewWorker.DoWork += new DoWorkEventHandler(PreviewWorker_DoWork);
+            _syncWorker.DoWork += new DoWorkEventHandler(SyncWorker_DoWork);
+            //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            //bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            
             // Create local commands.
             _wsCommands = wsCommands;
 
@@ -462,31 +490,14 @@ namespace WPFSpyn.ViewModel
         }
 
         /// <summary>
-        /// Create/Read sync metadata, and display results in message box. This method is invoked by the PreviewCommand. 
+        /// Run preview on background thread if available. This method is invoked by the PreviewCommand. 
         /// </summary>
         public void Preview(object syncpair)
         {
-            bool isFullSync = false;
-            SyncPairViewModel spvm = (SyncPairViewModel)syncpair;
-
-            if (spvm != null)
+            if (_previewWorker.IsBusy != true)
             {
-                isFullSync = spvm.IsFullSync;
-
-            SyncOperationStatistics sos = SharpToolsSynch.PreviewSync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);
-            string msg;
-
-            if (sos != null)
-            {
+                _previewWorker.RunWorkerAsync(syncpair);
                 UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
-                // Display statistics for the synchronization operation.
-                msg = "Synchronization analysis...\n\n" +
-                    sos.DownloadChangesApplied + " update(s) to source pending.\n" +
-                    sos.DownloadChangesFailed + " update(s) to source will fail.\n" +
-                    sos.UploadChangesApplied + " update(s) to destination pending.\n" +
-                    sos.UploadChangesFailed + " update(s) to destination will fail.";
-                System.Windows.MessageBox.Show(msg, "Synchronization Results");
-            }
             }
         }
 
@@ -522,6 +533,14 @@ namespace WPFSpyn.ViewModel
         /// <param name="syncpair"></param>
         public void Sync(object syncpair)
         {
+            if (_syncWorker.IsBusy != true)
+            {
+                _syncWorker.RunWorkerAsync(syncpair);
+                UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+            }
+
+
+            /*
             // Check sync pair is ready to sync.
             if (_syncPair.IsValid)
             {
@@ -541,7 +560,7 @@ namespace WPFSpyn.ViewModel
                 // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
 
                 return;
-            }
+            }*/
         }
 
         /// <summary>
@@ -656,6 +675,82 @@ namespace WPFSpyn.ViewModel
                 // Add string to result log.
                 ResultLog.Add(param as string);
             }));
+        }
+
+
+        private void PreviewWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            if ((worker.CancellationPending == true))
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                // Perform a time consuming operation and report progress.
+                //System.Threading.Thread.Sleep(500);
+                //worker.ReportProgress((i * 10));
+                bool isFullSync = false;
+                SyncPairViewModel spvm = (SyncPairViewModel)e.Argument;
+
+                if (spvm != null)
+                {
+                    isFullSync = spvm.IsFullSync;
+                    //CurrentProgress = 50;
+                    worker.ReportProgress(50);
+                    SyncOperationStatistics sos = SharpToolsSynch.PreviewSync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);
+                    //CurrentProgress = 100;
+                    worker.ReportProgress(100);
+                    string msg;
+                    if (sos != null)
+                    {
+                        //UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+                        // Display statistics for the synchronization operation.
+                        msg = "Synchronization analysis...\n\n" +
+                            sos.DownloadChangesApplied + " update(s) to source pending.\n" +
+                            sos.DownloadChangesFailed + " update(s) to source will fail.\n" +
+                            sos.UploadChangesApplied + " update(s) to destination pending.\n" +
+                            sos.UploadChangesFailed + " update(s) to destination will fail.";
+                        System.Windows.MessageBox.Show(msg, "Synchronization Results");
+                    }
+                }
+            }
+        }
+
+
+        private void SyncWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            if ((worker.CancellationPending == true))
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                // Check sync pair is ready to sync.
+                if (_syncPair.IsValid)
+                {
+                    ResultLog = new ObservableCollection<string>(); //reset log
+
+                    bool isFullSync = false;
+                    SyncPairViewModel spvm = (SyncPairViewModel)e.Argument;
+                    if (spvm != null)
+                        isFullSync = spvm.IsFullSync;
+                    SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);
+                    // Put sync on background thread
+                    //Task.Factory.StartNew(() => { SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot); }).ContinueWith(_ => { IsSynchronising = false; });
+
+
+                   // UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+
+                    // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
+
+                    return;
+                }
+
+            }
         }
 
         #endregion // Private Helpers

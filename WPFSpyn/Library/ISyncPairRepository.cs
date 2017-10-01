@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 // dpc
 using WPFSpyn.Model;
 
@@ -7,6 +6,9 @@ namespace WPFSpyn.Library
 {
     public interface ISyncPairRepository
     {
+        /// <summary>
+        /// Collection of Sync Pairs.
+        /// </summary>
         List<SyncPair> SyncPairs { get; }
 
         /// <summary>

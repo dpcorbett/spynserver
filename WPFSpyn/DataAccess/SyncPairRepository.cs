@@ -19,8 +19,14 @@ namespace WPFSpyn.DataAccess
 
         #region Fields
 
+        /// <summary>
+        /// Store private list of sync pairs.
+        /// </summary>
         private readonly List<SyncPair> _syncPairs;
 
+        /// <summary>
+        /// Expose private list of sync pairs.
+        /// </summary>
         public List<SyncPair> SyncPairs => _syncPairs;
 
         #endregion // Fields
@@ -157,7 +163,7 @@ namespace WPFSpyn.DataAccess
          /// </summary>
          /// <param name="syncPairRep"></param>
          /// <param name="p_syncPairDataFile"></param>
-         /// <returns></returns>
+         /// <returns>True if save was successful</returns>
         public static bool SaveSyncPairs(SyncPairRepository syncPairRep, string p_syncPairDataFile)
         {
             bool saveSuccessful = false;

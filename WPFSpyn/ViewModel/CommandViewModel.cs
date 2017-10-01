@@ -19,12 +19,9 @@ namespace WPFSpyn.ViewModel
         /// <param name="command"></param>
         public CommandViewModel(string displayName, ICommand command)
         {
-            // Check that the command exists.
-            if (command == null)
-                throw new ArgumentNullException("command");
             // Set display name and command.
             base.DisplayName = displayName;
-            Command = command;
+            Command = command ?? throw new ArgumentNullException("command");
         }
 
         #endregion // Constructors
