@@ -58,92 +58,7 @@ namespace WPFSpyn.ViewModel
         {
             base.DisplayName = Strings.MainWindowViewModel_DisplayName;
             _syncPairRepository = new SyncPairRepository(syncPairDataFile);
-            GetTestCommand = new SharpToolsMVVMRelayCommand(GetTest);
-            
-            //SharpToolsMVVMMediator.Register("update", AddUpdate ); // Listener for change events
-
-        }
-
-        #endregion
-
-
-        #region Junk
-
-        public static void FindFileSystemReplicaChanges(string replicaRootPath, FileSyncScopeFilter filter, FileSyncOptions options)
-        {
-            FileSyncProvider provider = null;
-
-            try
-            {
-                provider = new FileSyncProvider(replicaRootPath, filter, options);
-                provider.DetectChanges();
-            }
-            finally
-            {
-                if (provider != null)
-                    provider.Dispose();
-            }
-        }
-
-
-        public static void OneWaySyncFileSystemReplicas(string sourceReplicaRootPath, string destinationReplicaRootPath, FileSyncScopeFilter filter, FileSyncOptions options)
-        {
-            FileSyncProvider path1Provider = null;
-            FileSyncProvider path2Provider = null;
-
-            try
-            {
-                path1Provider = new FileSyncProvider(sourceReplicaRootPath, filter, options);
-                path2Provider = new FileSyncProvider(destinationReplicaRootPath, filter, options);
-
-                path2Provider.SkippedChange += OnSkippedChange;
-                path2Provider.AppliedChange += OnAppliedChange;
-
-                SyncOrchestrator manager = new SyncOrchestrator
-                {
-                    LocalProvider = path1Provider,
-                    RemoteProvider = path2Provider,
-                    Direction = SyncDirectionOrder.Upload
-                };
-                manager.Synchronize();
-            }
-            finally
-            {
-                if (path1Provider != null)
-                    path1Provider.Dispose();
-                if (path2Provider != null)
-                    path2Provider.Dispose();
-            }
-        }
-
-
-        public static void OnAppliedChange(object sender, AppliedChangeEventArgs args)
-        {
-            switch (args.ChangeType)
-            {
-                case ChangeType.Create:
-                    SharpToolsMVVMMediator.NotifyColleagues("update", "File created: " + args.NewFilePath);
-                    break;
-                case ChangeType.Delete:
-                    SharpToolsMVVMMediator.NotifyColleagues("update", "Deleted File: " + args.OldFilePath);
-                    break;
-                case ChangeType.Update:
-                    SharpToolsMVVMMediator.NotifyColleagues("update", "Overwrote file: " + args.OldFilePath);
-                    break;
-                case ChangeType.Rename:
-                    SharpToolsMVVMMediator.NotifyColleagues("update", "Renamed file: " + args.OldFilePath + " to " + args.NewFilePath);
-                    break;
-            }
-        }
-
-
-        public static void OnSkippedChange(object sender, SkippedChangeEventArgs args)
-        {
-            SharpToolsMVVMMediator.NotifyColleagues("update", "Error! Skipped file: " + args.ChangeType.ToString().ToUpper() + " for "
-                + (!string.IsNullOrEmpty(args.CurrentFilePath) ? args.CurrentFilePath : args.NewFilePath));
-
-            if (args.Exception != null)
-                SharpToolsMVVMMediator.NotifyColleagues("update", "Error: " + args.Exception.Message);
+            //GetTestCommand = new SharpToolsMVVMRelayCommand(GetTest);
         }
 
         #endregion
@@ -330,7 +245,6 @@ namespace WPFSpyn.ViewModel
                 collectionView.MoveCurrentTo(workspace);
         }
                  
-
         #endregion // Private Helpers
 
 
