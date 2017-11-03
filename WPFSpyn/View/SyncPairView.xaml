@@ -276,12 +276,14 @@
                 <ProgressBar 
                     x:Name="pbrSyncProgress"
                     Background="Transparent"
+                    Foreground="CadetBlue"
                     Height="16"
                     IsIndeterminate="False"
                     Maximum="100"
                     Minimum="0" 
                     Width="500" 
-                    Foreground="CadetBlue"
+                    Value="{Binding CurrentProgress, Mode=OneWay}"
+                    Visibility="{Binding ProgressVisibility}"
                     />
             </StatusBarItem>
         </StatusBar>

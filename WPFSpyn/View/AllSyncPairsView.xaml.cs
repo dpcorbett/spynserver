@@ -1,6 +1,4 @@
-﻿using SharpTools.MVVM.AttachedCommandBehaviour;
-
-namespace WPFSpyn.View
+﻿namespace WPFSpyn.View
 {
     /// <summary>
     /// Interaction logic for AllSyncPairsView.xaml

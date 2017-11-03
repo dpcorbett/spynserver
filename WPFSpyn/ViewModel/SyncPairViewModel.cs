@@ -74,6 +74,8 @@ namespace WPFSpyn.ViewModel
         // Directory path update event handler.
         public event EventHandler UpdateDirectoryPath;
 
+        public event EventHandler UpdateProgressBar;
+
         /// <summary>
         /// Exposes get source root command.
         /// </summary>
@@ -238,8 +240,11 @@ namespace WPFSpyn.ViewModel
             get { return _currentProgress; }
             private set
             {
-                _currentProgress = value;
-                OnPropertyChanged("CurrentProgress");
+                if (_currentProgress != value)
+                {
+                    _currentProgress = value;
+                    OnPropertyChanged("CurrentProgress");
+                }
             }
         }
 
@@ -254,7 +259,7 @@ namespace WPFSpyn.ViewModel
         /// <param name="p_syncPair"></param>
         /// <param name="p_syncPairRepository"></param>
         /// <param name="wsCommands"></param>
-        public SyncPairViewModel(SyncPair p_syncPair, SyncPairRepository p_syncPairRepository, IWorkspaceCommands wsCommands)
+        public SyncPairViewModel(SyncPair p_syncPair, SyncPairRepository p_syncPairRepository, IWorkspaceCommands p_wsCommands)
         {
             _previewWorker.WorkerReportsProgress = true;
             _syncWorker.WorkerReportsProgress = true;
@@ -262,11 +267,12 @@ namespace WPFSpyn.ViewModel
             _syncWorker.WorkerSupportsCancellation = true;
             _previewWorker.DoWork += new DoWorkEventHandler(PreviewWorker_DoWork);
             _syncWorker.DoWork += new DoWorkEventHandler(SyncWorker_DoWork);
+            _previewWorker.ProgressChanged += new ProgressChangedEventHandler(PreviewWorker_ProgressChanged);
             //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             //bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             
             // Create local commands.
-            _wsCommands = wsCommands;
+            _wsCommands = p_wsCommands;
 
             // Set sync pair.
             _syncPair = p_syncPair ?? throw new ArgumentNullException("p_syncPair");
@@ -528,7 +534,7 @@ namespace WPFSpyn.ViewModel
         }
 
         /// <summary>
-        /// Create sync view from sync pair supplied.
+        /// Create sync view from sync pair supplied on a background worker.
         /// </summary>
         /// <param name="syncpair"></param>
         public void Sync(object syncpair)
@@ -537,30 +543,8 @@ namespace WPFSpyn.ViewModel
             {
                 _syncWorker.RunWorkerAsync(syncpair);
                 UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+                IsSynchronising = false;
             }
-
-
-            /*
-            // Check sync pair is ready to sync.
-            if (_syncPair.IsValid)
-            {
-                ResultLog = new ObservableCollection<string>(); //reset log
-
-                bool isFullSync = false;
-                SyncPairViewModel spvm = (SyncPairViewModel)syncpair;
-                if (spvm != null)
-                    isFullSync = spvm.IsFullSync;
-                SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);            
-                // Put sync on background thread
-                //Task.Factory.StartNew(() => { SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot); }).ContinueWith(_ => { IsSynchronising = false; });
-
-
-                UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
-
-                // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
-
-                return;
-            }*/
         }
 
         /// <summary>
@@ -623,7 +607,6 @@ namespace WPFSpyn.ViewModel
             UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
 
         }
-
 
         #endregion // Public Methods
 
@@ -743,7 +726,7 @@ namespace WPFSpyn.ViewModel
                     //Task.Factory.StartNew(() => { SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot); }).ContinueWith(_ => { IsSynchronising = false; });
 
 
-                   // UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+                    //UpdateDirectoryPath?.Invoke(this, e: EventArgs.Empty);
 
                     // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
 
@@ -751,6 +734,11 @@ namespace WPFSpyn.ViewModel
                 }
 
             }
+        }
+
+        private void PreviewWorker_ProgressChanged(object sender, ProgressChangedEventArgs pcea)
+        {
+            this.CurrentProgress = pcea.ProgressPercentage;
         }
 
         #endregion // Private Helpers
