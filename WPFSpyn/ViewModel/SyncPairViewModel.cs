@@ -65,6 +65,16 @@ namespace WPFSpyn.ViewModel
         private BackgroundWorker _previewWorker = new BackgroundWorker();
         // To run sync from.
         private BackgroundWorker _syncWorker = new BackgroundWorker();
+        // Store preview sync state.
+        private SyncOperationStatistics _previewStats;
+        // Used to run explorer for browse.
+        System.Diagnostics.Process sdp;
+        // Used for progress meter increments.
+        private double _progressStep;
+        // The number of changes for sync type.
+        private int _changes;
+        // The current change count.
+        private int _currentStep;
 
         #endregion // Fields
 
@@ -74,7 +84,7 @@ namespace WPFSpyn.ViewModel
         // Directory path update event handler.
         public event EventHandler UpdateDirectoryPath;
 
-        public event EventHandler UpdateProgressBar;
+        //public event EventHandler UpdateProgressBar;
 
         /// <summary>
         /// Exposes get source root command.
@@ -233,7 +243,7 @@ namespace WPFSpyn.ViewModel
         }
 
         /// <summary>
-        /// Update progress meter.
+        /// Update progress meter through binding.
         /// </summary>
         public double CurrentProgress
         {
@@ -261,6 +271,7 @@ namespace WPFSpyn.ViewModel
         /// <param name="wsCommands"></param>
         public SyncPairViewModel(SyncPair p_syncPair, SyncPairRepository p_syncPairRepository, IWorkspaceCommands p_wsCommands)
         {
+            //_currentProgress = 0;
             _previewWorker.WorkerReportsProgress = true;
             _syncWorker.WorkerReportsProgress = true;
             _previewWorker.WorkerSupportsCancellation = true;
@@ -268,9 +279,9 @@ namespace WPFSpyn.ViewModel
             _previewWorker.DoWork += new DoWorkEventHandler(PreviewWorker_DoWork);
             _syncWorker.DoWork += new DoWorkEventHandler(SyncWorker_DoWork);
             _previewWorker.ProgressChanged += new ProgressChangedEventHandler(PreviewWorker_ProgressChanged);
-            //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            _syncWorker.ProgressChanged += new ProgressChangedEventHandler(SyncWorker_ProgressChanged);
             //bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-            
+
             // Create local commands.
             _wsCommands = p_wsCommands;
 
@@ -305,11 +316,16 @@ namespace WPFSpyn.ViewModel
             // Initialise delete sync pair.
             DeleteSyncPairCommand = new SharpToolsMVVMRelayCommand(Delete);
             
-            SharpToolsMVVMMediator.Register("update", AddUpdate); // Listener for change events
+            SharpToolsMVVMMediator.Register("update", AddUpdate); // Listener for change events.
             // LOG
-            _log.Debug("Mediator Registered");
+            _log.Debug("Update Mediator Registered");
             //
             ResultLog = new ObservableCollection<string>();
+
+            SharpToolsMVVMMediator.Register("progress", ProgressUpdate); // Listener for change events.
+            // LOG
+            _log.Debug("Progress Mediator Registered");
+            //
         }
 
         #endregion // Constructor
@@ -541,6 +557,8 @@ namespace WPFSpyn.ViewModel
         {
             if (_syncWorker.IsBusy != true)
             {
+                _currentProgress = 0;
+                _currentStep = 0;
                 _syncWorker.RunWorkerAsync(syncpair);
                 UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
                 IsSynchronising = false;
@@ -582,17 +600,20 @@ namespace WPFSpyn.ViewModel
             UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
         }
 
+        //System.Diagnostics.Process sdp = new System.Diagnostics.Process();
+
         /// <summary>
         /// Use explorer to edit source.
         /// </summary>
         /// <param name="param"></param>
         private void BrowseSrcRoot(object param)
         {
-            // Create dialog window.
-            System.Diagnostics.Process.Start("explorer.exe", _syncPair.SrcRoot);
-            // Raise event for directory tree view.
-            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
-
+            sdp = new System.Diagnostics.Process();
+            sdp.StartInfo.Arguments = _syncPair.SrcRoot;
+            sdp.StartInfo.FileName = "explorer.exe";
+            sdp.EnableRaisingEvents = true;
+            sdp.Exited += new EventHandler(Browse_Exited);
+            sdp.Start();
         }
 
         /// <summary>
@@ -601,11 +622,26 @@ namespace WPFSpyn.ViewModel
         /// <param name="param"></param>
         private void BrowseDstRoot(object param)
         {
-            // Create dialog window.
-            System.Diagnostics.Process.Start("explorer.exe", _syncPair.DstRoot);
-            // Raise event for directory tree view.
-            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+            sdp = new System.Diagnostics.Process();
+            sdp.StartInfo.Arguments = _syncPair.DstRoot;
+            sdp.StartInfo.FileName = "explorer.exe";
+            sdp.EnableRaisingEvents = true;
+            sdp.Exited += new EventHandler(Browse_Exited);
+            sdp.Start();
+        }
 
+        /// <summary>
+        /// Open Modal message box and do update on it's close.
+        /// </summary>
+        /// <param name="sender">Process that is exiting.</param>
+        /// <param name="e"></param>
+        private void Browse_Exited(object sender, System.EventArgs e)
+        {
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                System.Windows.MessageBox.Show(System.Windows.Application.Current.MainWindow, "If changes were made while browsing.", "Close to Refresh", MessageBoxButton.OK, MessageBoxImage.Stop);
+                UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+            });
         }
 
         #endregion // Public Methods
@@ -660,52 +696,80 @@ namespace WPFSpyn.ViewModel
             }));
         }
 
+        /// <summary>
+        /// Update progress with integer(default is 1).
+        /// </summary>
+        /// <param name="param"></param>
+        void ProgressUpdate(object param)
+        {
+            // Dispatch update for result log.
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            {
+                // Add string to result log.
+                _currentStep += (Int32)param;
+                CurrentProgress = CurrentProgress + (_progressStep * _currentStep);
+            }));
+        }
 
+
+
+        /// <summary>
+        /// Run and report preview sync of data.
+        /// </summary>
+        /// <param name="sender">Background worker as object.</param>
+        /// <param name="e">SyncPairViewModel passed in.</param>
         private void PreviewWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-
             if ((worker.CancellationPending == true))
             {
                 e.Cancel = true;
             }
             else
             {
-                // Perform a time consuming operation and report progress.
-                //System.Threading.Thread.Sleep(500);
-                //worker.ReportProgress((i * 10));
                 bool isFullSync = false;
                 SyncPairViewModel spvm = (SyncPairViewModel)e.Argument;
-
                 if (spvm != null)
                 {
+                    ResultLog = new ObservableCollection<string>(); //reset log
                     isFullSync = spvm.IsFullSync;
-                    //CurrentProgress = 50;
+                    // Set progress to half for started,
+                    // and full for done. This can't be
+                    // reported accurately at runtime.
                     worker.ReportProgress(50);
-                    SyncOperationStatistics sos = SharpToolsSynch.PreviewSync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);
-                    //CurrentProgress = 100;
+                    _previewStats = SharpToolsSynch.PreviewSync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);
                     worker.ReportProgress(100);
-                    string msg;
-                    if (sos != null)
+                    if (_previewStats != null)
                     {
-                        //UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
-                        // Display statistics for the synchronization operation.
-                        msg = "Synchronization analysis...\n\n" +
-                            sos.DownloadChangesApplied + " update(s) to source pending.\n" +
-                            sos.DownloadChangesFailed + " update(s) to source will fail.\n" +
-                            sos.UploadChangesApplied + " update(s) to destination pending.\n" +
-                            sos.UploadChangesFailed + " update(s) to destination will fail.";
-                        System.Windows.MessageBox.Show(msg, "Synchronization Results");
+                        _changes = _previewStats.UploadChangesTotal;
+                        if (isFullSync)
+                            _changes += _previewStats.DownloadChangesTotal;
+
+                        // Prevent divide by zero and give full progress to an empty sync.
+                        _progressStep = _changes > 0 ? ((100 /_changes) + 1) : 100;
+
+                        // Pass update to UI.
+                        App.Current.Dispatcher.Invoke((Action)delegate 
+                        {
+                            ResultLog.Add(_previewStats.DownloadChangesApplied + " update(s) to source pending.\n" +
+                            _previewStats.DownloadChangesFailed + " update(s) to source will fail.\n" +
+                            _previewStats.UploadChangesApplied + " update(s) to destination pending.\n" +
+                            _previewStats.UploadChangesFailed + " update(s) to destination will fail.");
+                            UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+                        });
                     }
                 }
             }
         }
 
-
+        /// <summary>
+        /// Run and report sync of data.
+        /// </summary>
+        /// <param name="sender">Background worker as object.</param>
+        /// <param name="e">SyncPairViewModel passed in.</param>
         private void SyncWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-
             if ((worker.CancellationPending == true))
             {
                 e.Cancel = true;
@@ -716,30 +780,45 @@ namespace WPFSpyn.ViewModel
                 if (_syncPair.IsValid)
                 {
                     ResultLog = new ObservableCollection<string>(); //reset log
-
                     bool isFullSync = false;
                     SyncPairViewModel spvm = (SyncPairViewModel)e.Argument;
                     if (spvm != null)
                         isFullSync = spvm.IsFullSync;
+                    worker.ReportProgress(1);
                     SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot, isFullSync);
-                    // Put sync on background thread
-                    //Task.Factory.StartNew(() => { SharpToolsSynch.Sync(_syncPair.SrcRoot, _syncPair.DstRoot); }).ContinueWith(_ => { IsSynchronising = false; });
-
-
-                    //UpdateDirectoryPath?.Invoke(this, e: EventArgs.Empty);
-
-                    // TODO throw new InvalidOperationException(Strings.SyncPairViewModel_Exception_CannotSave);
-
+                    if (_changes == 0)
+                        worker.ReportProgress(100);
+                    // Update treeviews.
+                    App.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        UpdateDirectoryPath?.Invoke(this, EventArgs.Empty);
+                    });
                     return;
                 }
-
             }
         }
 
+        /// <summary>
+        /// Updates preview progress on changed event.
+        /// </summary>
+        /// <param name="sender">Object that reported the change.</param>
+        /// <param name="pcea">The new value for preview progress.</param>
         private void PreviewWorker_ProgressChanged(object sender, ProgressChangedEventArgs pcea)
         {
-            this.CurrentProgress = pcea.ProgressPercentage;
+            this.CurrentProgress = (this.CurrentProgress != pcea.ProgressPercentage) ? pcea.ProgressPercentage : this.CurrentProgress;
         }
+
+        /// <summary>
+        /// Updates sync progress on changed event.
+        /// </summary>
+        /// <param name="sender">Object that reported the change.</param>
+        /// <param name="pcea">The new value for sync progress.</param>
+        private void SyncWorker_ProgressChanged(object sender, ProgressChangedEventArgs pcea)
+        {
+            //System.Windows.MessageBox.Show($"param: {pcea.ProgressPercentage}");
+            this.CurrentProgress = (this.CurrentProgress != pcea.ProgressPercentage) ? pcea.ProgressPercentage : this.CurrentProgress;
+        }
+
 
         #endregion // Private Helpers
 
